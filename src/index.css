@@ -1,6 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap');
 @import "tailwindcss";
 @config "../tailwind.config.js";
 
-* {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+:root {
+  --cream: #F5F0E8;
+  --ivory: #FAF7F2;
+  --navy: #1A2744;
+  --navy-2: #243461;
+  --navy-3: #0F1A30;
+  
+  
+  --gold: #C9A84C;
+  --gold-2: #E8C97A;
+  --gold-3: #8C7B6B;
+  
+  --ink: #2C2417;
+  --muted: #6d727e;
+  --rose: #C4746E;
+  --sage: #6B8C7B;
+  --wer: rgba(255,255,255,0.35);
 }
+
+body {
+      background: var(--ivory);
+      color: var(--ink);
+      font-family: 'Noto Serif KR', serif;
+      overflow-x: hidden;
+    }
