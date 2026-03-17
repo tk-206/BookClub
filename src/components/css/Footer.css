@@ -1,0 +1,82 @@
+footer {
+    background: #0F1A30;
+    padding: 3rem 5% 2rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+}
+
+.footer-logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    display: block;
+    unicode-bidi: isolate;
+}
+
+.footer-logo span{
+    color: var(--gold);
+    font-style: italic;
+}
+
+.footer-tagline {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.35);
+    line-height: 1.8;
+    font-weight: 300;
+    unicode-bidi: isolate;
+}
+
+.col-card {
+    margin-bottom: 2rem;
+}
+
+.footer-col h4 {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    unicode-bidi: isolate;
+}
+
+.footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.footer-col ul li a {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.35);
+    text-decoration: none;
+    transition: color 0.2s;
+    unicode-bidi: isolate;
+}
+
+.footer-bottom {
+    background: #0F1A30;
+    padding: 1.5rem 5%;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-copy {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+    footer {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,3 +1,5 @@
+import './css/Footer.css'
+
 export default function Footer() {
 
     const columns = [
@@ -16,30 +18,29 @@ export default function Footer() {
         
     ]
     return (
-        <footer className="bg-navy-dark">
-            <div className="grid gird-cols-4 gap-12 px-10 py-12">
+        <footer className='footer'>
+            <div className="footer-brand">
                 {/* 브랜드 */}
-                <div>
-                    <p className="text-2xl font-serif text-muted mb-4">
-                        북<span className="italic text-gold">클럽</span>
-                    </p>
-                    <p className="text-sm text-muted leading-relaxed">
-                        책과 사람이 만나는 공간.<br />
-                        독자, 작가, 출판사 모두를 위한<br />
-                        문학 커뮤니티 플랫폼.
-                    </p>
-                </div>
-
+                <p className="footer-logo">
+                    북<span>클럽</span>
+                </p>
+                <p className="footer-tagline">
+                    책과 사람이 만나는 공간.<br />
+                    독자, 작가, 출판사 모두를 위한<br />
+                    문학 커뮤니티 플랫폼.
+                </p>
+            </div>
+            <div className='footer-col'>
                 {/* 링크 컬럼 */}
                 {columns.map((col) => (
-                    <div key={col.title}>
-                        <p className="text-xs tracking-widest text-gold uppercase mb-4">
+                    <div key={col.title} className='col-card'>
+                        <h4>
                             {col.title}
-                        </p>
-                        <ul className="flex flex-col gap-2">
+                        </h4>
+                        <ul>
                             {col.links.map((link) => (
                                 <li key={link}>
-                                    <button className="text-sm text-muted hover:text-ivory/70 transition-colors">{link}</button>
+                                    <a href='#'>{link}</a>
                                 </li>
                             ))}
                         </ul>
@@ -48,8 +49,8 @@ export default function Footer() {
             </div>
 
             {/* 하단 */}
-            <div className="flex justify-between px-10 py-4 border-t border-white/5">
-                <span className="text-xs text-white/20">© 2026 북클럽. All rights reserved.</span>
+            <div className="footer-bottom">
+                <span className="fotter-copy">© 2026 북클럽. All rights reserved.</span>
             </div>
         </footer>
     )

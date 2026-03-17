@@ -120,7 +120,7 @@ export default function Home() {
                     <h1 className='home-header-text_desc'>
                         책을 읽고,<br/>
                         사람을 만나고,<br/>
-                        <p className='home-header-text_desc2'>이야기가 흐르다</p>
+                        <em>이야기가 흐르다</em>
                     </h1>
                     <div className='home-header-sub_desc'>
                         독서 기록부터 모임 운영, 작가 소통까지.<br/>
@@ -145,6 +145,31 @@ export default function Home() {
                             <div className='stat-num'>83</div>
                             <div className='stat-text'>참여 작가</div>
                         </div>
+                    </div>
+                </div>
+
+                <div className="hero-visual">
+                    <div className="book-stack">
+                        <div className="book book-4">
+                            <div className="book-spine"></div>
+                            <span className="book-title">채식주의자</span>
+                        </div>
+                        <div className="book book-1">
+                            <div className="book-spine"></div>
+                            <span className="book-title">82년생 김지영</span>
+                        </div>
+                        <div className="book book-2">
+                            <div className="book-spine"></div>
+                            <span className="book-title">아몬드</span>
+                        </div>
+                        <div className="book book-3">
+                            <div className="book-spine"></div>
+                            <span className="book-title">흰</span>
+                        </div>
+                    </div>
+                    <div className="reading-badge">
+                        <div className="badge-label">📖 지금 읽는 중</div>
+                        <div className="badge-book">채식주의자 — 한강</div>
                     </div>
                 </div>
             </section>
@@ -293,6 +318,18 @@ export default function Home() {
                             <div className='author-follower'>{l.follower}</div>
                         </div>
                     ))}
+                </div>
+            </section>
+
+            <section className='home-start'>
+                <div className='start-title'>지금 바로 시작하세요</div>
+                <p className='start-title_desc'>
+                    책을 좋아하는 모든 분들을 환영합니다.<br/>
+                    독자든, 작가든, 출판사든 — 이 공간은 여러분의 것입니다.
+                </p>
+                <div className='start-buttons'>
+                    <button className='btn-gold'>무료 회원가입</button>
+                    <button className='btn-outline-light'>기능 더 알아보기</button>
                 </div>
             </section>
         </section>
