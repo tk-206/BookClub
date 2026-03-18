@@ -9,7 +9,6 @@
 
 .home-header-title {
     display: flex;
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.2em;
@@ -80,7 +79,6 @@
 }
 
 .home-header-sub_desc {
-    font-family: 'Noto Sans KR', sans-serif;
     color: var(--gold-3);
     font-size: 1rem;
     line-height: 1.9;
@@ -96,7 +94,6 @@
 }
 
 .btn-large {
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.9rem;
     color: var(--ivory);
     background: var(--navy);
@@ -111,7 +108,6 @@
 .btn-large:hover { background: var(--gold);}
 
 .btn-link {
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.85rem;
     color: var(--navy);
     text-decoration: none;
@@ -138,7 +134,6 @@
 }
 
 .stat-text {
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.75rem;
     color: var(--gold-3);
     margin-top: 0.2rem;
@@ -170,7 +165,6 @@
 }
 
 .book-title {
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.65rem;
     color: rgba(255, 255, 255, 0.7);
     writing-mode: vertical-rl;
@@ -262,7 +256,6 @@
 }
 
 .home-features-title {
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.72rem;
     letter-spacing: 0.25em;
     color: var(--gold);
@@ -346,7 +339,6 @@
 }
 
 .feature-desc {
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.82rem;
     line-height: 1.8;
     color: var(--gold-3);
@@ -370,6 +362,7 @@
     font-size: 30rem;
     color: rgba(255, 255, 255, 0.03);
     line-height: 1;
+    pointer-events: none;
 }
 
 .preview-header {
@@ -378,7 +371,6 @@
 }
 
 .preview-title {
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.72rem;
     letter-spacing: 0.25em;
     color: var(--gold);
@@ -406,7 +398,6 @@
 }
 
 .preview-tab_btn {
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.82rem;
     padding: 0.75rem 1.5rem;
     cursor: pointer;
@@ -488,7 +479,6 @@
 }
 
 .desc-title_desc {
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.88rem;
     line-height: 1.9;
     color: rgba(255, 255, 255, 0.55);
@@ -504,7 +494,6 @@
 
 .desc-list li {
     unicode-bidi: isolate;
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.82rem;
     color: rgba(255, 255, 255, 0.6);
     display: flex;
@@ -544,7 +533,6 @@
 
 .comm-badge {
     display: inline-block;
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.68rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -564,7 +552,6 @@
 }
 
 .comm-desc {
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.78rem;
     line-height: 1.75;
     color: var(--muted);
@@ -577,7 +564,6 @@
 }
 
 .community-title {
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.72rem;
     letter-spacing: 0.25em;
     color: var(--gold);
@@ -634,7 +620,6 @@
 }
 
 .meta-info {
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.72rem;
     color: rgba(255, 255, 255, 0.4);
 }
@@ -675,7 +660,6 @@
 }
 
 .authors-title {
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.72rem;
     letter-spacing: 0.25em;
     color: var(--gold);
@@ -748,7 +732,6 @@
 }
 
 .author-genre {
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.72rem;
     color: var(--gold);
     margin: 0.3rem 0;
@@ -756,7 +739,6 @@
 }
 
 .author-follower {
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.7rem;
     color: var(--gold-3);
     font-weight: 300;
@@ -781,7 +763,6 @@
 
 .start-title_desc {
     color: rgba(255, 255, 255, 0.5);
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.9rem;
     margin-bottom: 2.5rem;
     line-height: 1.8;
@@ -794,7 +775,6 @@
 }
 
 .btn-gold {
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.88rem;
     color: var(--navy);
     background: var(--gold);
@@ -806,7 +786,6 @@
 }
 
 .btn-outline-light {
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.88rem;
     color: var(--ivory);
     border: 1px solid rgba(255, 255, 255, 0.25);

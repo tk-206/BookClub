@@ -75,6 +75,15 @@ li {
     unicode-bidi: isolate;
 }
 
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
 * {
   margin: 0;
   padding: 0;

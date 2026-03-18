@@ -11,7 +11,7 @@ export default function Navbar() {
 
             {/* 메뉴 */}
             <ul className="nav-links">
-                <li><a href="#">내 서재</a></li>
+                <li><NavLink to="내 서재">내 서재</NavLink></li>
                 <li><a href="#">모임</a></li>
                 <li><a href="#">출판사</a></li>
                 <li><a href="#">작가</a></li>

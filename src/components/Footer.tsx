@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import './css/Footer.css'
 
 export default function Footer() {
@@ -5,15 +6,15 @@ export default function Footer() {
     const columns = [
         { 
             title: '서비스',
-            links: ["독서 기록", "독서 모임", "게시판", "행사 캘린더"],
+            page: ["독서 기록", "독서 모임", "게시판", "행사 캘린더"],
         },
         { 
             title: '작가 & 출판사',
-            links: ["작가 등록", "출판사 소개", "구인구직", "작가 채널"],
+            page: ["작가 등록", "출판사 소개", "구인구직", "작가 채널"],
         },
         { 
             title: '정보',
-            links: ["공지사항", "이용약관", "개인정보처리방침", "문의하기"],
+            page: ["공지사항", "이용약관", "개인정보처리방침", "문의하기"],
         },
         
     ]
@@ -38,9 +39,9 @@ export default function Footer() {
                             {col.title}
                         </h4>
                         <ul>
-                            {col.links.map((link) => (
-                                <li key={link}>
-                                    <a href='#'>{link}</a>
+                            {col.page.map((page) => (
+                                <li key={page}>
+                                    <NavLink to={page}>{page}</NavLink>
                                 </li>
                             ))}
                         </ul>

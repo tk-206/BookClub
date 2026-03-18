@@ -2,10 +2,10 @@ import './css/Home.css'
 import { useState } from 'react'
 import clsx from 'clsx'
 
-type Tab = '독서기록' | '모임캘린더' | '게시판' | '작가채널'
+type Tab = '독서 기록' | '모임 캘린더' | '게시판' | '작가 채널'
 
 export default function Home() {
-    const [tab, setTab] = useState<Tab>('독서기록')
+    const [tab, setTab] = useState<Tab>('독서 기록')
     const columns = [
         { 
             num: '01',
@@ -45,7 +45,7 @@ export default function Home() {
         },
     ]
 
-    const tabs: Tab[] = ['독서기록', '모임캘린더', '작가채널', '게시판']
+    const tabs: Tab[] = ['독서 기록', '모임 캘린더', '작가 채널', '게시판']
 
     const dummyList = [
         {
