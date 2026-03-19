@@ -1,6 +1,9 @@
 import clsx from 'clsx'
 import './css/Library.css'
 import { useState } from 'react'
+import MyBook from '../components/MyBook'
+import Calendar from '../components/Calendar'
+import StatsView from '../components/StatsView'
 
 type SideTab = '전체 서재' | '읽는 중' | '읽은 책' | '읽고 싶어요' | '독서 캘린더' | '독서 통계' | '내 게시글' | '알림'
 type ContentTab = '목록' | '캘린더' | '통계'
@@ -8,6 +11,14 @@ type ContentTab = '목록' | '캘린더' | '통계'
 export default function Library() {
     const [sideTab, setSideTab] = useState<SideTab>('전체 서재')
     const [contentTab, setContentTab] = useState<ContentTab>('목록')
+
+    const tabContent = {
+        목록: MyBook,
+        캘린더: Calendar,
+        통계: StatsView,
+    }
+
+    const ActiveComponent = tabContent[contentTab]
 
     const menu = [
         {
@@ -132,7 +143,7 @@ export default function Library() {
                 </div>
 
                 {/* content */}
-                <div>어쩌구 저쩌구 책</div>
+                <ActiveComponent />
             </section>
         </div>
     )

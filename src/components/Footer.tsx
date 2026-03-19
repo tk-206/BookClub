@@ -19,40 +19,44 @@ export default function Footer() {
         
     ]
     return (
-        <footer className='footer'>
-            <div className="footer-brand">
-                {/* 브랜드 */}
-                <p className="footer-logo">
-                    북<span>클럽</span>
-                </p>
-                <p className="footer-tagline">
-                    책과 사람이 만나는 공간.<br />
-                    독자, 작가, 출판사 모두를 위한<br />
-                    문학 커뮤니티 플랫폼.
-                </p>
-            </div>
-            <div className='footer-col'>
+        <footer>
+            <div className='footer-main'>
+                <div className="footer-brand">
+                    {/* 브랜드 */}
+                    <p className="footer-logo">
+                        북<span>클럽</span>
+                    </p>
+                    <p className="footer-tagline">
+                        책과 사람이 만나는 공간.<br />
+                        독자, 작가, 출판사 모두를 위한<br />
+                        문학 커뮤니티 플랫폼.
+                    </p>
+                </div>
+                
                 {/* 링크 컬럼 */}
                 {columns.map((col) => (
-                    <div key={col.title} className='col-card'>
-                        <h4>
-                            {col.title}
-                        </h4>
-                        <ul>
-                            {col.page.map((page) => (
-                                <li key={page}>
-                                    <NavLink to={page}>{page}</NavLink>
-                                </li>
-                            ))}
-                        </ul>
+                    <div key={col.title} className='footer-col'>
+                        <div className='col-card'>
+                            <h4>
+                                {col.title}
+                            </h4>
+                            <ul>
+                                {col.page.map((page) => (
+                                    <li key={page}>
+                                        <NavLink to={page}>{page}</NavLink>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 ))}
             </div>
-
+            
             {/* 하단 */}
             <div className="footer-bottom">
-                <span className="fotter-copy">© 2026 북클럽. All rights reserved.</span>
+                <span className="footer-copy">© 2026 북클럽. All rights reserved.</span>
             </div>
         </footer>
+        
     )
 }

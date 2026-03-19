@@ -1,0 +1,134 @@
+.analytics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5px;
+    background: rgba(201, 168, 76, 0.1);
+    border: 1px solid rgba(201, 168, 76, 0.15);
+    margin-bottom: 3rem;
+}
+
+.analytics-card {
+    background: var(--ivory);
+    padding: 2rem;
+}
+
+.analytics-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 0.9rem;
+    color: var(--navy);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+/* Left */
+.genre-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.genre-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.genre-name {
+    font-size: 0.75rem;
+    color: var(--ink);
+    width: 60px;
+    flex-shrink: 0;
+}
+
+.genre-bar-bg {
+    flex: 1;
+    height: 6px;
+    background: rgba(201, 168, 76, 0.12);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.genre-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s ease;
+}
+
+.genre-bar-fill.a {
+    width: 75%;
+    background: var(--navy);
+}
+
+.genre-bar-fill.b {
+    width: 25%;
+    background: var(--gold);
+}
+
+.genre-bar-fill.c {
+    width: 12%;
+    background: var(--rose);
+}
+
+.genre-bar-fill.d {
+    width: 8%;
+    background: var(--sage);
+}
+
+.genre-count {
+    font-size: 0.7rem;
+    color: var(--muted);
+    width: 24px;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+/* Right */
+.monthly-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.6rem;
+    height: 100px;
+}
+
+.month-bar-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.month-bar {
+    width: 100%;
+    background: var(--navy);
+    border-radius: 2px 2px 0 0;
+    transition: height 0.8s ease;
+    min-height: 4px;
+}
+
+.month-bar.a {
+    height: 60px;
+}
+
+.month-bar.b {
+    height: 40px;
+}
+
+.month-bar.current {
+    height: 24px;
+    background: var(--gold);
+}
+
+.month-bar.after {
+    height: 4px;
+    opacity: 0.2;
+}
+
+.month-label {
+    font-size: 0.62rem;
+    color: var(--gold-3);
+}
+
+.month-label.after {
+    opacity: 0.2;
+}

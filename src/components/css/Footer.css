@@ -1,4 +1,4 @@
-footer {
+.footer-main {
     background: #0F1A30;
     padding: 3rem 5% 2rem;
     display: grid;
@@ -72,11 +72,11 @@ footer {
 .footer-copy {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.72rem;
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.05);
 }
 
 @media (max-width: 768px) {
-    footer {
+    .footer-main {
         grid-template-columns: 1fr;
     }
 }
