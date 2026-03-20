@@ -20,7 +20,7 @@ export default function Navbar() {
         
             {/* 버튼 */}
             <div className="nav-actions">
-                <button className="btn-ghost">로그인</button>
+                <button className="btn-ghost"><NavLink to="로그인">로그인</NavLink></button>
                 <button className="btn-primary">가입하기</button>
             </div>
         </nav>

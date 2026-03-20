@@ -1,9 +1,10 @@
 import clsx from 'clsx'
 import './css/Library.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import MyBook from '../components/MyBook'
 import Calendar from '../components/Calendar'
 import StatsView from '../components/StatsView'
+import AddBookModal from '../components/AddBookModal'
 
 type SideTab = '전체 서재' | '읽는 중' | '읽은 책' | '읽고 싶어요' | '독서 캘린더' | '독서 통계' | '내 게시글' | '알림'
 type ContentTab = '목록' | '캘린더' | '통계'
@@ -11,6 +12,7 @@ type ContentTab = '목록' | '캘린더' | '통계'
 export default function Library() {
     const [sideTab, setSideTab] = useState<SideTab>('전체 서재')
     const [contentTab, setContentTab] = useState<ContentTab>('목록')
+    const [open, setOpen] = useState(false)
 
     const tabContent = {
         목록: MyBook,
@@ -50,6 +52,18 @@ export default function Library() {
     ] as const
 
     const CONTENT_TAB: ContentTab[] = ['목록', '캘린더', '통계']
+
+    useEffect(() => {
+        if (open) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = 'auto'
+        }
+
+        return () => {
+            document.body.style.overflow = 'auto'
+        }
+    }, [open])
 
     return (
         <div className='library-page'>
@@ -101,7 +115,7 @@ export default function Library() {
                         <span>MY LIBRARY</span>
                         내 서재
                     </div>
-                    <button className='header-btn'><span>＋</span>책 추가하기</button>
+                    <button className='header-btn' onClick={() => setOpen(true)}><span>＋</span>책 추가하기</button>
                 </div>
                 <div className='lib-status-row'>
                     <div className='lib-status'>
@@ -145,6 +159,8 @@ export default function Library() {
                 {/* content */}
                 <ActiveComponent />
             </section>
+
+            <AddBookModal isOpen={open} onClose={() => setOpen(false)}/>
         </div>
     )
 }
