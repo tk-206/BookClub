@@ -42,7 +42,7 @@ export default function Login() {
                 </div>
 
                 <div className='right-form'>
-                    <div className='login-title'>만나서 반가워요.</div>
+                    <div className='login-title'>만나서 반가워요...</div>
                     <div className='login-title_desc'>계정에 로그인하고 독서 여정을 이어가세요.</div>
                 </div>
             </div>
