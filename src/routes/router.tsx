@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Library from "../pages/Library";
 import AuthLayout from "../layout/AuthLayout";
+import Community from "../pages/community";
 
 export const router = createBrowserRouter([
     {
@@ -11,11 +12,12 @@ export const router = createBrowserRouter([
         element: <Layout />,
         children: [
             { index: true, element: <Home /> },
-            { path: "내 서재", element: <Library/>},
+            { path: "내 서재", element: <Library />},
+            { path: "커뮤니티", element: <Community />},
         ]
     },
     {
-        path: "/로그인",
+        path: "로그인",
         element: <AuthLayout />,
         children: [
             { index: true, element: <Login />},

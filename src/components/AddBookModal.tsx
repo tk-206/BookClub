@@ -45,8 +45,9 @@ export default function AddBookModal({ isOpen, onClose }: Props) {
         {/* body */}
         <div className="modal-body">
           <div className="form-group">
-            <label>책 제목</label>
+            <label className='form-label'>책 제목</label>
             <input
+              className='form-input'
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="제목을 입력하세요"
@@ -57,6 +58,7 @@ export default function AddBookModal({ isOpen, onClose }: Props) {
             <div className="form-group">
                 <label className='form-label'>저자</label>
                 <input
+                className='form-input'
                 value={author}
                 onChange={(e) => setAuthor(e.target.value)}
                 placeholder="저자명"
@@ -65,6 +67,7 @@ export default function AddBookModal({ isOpen, onClose }: Props) {
             <div className="form-group">
                 <label className='form-label'>출판사</label>
                 <input
+                className='form-input'
                 value={publisher}
                 onChange={(e) => setPublisher(e.target.value)}
                 placeholder="출판사명"
@@ -84,6 +87,7 @@ export default function AddBookModal({ isOpen, onClose }: Props) {
             <div className="form-group">
                 <label className='form-label'>완독일</label>
                 <input
+                className='form-input'
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}

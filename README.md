@@ -20,3 +20,15 @@
 질문 사항
 1. 데이터를 먼저 불러오고 화면을 구성하는가? or 화면 상황 발생 시 데이터를 불러오는가?
 2. 웹에서는 데이터를 어떤 식으로 저장하고 가공하고 할까?
+
+
+메뉴, 탭 컴포넌트 화 (기억하기)
+type Tab = '게시글' | '독서 토론' | '작가 채널'
+
+const [tab, setTab] = useState<Tab>('게시글')
+
+const TAB_COMPONENT = {
+  게시글: PostList,
+  '독서 토론': Discussion,
+  '작가 채널': AuthorChannel,
+}

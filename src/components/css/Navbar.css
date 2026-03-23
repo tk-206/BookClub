@@ -28,18 +28,29 @@
 
 .nav-links {
     display: flex;
-    gap: 2.5rem;
+    gap: 2rem;
     list-style: none;
 }
 
 .nav-links a {
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 400;
     color: var(--gold-3);
     text-decoration: none;
     letter-spacing: 0.05em;
     transition: color 0.2s;
+}
+
+.nav-link a.active {
+    color: var(--navy);
+    font-weight: 500;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 2px;
+}
+
+.nav-link a:hover {
+    color: var(--navy);
 }
 
 .nav-actions {

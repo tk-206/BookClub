@@ -25,7 +25,6 @@ export default function Library() {
     const menu = [
         {
             title: '내 서재',
-            icon: ['📚', '📖', '✅', '🔖'],
             pages: [
                 {label: '전체 서재', icon: '📚'},
                 {label: '읽는 중', icon: '📖'},
@@ -35,7 +34,6 @@ export default function Library() {
         },
         {
             title: '통계',
-            icon: ['📅', '📊',],
             pages: [
                 {label: '독서 캘린더', icon: '📅'},
                 {label: '독서 통계', icon: '📊'},
@@ -43,7 +41,6 @@ export default function Library() {
         },
         {
             title: '활동',
-            icon: ['💬', '🔔',],
             pages: [
                 {label: '내 게시글', icon: '💬'},
                 {label: '알림', icon: '🔔'},
@@ -66,7 +63,7 @@ export default function Library() {
     }, [open])
 
     return (
-        <div className='library-page'>
+        <section className='library-page'>
             {/* sidebar */}
             <aside className='sidebar'>
                 <div className='side-profile'>
@@ -99,7 +96,7 @@ export default function Library() {
                             <h2 className='sidebar-nav-title'>{me.title}</h2>
                             {me.pages.map((page, i) => (
                                 <button key={page.label} className={clsx('sidebar-nav-btn', {active: sideTab === page.label})} onClick={() => setSideTab(page.label)}>
-                                    <span className='icon'>{me.icon?.[i]}</span>
+                                    <span className='icon'>{page.icon}</span>
                                     {page.label}
                                 </button>
                             ))}
@@ -161,6 +158,6 @@ export default function Library() {
             </section>
 
             <AddBookModal isOpen={open} onClose={() => setOpen(false)}/>
-        </div>
+        </section>
     )
 }
