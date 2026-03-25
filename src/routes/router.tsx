@@ -4,7 +4,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Library from "../pages/Library";
 import AuthLayout from "../layout/AuthLayout";
-import Community from "../pages/community";
+import Community from "../pages/Community";
 
 export const router = createBrowserRouter([
     {

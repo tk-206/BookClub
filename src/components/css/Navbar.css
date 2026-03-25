@@ -71,6 +71,10 @@
     transition: all 0.2s;
 }
 
+.btn-ghost:hover {
+    border: 1px solid var(--navy);
+}
+
 .btn-primary {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.82rem;
@@ -81,6 +85,11 @@
     border-radius: 2px;
     cursor: pointer;
     transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    background: var(--gold);
+    border: 1px solid var(--gold);
 }
 
 @media (max-width: 768px) {

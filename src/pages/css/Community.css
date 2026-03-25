@@ -186,6 +186,10 @@
     gap: 1rem;
 }
 
+.filter-tabs {
+    display: flex;
+}
+
 .filter-tab {
     font-size: 0.78rem;
     padding: 0.45rem 1rem;
@@ -458,6 +462,10 @@
     gap: 0.5rem;
 }
 
+.widget {
+    margin-bottom: 2rem;
+}
+
 .hot-item {
     display: flex;
     gap: 0.75rem;
@@ -492,4 +500,137 @@
     color: var(--rose);
     flex-shrink: 0;
     margin-top: 2px;
+}
+
+.meeting-item {
+    background: var(--cream);
+    border: 1px solid rgba(201, 168, 76, 0.15);
+    padding: 0.85rem 1rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-radius: 2px;
+}
+
+.meeting-item:hover {
+    background-color: var(--ivory);
+}
+
+.meeting-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 0.82rem;
+    color: var(--navy);
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.meeting-stat {
+    font-size: 0.68rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.meeting-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--sage);
+    flex-shrink: 0;
+}
+
+.festival-item {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+    cursor: pointer;
+}
+
+.festival-date {
+    width: 36px;
+    flex-shrink: 0;
+    background: var(--navy);
+    text-align: center;
+    padding: 0.3rem 0;
+    border-radius: 2px;
+}
+
+.festival-month {
+    font-size: 0.55rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.festival-day {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--ivory);
+    line-height: 1.1;
+}
+
+.festival-name {
+    font-size: 0.78rem;
+    color: var(--ink);
+    margin-bottom: 0.15rem;
+    line-height: 1.4;
+}
+
+.festival-place {
+    font-size: 0.65rem;
+    color: var(--gold-3);
+}
+
+.write-post {
+    background: var(--navy);
+    padding: 1.25rem;
+    text-align: center;
+    border-radius: 2px;
+}
+
+.write-desc {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.6;
+    margin-bottom: 0.85rem;
+    font-weight: 300;
+}
+
+.write-btn.post{
+    width: 100%;
+    padding: 0.6rem;
+    background: var(--gold);
+    border: none;
+    color: var(--navy);
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+    transition: background 0.15s;
+}
+
+@media (max-width: 1024px) {
+  .community-page {
+    grid-template-columns: 220px 1fr;
+  }
+
+  .right-sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .community-page {
+    grid-template-columns: 1fr;
+  }
+
+  .left-sidebar {
+    display: none;
+  }
+
+  .board-content {
+    padding: 1rem;
+  }
 }

@@ -84,16 +84,14 @@ body {
   font-family: 'Noto Sans KR', sans-serif;
 }
 
-input {
-    width: 100%;
-    padding: 0.65rem 0.85rem;
-    background: var(--cream);
-    border: 1px solid rgba(201, 168, 76, 0.2);
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 0.85rem;
-    color: var(--ink);
-    outline: none;
-    transition: border-color 0.15s;
+aside {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+main {
+    display: block;
+    unicode-bidi: isolate;
 }
 
 * {

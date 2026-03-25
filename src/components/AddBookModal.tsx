@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import './css/AddBokkModal.css'
+import './css/AddBookModal.css'
 import clsx from 'clsx'
 
 type Props = {

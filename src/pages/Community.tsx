@@ -1,6 +1,8 @@
 import clsx from 'clsx'
 import './css/Community.css'
 import { useState } from 'react'
+import DetailPostModal from '../components/DetailPostModal'
+import AddPostModal from '../components/AddPostModal'
 
 type Menu = '전체 글' | '독서 토론' | '책 리뷰' | '질문 · 추천' | '모임 모집' | '정보 공유' | '작가 채널' | '출판사 소식' | '구인구직'
 type FilterTab = '최신순' | '인기순' | '댓글순' | '조회순'
@@ -9,6 +11,8 @@ export default function Community() {
     const [menu, setMenu] = useState<Menu>('전체 글')
     const [filterTab, setFilterTab] = useState<FilterTab>('최신순')
     const [activeTags, setActiveTags] = useState<string[]>([])
+    const [detailOpen, setDetailOpen] = useState(false)
+    const [writeOpen, setWriteOpen] = useState(false)
 
     const boardList = [
         {title: '전체 글', icon: '📋'},
@@ -169,7 +173,19 @@ export default function Community() {
             like: 120,
         },
     ]
+
+    const meetingList = [
+        {name: '한강 작품 읽기 모임', stat: '서울 마포 · 12명'},
+        {name: 'SF 독서 클럽', stat: '온라인 · 8명'},
+        {name: '고전 문학 연구회', stat: '서울 종로 · 6명'},
+    ]
     
+    const festivalList = [
+        {month: 'APR', day: '05', name: '한강 작가 낭독회', place: '📍 교보문고 광화문점'},
+        {month: 'MAY', day: '14', name: '서울국제도서전', place: '📍 COEX · 5.14–18'},
+        {month: 'MAY', day: '22', name: '정세랑 신작 출판 기념회', place: '📍 문학동네 카페'},
+    ]
+
     return (
         <section className='community-page'>
             {/* Left */}
@@ -212,7 +228,7 @@ export default function Community() {
                 </div>
             </aside>
             {/* Mid */}
-            <section className='board-content'>
+            <main className='board-content'>
                 <div className='board-header'>
                     <div className='board-label'>COMMUNITY · BOARD</div>
                     <div className='board-title'>전체 게시판</div>
@@ -231,7 +247,7 @@ export default function Community() {
                     ))}
                 </div>
                 <div className='board-filter'>
-                    <div>
+                    <div className='filter-tabs'>
                     {filterTabList.map((l) => (
                         <button 
                             key={l} 
@@ -268,7 +284,7 @@ export default function Community() {
                         <div className='featured-img'>📚</div>
                     </div>
                     {postList.map((l) => (
-                        <div className={clsx('post-item', {unread: l.isRead === false})}>
+                        <div className={clsx('post-item', {unread: l.isRead === false})} onClick={() => setDetailOpen(true)}>
                             <div>
                                 <div className='post-top'>
                                     <span className={clsx('post-category', l.category)}>{l.category}</span>
@@ -302,10 +318,10 @@ export default function Community() {
                     <button className="page-btn">5</button>
                     <button className="page-btn">›</button>
                 </div>
-            </section>
+            </main>
             {/* Right */}
             <aside className='right-sidebar'>
-                <div className='hot-post'>
+                <div className='widget'>
                     <div className='widget-title'>🔥 인기 글</div>
                     {hotPostList.map((l, i) => (
                         <div className='hot-item'>
@@ -315,7 +331,43 @@ export default function Community() {
                         </div>
                     ))}
                 </div>
+                <div className='widget'>
+                    <div className='widget-title'>🤝 활성 모임</div>
+                    {meetingList.map((l, i) => (
+                        <div className='meeting-item'>
+                            <div className='meeting-name'>{l.name}</div>
+                            <div className='meeting-stat'>
+                                <div className='meeting-dot'></div>
+                                {l.stat}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <div className='widget'>
+                    <div className='widget-title'>📅 다가오는 행사</div>
+                    {festivalList.map((l) => (
+                        <div className='festival-item'>
+                            <div className='festival-date'>
+                                <div className='festival-month'>{l.month}</div>
+                                <div className='festival-day'>{l.day}</div>
+                            </div>
+                            <div className='festival-info'>
+                                <div className='festival-name'>{l.name}</div>
+                                <div className='festival-place'>{l.place}</div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <div className='widget'>
+                    <div className='write-post'>
+                        <div className='write-desc'>나의 독서 이야기를<br/>커뮤니티에 나눠보세요</div>
+                        <button className='write-btn post' onClick={() => setWriteOpen(true)}>✏️ 글쓰기</button>
+                    </div>
+                </div>
             </aside>
+
+            <DetailPostModal isOpen={detailOpen} onClose={() => setDetailOpen(false)}/>
+            <AddPostModal isOpen={writeOpen} onClose={() => setWriteOpen(false)}/>
         </section>
     )
 

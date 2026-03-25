@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import './css/Navbar.css'
 import clsx from "clsx";
 import { useState } from "react";
@@ -7,6 +7,36 @@ type NavTab = '' | '내 서재' | '커뮤니티' | '출판사' | '작가' | '행
 
 export default function Navbar() {
     const [tab,setTab] = useState<NavTab>('')
+    const location = useLocation()
+    const path = decodeURIComponent(location.pathname)
+    const isLibrary = path.includes("내 서재")
+    const isCommunity = path.includes("커뮤니티")
+
+    let actions
+    if (isLibrary) {
+        actions = (
+            <>
+                <button>🔔</button>
+                <button>👤</button>
+            </>
+        )
+    }
+    else if (isCommunity) {
+        actions = (
+            <>
+                <button className="btn-primary">✏️ 글쓰기</button>
+                <button>👤</button>
+            </>
+        )
+    }
+    else {
+        actions = (
+            <>
+                <button className="btn-ghost"><NavLink to="로그인">로그인</NavLink></button>
+                <button className="btn-primary">가입하기</button>
+            </>
+        )
+    }
 
     return (
         <nav className="nav">
@@ -25,10 +55,7 @@ export default function Navbar() {
             </ul>   
         
             {/* 버튼 */}
-            <div className="nav-actions">
-                <button className="btn-ghost"><NavLink to="로그인">로그인</NavLink></button>
-                <button className="btn-primary">가입하기</button>
-            </div>
+            <div className="nav-actions">{actions}</div>
         </nav>
     )
 }
