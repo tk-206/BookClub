@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Library from "../pages/Library";
 import AuthLayout from "../layout/AuthLayout";
 import Community from "../pages/Community";
+import Publisher from "../pages/Publisher";
 
 export const router = createBrowserRouter([
     {
@@ -14,6 +15,7 @@ export const router = createBrowserRouter([
             { index: true, element: <Home /> },
             { path: "내 서재", element: <Library />},
             { path: "커뮤니티", element: <Community />},
+            { path: "출판사", element: <Publisher />},
         ]
     },
     {

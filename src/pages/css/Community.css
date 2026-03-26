@@ -196,7 +196,7 @@
     border: 1px solid rgba(201, 168, 76, 0.2);
     border-right: none;
     background: none;
-    color: var(--muted);
+    color: var(--gold-3);
     cursor: pointer;
     font-family: 'Noto Sans KR', sans-serif;
     transition: all 0.15s;

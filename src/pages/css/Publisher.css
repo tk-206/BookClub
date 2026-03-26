@@ -1,0 +1,118 @@
+.publisher-page {
+    margin-top: 64px;
+}
+
+/* Header */
+.pub-header {
+    padding: 5rem 5% 3.5rem;
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+}
+
+.pub-header::before {
+    content: '出版';
+    position: absolute;
+    right: 2%;
+    bottom: -3rem;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 20rem;
+    color: rgba(255, 255, 255, .025);
+    pointer-events: none;
+    line-height: 1;
+}
+
+.pub-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.header-label {
+    color: var(--gold);
+    font-size: 0.68rem;
+    letter-spacing: 0.22rem;
+    margin-bottom: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem
+}
+
+.header-label::before {
+    content: '';
+    display: block;
+    width: 1.5rem;
+    height: 1px;
+    background: var(--gold);
+}
+
+.header-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--ivory);
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+}
+
+.header-title em {
+    color: var(--gold-2);
+    font-style: italic;
+}
+
+.header-desc {
+    font-size: 0.85rem;
+    min-width: 520px;
+    line-height: 1.9;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.header-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.stat-num.hd {
+    color: var(--ivory);
+}
+
+.stat-text.hd {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Tab */
+.list-tab {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 5%;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(201, 168, 76, .12);
+    background: var(--cream);
+}
+
+.filter-tabs {
+    display: flex;
+}
+
+/* Main */
+.pub-label {
+    font-size: 0.5rem;
+    color: var(--gold)
+}
+
+.pub-label::after {
+    content: '';
+    width: auto;
+    height: 1px;
+    background: var(--gold);
+    display: block;
+}
