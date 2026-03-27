@@ -7,6 +7,7 @@ export default function Publisher() {
     const topPubList = [
         {
             icon: '📚',
+            color: 'a',
             name: '민음사',
             genre: '소설 · 시 · 인문 · 에세이',
             tag: ['한국문학', '세계문학전집', '노벨문학상'],
@@ -17,6 +18,7 @@ export default function Publisher() {
         },
         {
             icon: '🌿',
+            color: 'b',
             name: '창비',
             genre: '소설 · 시 · 사회과학',
             tag: ['한국문학', '창작과비평', '어린이'],
@@ -27,6 +29,7 @@ export default function Publisher() {
         },
         {
             icon: '🌸',
+            color: 'c',
             name: '문학동네',
             genre: '소설 · 시 · 에세이',
             tag: ['현대문학', '한강', '정세랑'],
@@ -84,7 +87,7 @@ export default function Publisher() {
                     <div className='pub-top-list'>
                         {topPubList.map((l) => (
                             <div className='pub-top'>
-                                <div className='pub-icon'>{l.icon}</div>
+                                <div className={clsx('pub-icon', l.color)}>{l.icon}</div>
                                 <div className='pub-name'>{l.name}</div>
                                 <div className='pub-genre'>{l.genre}</div>
                                 <div className='pub-tags'>
@@ -95,11 +98,11 @@ export default function Publisher() {
                                 <div className='pub-desc'>{l.desc}</div>
                                 <div className='pub-stats'>
                                     <div className='stat-item'>
-                                        <div className='stat-num pb'>{l.book}</div>
+                                        <strong className='stat-num pb'>{l.book}</strong>
                                         <div className='stat-text pb'>보유 도서</div>
                                     </div>
                                     <div className='stat-item'>
-                                        <div className='stat-num pb'>{l.career}</div>
+                                        <strong className='stat-num pb'>{l.career}</strong>
                                         <div className='stat-text pb'>업력</div>
                                     </div>
                                     <div className='stat-item'>
@@ -111,6 +114,7 @@ export default function Publisher() {
                             </div>
                         ))}
                     </div>
+                    <div className='pub-label'>전체 출판사</div>
             </main>
         </section>
     )
@@ -118,9 +122,9 @@ export default function Publisher() {
     function getText(count: number) {
         if (count === 0) return <div className='career-no'>채용 안함</div>
         return (
-            <div className='career-ok'>
+            <strong className='career-ok'>
                 채용중<br/><span>✦ {count}건</span>
-            </div>
+            </strong>
         )
     }
 }
