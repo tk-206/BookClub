@@ -11,13 +11,14 @@ export default function Navbar() {
     const path = decodeURIComponent(location.pathname)
     const isLibrary = path.includes("내 서재")
     const isCommunity = path.includes("커뮤니티")
+    const isPublisher = path.includes("출판사")
 
     let actions
     if (isLibrary) {
         actions = (
             <>
                 <button>🔔</button>
-                <button>👤</button>
+                <button className="nav-avatar">김</button>
             </>
         )
     }
@@ -25,7 +26,14 @@ export default function Navbar() {
         actions = (
             <>
                 <button className="btn-primary">✏️ 글쓰기</button>
-                <button>👤</button>
+                <button className="nav-avatar">김</button>
+            </>
+        )
+    }
+    else if (isPublisher) {
+        actions = (
+            <>   
+                <button className="nav-avatar">김</button>
             </>
         )
     }
