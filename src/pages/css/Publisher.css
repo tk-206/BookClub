@@ -676,3 +676,136 @@
     font-size: 0.68rem;
     color: var(--gold-3);
 }
+
+/* Body-Book */
+.detail-book-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.detail-book-card {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.detail-book-cover {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    border-radius: 3px 7px 7px 3px;
+    position: relative;
+    margin-bottom: .6rem;
+    box-shadow: 3px 4px 16px rgba(0, 0, 0, .15);
+    background: linear-gradient(135deg, #1A3A5C, #243461);
+}
+
+.detail-book-cover::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 8px;
+    background: rgba(0, 0, 0, .15);
+    border-radius: 3px 0 0 3px;
+}
+
+.detail-book-label {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 0.8rem;
+    color: var(--navy);
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+}
+
+.detail-book-author {
+    font-size: 0.68rem;
+    color: var(--gold-3);
+}
+
+/* Body-Hire */
+.jobs-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: rgba(201, 168, 76, .08);
+    border: 1px solid rgba(201, 168, 76, .15);
+}
+
+.job-card-d {
+    background: var(--ivory);
+    border: 1px solid rgba(201, 168, 76, .15);
+    padding: 1.5rem;
+    margin-bottom: 1px;
+    cursor: pointer;
+    transition: background .15s;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: start;
+}
+
+.job-card-d.hot {
+    border-left: 3px solid var(--gold);
+}
+
+.job-badge {
+    font-size: 0.62rem;
+    padding: 0.18rem 0.55rem;
+    border-radius: 2px;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+    display: inline-block;
+}
+
+.job-badge.full{
+    background: rgba(26, 39, 68, 0.08);
+    color: var(--navy);
+}
+
+.job-badge.contract {
+    background: rgba(107, 140, 123, 0.12);
+    color: var(--sage);
+}
+
+.job-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 0.95rem;
+    color: var(--navy);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.job-location {
+    font-size: 0.75rem;
+    color: var(--gold-3);
+    margin-bottom: 0.65rem;
+}
+
+.job-tags {
+    display: flex;
+    gap: .35rem;
+    flex-wrap: wrap;
+}
+
+.job-tag {
+    font-size: .65rem;
+    padding: .15rem .5rem;
+    border: 1px solid rgba(201, 168, 76, .2);
+    color: var(--muted);
+    border-radius: 2px;
+}
+
+.job-dline {
+    font-size: 0.7rem;
+    color: var(--rose);
+    font-weight: 500;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.job-dday {
+    font-size: 1rem;
+    font-family: 'Playfair Display', serif;
+    display: block;
+}

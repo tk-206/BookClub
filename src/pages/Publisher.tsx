@@ -97,6 +97,40 @@ export default function Publisher() {
     ]
 
     const dummyGenre = ['소설', '시', '에세이', '인문', '세계문학', '번역문학']
+    const dummybook = [
+        {
+            title: '채식주의자',
+            author: '한강'
+        },
+        {
+            title: '검은 꽃',
+            author: '김영하'
+        },
+        {
+            title: '아버지의 해방일지',
+            author: '정지아'
+        },
+        {
+            title: '이방인',
+            author: '알베르 카뮈'
+        },
+        {
+            title: '파친코',
+            author: '이민진'
+        },
+        {
+            title: '설국',
+            author: '가와바타 야스나리'
+        },
+        {
+            title: '1984',
+            author: '조지 오웰'
+        },
+        {
+            title: '노인과 바다',
+            author: '헤밍웨이'
+        },
+    ]
 
     let detail
     if(detailTab === '소개') {
@@ -149,15 +183,52 @@ export default function Publisher() {
     }
     if(detailTab === '도서 목록') {
         detail = (
-            <div>
-                도서 목록
+            <div className='detail-book-grid'>
+                {dummybook.map((b) => (
+                    <div className='detail-book-card'>
+                        <div className='detail-book-cover'></div>
+                        <div className='detail-book-label'>{b.title}</div>
+                        <div className='detail-book-author'>{b.author}</div>
+                    </div>
+                ))}
             </div>
         )
     }
     if(detailTab === '채용 공고') {
         detail = (
-            <div>
-                채용 공고
+            <div className='jobs-panel'>
+                <div className='job-card-d hot'>
+                    <div>
+                        <div className='job-badge full'>정규직</div>
+                        <div className='job-title'>문학 편집자 (소설·에세이 분야)</div>
+                        <div className='job-location'>📍 서울 강남구 · 경력 2년 이상</div>
+                        <div className='job-tags'>
+                            <div className='job-tag'>문학 편집</div>
+                            <div className='job-tag'>원고 검토</div>
+                            <div className='job-tag'>교정·교열</div>
+                        </div>
+                    </div>
+                    <div className='job-dline'>
+                        <span className='job-dday'>D-12</span>
+                        4월 1일 마감
+                    </div>
+                </div>
+                <div className='job-card-d'>
+                    <div>
+                        <div className='job-badge contract'>계약직</div>
+                        <div className='job-title'>디자인팀 북 디자이너</div>
+                        <div className='job-location'>📍 서울 강남구 · 경력 1년 이상</div>
+                        <div className='job-tags'>
+                            <div className='job-tag'>북 디자인</div>
+                            <div className='job-tag'>Illustrator</div>
+                            <div className='job-tag'>InDesign</div>
+                        </div>
+                    </div>
+                    <div className='job-dline'>
+                        <span className='job-dday'>D-28</span>
+                        4월 17일 마감
+                    </div>
+                </div>
             </div>
         )
     }
