@@ -96,48 +96,50 @@ export default function Publisher() {
         },
     ]
 
+    const dummyGenre = ['소설', '시', '에세이', '인문', '세계문학', '번역문학']
+
     let detail
     if(detailTab === '소개') {
         detail = (
             <div className='company-profile'>
                 {/* Left */}
                 <div>
-                    <div>
-                        <div>
-                            <div>1200+</div>
-                            <div>보유 도서</div>
+                    <div className='stats-grid'>
+                        <div className='stat-card'>
+                            <div className='stat-num'>1200+</div>
+                            <div className='stat-text'>보유 도서</div>
                         </div>
-                        <div>
-                            <div>58</div>
-                            <div>업력(년)</div>
+                        <div className='stat-card'>
+                            <div className='stat-num'>58</div>
+                            <div className='stat-text'>업력(년)</div>
                         </div>
-                        <div>
-                            <div>12</div>
-                            <div>수상작가</div>
+                        <div className='stat-card'>
+                            <div className='stat-num'>12</div>
+                            <div className='stat-text'>수상작가</div>
                         </div>
-                        <div>
-                            <div>340</div>
-                            <div>팔로워</div>
-                        </div>
+                        <div className='stat-card'>
+                            <div className='stat-num'>340</div>
+                            <div className='stat-text'>팔로워</div>
+                        </div>  
                     </div>
                     <div>
-                        <div>🏢 출판사 소개</div>
-                        <div>민음사는 1966년 박맹호 선생에 의해 설립된 대한민국 대표 문학 출판사입니다. 세계문학전집, 오늘의 시인총서, 모던 클래식 등 굵직한 시리즈를 통해 반세기 넘게 한국 독자들의 지적 성장을 함께해 왔습니다.<br/><br/>한강, 김영하, 황석영 등 한국 문학을 대표하는 작가들과 함께하며, 노벨문학상 수상 작가들의 작품을 가장 먼저 독자들에게 소개해 왔습니다.</div>
+                        <div className='profile-label'>🏢 출판사 소개</div>
+                        <div className='profile-desc'>민음사는 1966년 박맹호 선생에 의해 설립된 대한민국 대표 문학 출판사입니다. 세계문학전집, 오늘의 시인총서, 모던 클래식 등 굵직한 시리즈를 통해 반세기 넘게 한국 독자들의 지적 성장을 함께해 왔습니다.<br/><br/>한강, 김영하, 황석영 등 한국 문학을 대표하는 작가들과 함께하며, 노벨문학상 수상 작가들의 작품을 가장 먼저 독자들에게 소개해 왔습니다.</div>
                     </div>
                     <div>
-                        <div>✦ 대표 시리즈</div>
+                        <div className='profile-label'>✦ 대표 시리즈</div>
                         <div>
-                            <div>
-                                <div>세계문학전집</div>
-                                <div>400여 권에 달하는 국내 최대 세계문학 시리즈.</div>
+                            <div className='profile-series'>
+                                <div className='series-name'>세계문학전집</div>
+                                <div className='series-desc'>400여 권에 달하는 국내 최대 세계문학 시리즈.</div>
                             </div>
-                            <div>
-                                <div>오늘의 시인총서</div>
-                                <div>한국 현대시의 정수를 담은 시리즈. 1970년대부터 이어온 긴 역사.</div>
+                            <div className='profile-series'>
+                                <div className='series-name'>오늘의 시인총서</div>
+                                <div className='series-desc'>한국 현대시의 정수를 담은 시리즈. 1970년대부터 이어온 긴 역사.</div>
                             </div>
-                            <div>
-                                <div>모던 클래식</div>
-                                <div>20세기 문학의 걸작들을 새롭게 번역해 소개하는 시리즈.</div>
+                            <div className='profile-series'>
+                                <div className='series-name'>모던 클래식</div>
+                                <div className='series-desc'>20세기 문학의 걸작들을 새롭게 번역해 소개하는 시리즈.</div>
                             </div>
                         </div>
                     </div>
@@ -237,7 +239,10 @@ export default function Publisher() {
                                 </div>
                             ))}
                         </div>
-                        <div className='pub-label'>전체 출판사</div>
+                        <div className='label-text'>
+                            <div className='pub-label'>전체 출판사</div>
+                            <button className='pub-more-btn'>더보기</button>
+                        </div>
                         <div className='pub-list'>
                             {pubList.map((l) => (
                                 <div className='pub-card'>
@@ -285,54 +290,56 @@ export default function Publisher() {
                     </div>
                     {/* Right */}
                     <div>
-                        <div>
-                            <div>출판사 정보</div>
-                            <div>
-                                <div>설립연도</div>
-                                <div>1966년</div>
+                        <div className='info-card'>
+                            <div className='info-label'>출판사 정보</div>
+                            <div className='info-row'>
+                                <div className='info-key'>설립연도</div>
+                                <div className='info-val'>1966년</div>
                             </div>
-                            <div>
-                                <div>소재지</div>
-                                <div>서울 강남구</div>
+                            <div className='info-row'>
+                                <div className='info-key'>소재지</div>
+                                <div className='info-val'>서울 강남구</div>
                             </div>
-                            <div>
-                                <div>직원 수</div>
-                                <div>약 120명</div>
+                            <div className='info-row'>
+                                <div className='info-key'>직원 수</div>
+                                <div className='info-val'>약 120명</div>
                             </div>
-                            <div>
-                                <div>웹사이트</div>
-                                <div>minumsa.com</div>
+                            <div className='info-row'>
+                                <div className='info-key'>웹사이트</div>
+                                <div className='info-val g'>minumsa.com</div>
                             </div>
-                            <button>+ 팔로우</button>
+                            <button className='info-follow'>+ 팔로우</button>
                         </div>
-                        <div>
-                            <div>장르</div>
-                            <div>
-                                <div>소설~번역문학</div> 
+                        <div className='info-card'>
+                            <div className='info-label'>장르</div>
+                            <div className='genre-pills'>
+                                {dummyGenre.map((d) => (
+                                    <div className='genre-pill'>{d}</div>
+                                ))}
                             </div>
                         </div>
-                        <div>
-                            <div>대표 작가</div>
+                        <div className='info-card'>
+                            <div className='info-label'>대표 작가</div>
                             <div>
-                                <div>
-                                    <div>한</div>
+                                <div className='detail-author-row'>
+                                    <div className='detail-author-av'>한</div>
                                     <div>
-                                        <div>한강</div>
-                                        <div>소설 · 노벨문학상</div>
+                                        <div className='detail-author-name'>한강</div>
+                                        <div className='detail-author-genre'>소설 · 노벨문학상</div>
                                     </div>
                                 </div>
-                                <div>
-                                    <div>김</div>
+                                <div className='detail-author-row'>
+                                    <div className='detail-author-av'>김</div>
                                     <div>
-                                        <div>김영하</div>
-                                        <div>소설 · 에세이</div>
+                                        <div className='detail-author-name'>김영하</div>
+                                        <div className='detail-author-genre'>소설 · 에세이</div>
                                     </div>
                                 </div>
-                                <div>
-                                    <div>황</div>
+                                <div className='detail-author-row'>
+                                    <div className='detail-author-av'>황</div>
                                     <div>
-                                        <div>황석영</div>
-                                        <div>소설</div>
+                                        <div className='detail-author-name'>황석영</div>
+                                        <div className='detail-author-genre'>소설</div>
                                     </div>
                                 </div>
                             </div>
