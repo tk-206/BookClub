@@ -384,14 +384,14 @@
 }
 
 /* Detail */
-.detail-header {
+.detail-pub-header {
     overflow: hidden;
     padding: 3rem 5% 0;
     position: relative;
     background: var(--navy);
 }
 
-.detail-header::after {
+.detail-pub-header::after {
     content: '';
     position: absolute;
     top: 0;
@@ -401,7 +401,7 @@
     background: linear-gradient(90deg, var(--gold), transparent);
 }
 
-.detail-back {
+.detail-pub-back {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -414,7 +414,7 @@
     transition: color 0.15s;
 }
 
-.detail-back:hover {
+.detail-pub-back:hover {
     color: var(--gold-2);
 }
 
@@ -509,7 +509,7 @@
 }
 
 /* Detail-Body */
-.detail-body {
+.detail-pub-body {
     background: var(--ivory);
     display: grid;
     grid-template-columns: 1fr 300px;

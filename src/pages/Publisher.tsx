@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import './css/Publisher.css'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import DetailPostModal from '../components/DetailPostModal'
 
 type TabFilter = '전체' | '소설·문학' | '에세이' | 'SF·장르' | '어린이' | '채용중'
 type PageFilter = '메인' | '상세' | '구인구직'
@@ -11,6 +12,7 @@ export default function Publisher() {
     const [filter, setFilter] = useState<TabFilter>('전체')
     const [pagefilter, setPageFilter] = useState<PageFilter>('메인')
     const [detailTab, setDetailTab] = useState<DetailTab>('소개')
+    const [modalOpen, setModalOpen] = useState(false)
     const tabList = ['전체', '소설·문학', '에세이', 'SF·장르', '어린이', '채용중'] as const
     const topPubList = [
         {
@@ -197,7 +199,7 @@ export default function Publisher() {
     if(detailTab === '채용 공고') {
         detail = (
             <div className='jobs-panel'>
-                <div className='job-card-d hot'>
+                <div className='job-card-d hot' onClick={() => setModalOpen(true)}>
                     <div>
                         <div className='job-badge full'>정규직</div>
                         <div className='job-title'>문학 편집자 (소설·에세이 분야)</div>
@@ -336,8 +338,8 @@ export default function Publisher() {
     else if (pagefilter === '상세') {
         page = (
             <section className='publisher-page'>
-                <div className='detail-header'>
-                    <button className='detail-back' onClick={() => setPageFilter('메인')}>← 출판사 목록으로</button>
+                <div className='detail-pub-header'>
+                    <button className='detail-pub-back' onClick={() => setPageFilter('메인')}>← 출판사 목록으로</button>
                     <div className='detail-pub-info'>
                         <div className='pub-info'>
                             <div className='detail-pub-icon'>📚</div>
@@ -355,7 +357,7 @@ export default function Publisher() {
                         <div className={clsx('detail-pub-tab', {active: detailTab === '채용 공고'})} onClick={() => setDetailTab('채용 공고')}>채용 공고 <span>2</span></div>
                     </div>
                 </div>
-                <div className='detail-body'>
+                <div className='detail-pub-body'>
                     <div>
                         {detail}
                     </div>
@@ -426,6 +428,7 @@ export default function Publisher() {
     return (
         <div>
             {page}
+            <DetailPostModal isOpen={modalOpen} onClose={() => setModalOpen(false)}/>
         </div>
     )
 

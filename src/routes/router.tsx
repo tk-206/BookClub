@@ -6,6 +6,10 @@ import Library from "../pages/Library";
 import AuthLayout from "../layout/AuthLayout";
 import Community from "../pages/Community";
 import Publisher from "../pages/Publisher";
+import Author from "../pages/author/Author";
+import AuthorMain from "../pages/author/components/AuthorMain";
+import AuthorChannel from "../pages/author/components/AuthorChannel";
+import AuthorLounge from "../pages/author/components/AuthorLounge";
 
 export const router = createBrowserRouter([
     {
@@ -16,6 +20,8 @@ export const router = createBrowserRouter([
             { path: "내 서재", element: <Library />},
             { path: "커뮤니티", element: <Community />},
             { path: "출판사", element: <Publisher />},
+            { path: "작가", element: <Author />, children: [ { index: true, element: <AuthorMain />}, { path: '채널', element: <AuthorChannel />}, { path: '라운지', element: <AuthorLounge />} ]},
+            
         ]
     },
     {
@@ -24,5 +30,5 @@ export const router = createBrowserRouter([
         children: [
             { index: true, element: <Login />},
         ]
-    }
+    },
 ])
