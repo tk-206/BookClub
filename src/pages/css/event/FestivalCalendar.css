@@ -1,0 +1,141 @@
+/* Header */
+.cal-header-bar {
+    background: var(--navy);
+    padding: 2.5rem 5%;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.cal-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+}
+
+.cal-header-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,var(--gold),transparent);
+}
+
+.cal-eyebrow {
+    font-size: .65rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: .5rem;
+}
+
+.cal-title-h {
+    font-family: 'Playfair Display',serif;
+    font-size: 1.75rem;
+    color: var(--ivory);
+}
+
+.cal-back-btn {
+    font-size: .75rem;
+    color: rgba(255,255,255,.4);
+    background: none;
+    border: 1px solid rgba(255,255,255,.12);
+    cursor: pointer;
+    font-family: 'Noto Sans KR',sans-serif;
+    padding: .4rem .9rem;
+    transition: all .15s;
+}
+
+.cal-back-btn:hover {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+}
+
+/* Body */
+.calendar-body {
+    padding: 2rem 5%;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2.5rem;
+}
+
+.cal-widget {
+    background: var(--cream);
+    border: 1px solid rgba(201,168,76,.15);
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.cal-widget-title {
+    font-family: 'Noto Serif KR',serif;
+    font-size: .88rem;
+    color: var(--navy);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding-bottom: .55rem;
+    border-bottom: 1px solid rgba(201,168,76,.15);
+}
+
+.upcoming-list-item {
+    display: flex;
+    gap: .85rem;
+    padding: .65rem 0;
+    border-bottom: 1px solid rgba(201,168,76,.08);
+    cursor: pointer;
+    transition: opacity .15s;
+}
+
+.uli-date {
+    width: 36px;
+    flex-shrink: 0;
+    background: var(--navy);
+    text-align: center;
+    padding: .3rem 0;
+    border-radius: 2px;
+}
+
+.uli-m {
+    font-size: .52rem;
+    color: var(--gold);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.uli-d {
+    font-family: 'Playfair Display',serif;
+    font-size: 1rem;
+    color: var(--ivory);
+    line-height: 1.1;
+}
+
+.uli-title {
+    font-size: .78rem;
+    color: var(--ink);
+    line-height: 1.4;
+    margin-bottom: .15rem;
+}
+
+.uli-where {
+    font-size: .65rem;
+    color: var(--gold-3);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .3rem 0;
+    font-size: .75rem;
+    color: var(--muted);
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}

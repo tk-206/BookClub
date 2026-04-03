@@ -11,6 +11,9 @@ import AuthorMain from "../pages/author/components/AuthorMain";
 import AuthorChannel from "../pages/author/components/AuthorChannel";
 import AuthorLounge from "../pages/author/components/AuthorLounge";
 import Festival from "../pages/event/festival";
+import FestivalMain from "../pages/event/FestivalMain";
+import FestivalDetail from "../pages/event/FestivalDetail";
+import FestivalCalendar from "../pages/event/FestivalCalendar";
 
 export const router = createBrowserRouter([
     {
@@ -22,7 +25,7 @@ export const router = createBrowserRouter([
             { path: "커뮤니티", element: <Community />},
             { path: "출판사", element: <Publisher />},
             { path: "작가", element: <Author />, children: [ { index: true, element: <AuthorMain />}, { path: '채널', element: <AuthorChannel />}, { path: '라운지', element: <AuthorLounge />} ]},
-            { path: "행사", element: <Festival />,},
+            { path: "행사", element: <Festival />, children: [ { index: true, element: <FestivalMain />}, { path: '상세', element: <FestivalDetail />}, { path: '캘린더', element: <FestivalCalendar />},]},
              
         ]
     },
