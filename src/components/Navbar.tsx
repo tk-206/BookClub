@@ -13,6 +13,7 @@ export default function Navbar() {
     const isCommunity = path.includes("커뮤니티")
     const isPublisher = path.includes("출판사")
     const isAuthor = path.includes("작가")
+    const isFestival = path.includes("행사")
 
     let actions
     if (isLibrary) {
@@ -39,6 +40,13 @@ export default function Navbar() {
         )
     }
     else if (isAuthor) {
+        actions = (
+            <>   
+                <button className="nav-avatar">김</button>
+            </>
+        )
+    }
+    else if (isFestival) {
         actions = (
             <>   
                 <button className="nav-avatar">김</button>
