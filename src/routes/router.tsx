@@ -11,9 +11,9 @@ import AuthorMain from "../pages/author/components/AuthorMain";
 import AuthorChannel from "../pages/author/components/AuthorChannel";
 import AuthorLounge from "../pages/author/components/AuthorLounge";
 import Festival from "../pages/event/festival";
-import FestivalMain from "../pages/event/FestivalMain";
-import FestivalDetail from "../pages/event/FestivalDetail";
-import FestivalCalendar from "../pages/event/FestivalCalendar";
+import FestivalMain from "../pages/event/components/FestivalMain";
+import FestivalDetail from "../pages/event/components/FestivalDetail";
+import FestivalCalendar from "../pages/event/components/FestivalCalendar";
 
 export const router = createBrowserRouter([
     {

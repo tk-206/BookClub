@@ -1,4 +1,4 @@
-import Calendar from "../../components/Calendar"
+import Calendar from "../../../components/Calendar"
 import { useNavigate } from "react-router-dom"
 import 'pages/css/event/FestivalCalendar.css'
 
