@@ -1,4 +1,4 @@
-import 'pages/css/event/Festival.css'
+import './Festival.css'
 import { Outlet } from 'react-router-dom'
 
 export default function Festival() {

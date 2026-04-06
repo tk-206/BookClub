@@ -1,6 +1,6 @@
-import './css/StatsView.css'
+import './LibraryStatsView.css'
 
-export default function StatsView() {
+export default function LibraryStatsView() {
     return(
         <div className="tab-stats">
             <div className="analytics-grid">

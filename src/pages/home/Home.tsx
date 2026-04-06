@@ -1,113 +1,12 @@
-import './css/Home.css'
+import './Home.css'
 import { useState } from 'react'
 import clsx from 'clsx'
+import { tabs, columns, dummyList, authorsList } from '../../data/mock/DummyData'
 
 type Tab = '독서 기록' | '모임 캘린더' | '게시판' | '작가 채널'
 
 export default function Home() {
     const [tab, setTab] = useState<Tab>('독서 기록')
-    const columns = [
-        { 
-            num: '01',
-            emoji: '📚',
-            title: '독서 기록 & 캘린더',
-            desc: "읽은 책을 기록하고 캘린더로 한눈에 확인하세요. 로그인 후 나만의 서재를 만들어 독서 이력을 관리할 수 있습니다.",
-        },
-        { 
-            num: '02',
-            emoji: '💬',
-            title: '모임 & 게시판',
-            desc: "독서 모임을 만들거나 참여하세요. 정보 공유 게시판을 통해 독자들과 다양한 이야기를 나눌 수 있습니다.",        
-        },
-        { 
-            num: '03',
-            emoji: '🏢',
-            title: '출판사 & 구인구직',
-            desc: "출판사 정보를 소개하고 편집자, 번역가, 작가를 위한 구인구직 정보를 게재할 수 있습니다.",
-        },
-        { 
-            num: '04',
-            emoji: '✍️',
-            title: '작가 전용 소통방',
-            desc: "인증된 작가님들만의 공간에서 창작 이야기, 출판 경험, 고민을 자유롭게 나눌 수 있습니다.",
-        },
-        { 
-            num: '05',
-            emoji: '📣',
-            title: '작가 ↔ 독자 채널',
-            desc: "작가가 독자에게 직접 전하는 소통 공간. 신작 소식, 창작 비화, 작가의 생각을 가감 없이 공유합니다.",
-        },
-        { 
-            num: '06',
-            emoji: '🔔',
-            title: '행사 알림 시스템',
-            desc: "북페어, 사인회, 낭독회, 강연 등 작가와 출판사의 행사 정보를 실시간으로 받아보세요.",
-        },
-    ]
-
-    const tabs: Tab[] = ['독서 기록', '모임 캘린더', '작가 채널', '게시판']
-
-    const dummyList = [
-        {
-            cover: '',
-            title: '채식주의자',
-            author: '한강 · 창비',
-            stars: '★★★★★',
-            date: '2025.03.01',
-        },
-        {
-            cover: '',
-            title: '아몬드',
-            author: '손원평 · 창비 ',
-            stars: '★★★★☆',
-            date: '2025.02.14',
-        },
-        {
-            cover: '',
-            title: '82년생 김지영',
-            author: '조남주 · 민음사 ',
-            stars: '★★★★★',
-            date: '2025.01.22',
-        },
-    ]
-
-    const authorsList = [
-        {
-            color: 'a',
-            emoji: '✍️',
-            author: '한강',
-            genre: '소설 · 시',
-            follower: '팔로워 4.2k',
-        },
-        {
-            color: 'b',
-            emoji: '📖',
-            author: '정세랑',
-            genre: 'SF · 소설',
-            follower: '팔로워 3.8k',
-        },
-        {
-            color: 'c',
-            emoji: '🖋️',
-            author: '김영하',
-            genre: '소설 · 에세이',
-            follower: '팔로워 5.1k',
-        },
-        {
-            color: 'd',
-            emoji: '📝',
-            author: '손원평',
-            genre: '소설',
-            follower: '팔로워 2.9k',
-        },
-        {
-            color: 'e',
-            emoji: '🌿',
-            author: '최은영',
-            genre: '단편소설',
-            follower: '팔로워 2.1k',
-        },
-    ]
 
     return (
         <section className='home-page'>

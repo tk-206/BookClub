@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import 'pages/css/author/AuthorChannel.css'
+import './AuthorChannel.css'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 

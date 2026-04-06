@@ -1,6 +1,6 @@
 import Calendar from "../../../components/Calendar"
 import { useNavigate } from "react-router-dom"
-import 'pages/css/event/FestivalCalendar.css'
+import './FestivalCalendar.css'
 
 export default function FestivalCalendar() {
     const navigate = useNavigate()

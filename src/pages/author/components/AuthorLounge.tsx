@@ -1,4 +1,4 @@
-import 'pages/css/author/AuthorLounge.css'
+import './AuthorLounge.css'
 import { useNavigate } from 'react-router-dom'
 
 export default function AuthorLounge() {

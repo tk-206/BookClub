@@ -1,4 +1,4 @@
-import 'pages/css/author/AuthorMain.css'
+import './AuthorMain.css'
 import { useState } from 'react'
 import clsx from 'clsx'
 import { useNavigate } from 'react-router-dom'

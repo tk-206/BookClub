@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import 'pages/css/event/FestivalMain.css'
+import './FestivalMain.css'
 
 export default function FestivalMain() {
     const navigate = useNavigate()
@@ -87,7 +87,6 @@ export default function FestivalMain() {
                 <div className="cs-label">다가오는 행사</div>
 
                 <div className="cs-item" onClick={() => navigate('상세')}>
-                {/* onClick={() => showDetail()} */}
                     <div className="cs-dday soon">D-3</div>
                     <div>
                         <div className="cs-event-name">한강 낭독회</div>

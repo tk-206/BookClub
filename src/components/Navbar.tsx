@@ -2,6 +2,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import './css/Navbar.css'
 import clsx from "clsx";
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 
 type NavTab = '' | '내 서재' | '커뮤니티' | '출판사' | '작가' | '행사'
 
@@ -14,6 +15,7 @@ export default function Navbar() {
     const isPublisher = path.includes("출판사")
     const isAuthor = path.includes("작가")
     const isFestival = path.includes("행사")
+    const { isLoggedIn, user, logout } = useAuth()
 
     let actions
     if (isLibrary) {
@@ -56,7 +58,7 @@ export default function Navbar() {
     else {
         actions = (
             <>
-                <button className="btn-ghost"><NavLink to="로그인">로그인</NavLink></button>
+                <NavLink to="로그인"><button className="btn-ghost">로그인</button></NavLink>
                 <button className="btn-primary">가입하기</button>
             </>
         )

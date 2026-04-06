@@ -1,8 +1,9 @@
 import clsx from 'clsx'
-import './css/Publisher.css'
+import './Publisher.css'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import DetailPostModal from '../components/DetailPostModal'
+import DetailPostModal from '../../components/DetailPostModal'
+import { topPubList, pubList, dummyGenre, dummybook } from '../../data/mock/DummyData'
 
 type TabFilter = '전체' | '소설·문학' | '에세이' | 'SF·장르' | '어린이' | '채용중'
 type PageFilter = '메인' | '상세' | '구인구직'
@@ -14,125 +15,7 @@ export default function Publisher() {
     const [detailTab, setDetailTab] = useState<DetailTab>('소개')
     const [modalOpen, setModalOpen] = useState(false)
     const tabList = ['전체', '소설·문학', '에세이', 'SF·장르', '어린이', '채용중'] as const
-    const topPubList = [
-        {
-            icon: '📚',
-            color: 'a',
-            name: '민음사',
-            genre: '소설 · 시 · 인문 · 에세이',
-            tag: ['한국문학', '세계문학전집', '노벨문학상'],
-            desc: '1966년 창립. 세계문학전집을 비롯해 국내 최고 수준의 문학 출판사. 한강, 김영하, 황석영 등 대표 작가들과 함께합니다.',
-            book: '1200+',
-            career: '58년',
-            hiring: 2,
-        },
-        {
-            icon: '🌿',
-            color: 'b',
-            name: '창비',
-            genre: '소설 · 시 · 사회과학',
-            tag: ['한국문학', '창작과비평', '어린이'],
-            desc: '창작과비평사로 출발, 한국 문학의 산실. 채식주의자, 아몬드 등 굵직한 작품들을 세상에 내보낸 출판사입니다.',
-            book: '980+',
-            career: '55년',
-            hiring: 0,
-        },
-        {
-            icon: '🌸',
-            color: 'c',
-            name: '문학동네',
-            genre: '소설 · 시 · 에세이',
-            tag: ['현대문학', '한강', '정세랑'],
-            desc: '1993년 설립 이후 한국 현대문학을 이끌어온 출판사. 작별하지 않는다, 시선으로부터 등 수상작들의 산실.',
-            book: '850+',
-            career: '31년',
-            hiring: 1,
-        },
-    ]
-
-    const pubList = [
-        {
-            icon: '✨',
-            color: 'd',
-            name: '은행나무',
-            genre: '소설 · 시 · 에세이',
-            date: '2000년 설립',
-            book: '640+',
-            hiring: 1,
-        },
-        {
-            icon: '🔮',
-            color: 'e',
-            name: 'arte',
-            genre: 'SF · 장르소설 · 판타지',
-            date: '2016년 설립',
-            book: '320+',
-            hiring: 0,
-        },
-        {
-            icon: '📜',
-            color: 'f',
-            name: '열린책들',
-            genre: '세계문학 · 번역 · 인문',
-            date: '1986년 설립',
-            book: '1,100+',
-            hiring: 0,
-        },
-        {
-            icon: '🌊',
-            color: 'g',
-            name: '한겨레출판',
-            genre: '사회과학 · 에세이 · 청소년',
-            date: '2006년 설립',
-            book: '480+',
-            hiring: 2,
-        },
-        {
-            icon: '🍀',
-            color: 'h',
-            name: '사계절',
-            genre: '어린이 · 청소년 · 그림책',
-            date: '1987년 설립',
-            book: '750+',
-            hiring: 0,
-        },
-    ]
-
-    const dummyGenre = ['소설', '시', '에세이', '인문', '세계문학', '번역문학']
-    const dummybook = [
-        {
-            title: '채식주의자',
-            author: '한강'
-        },
-        {
-            title: '검은 꽃',
-            author: '김영하'
-        },
-        {
-            title: '아버지의 해방일지',
-            author: '정지아'
-        },
-        {
-            title: '이방인',
-            author: '알베르 카뮈'
-        },
-        {
-            title: '파친코',
-            author: '이민진'
-        },
-        {
-            title: '설국',
-            author: '가와바타 야스나리'
-        },
-        {
-            title: '1984',
-            author: '조지 오웰'
-        },
-        {
-            title: '노인과 바다',
-            author: '헤밍웨이'
-        },
-    ]
+    
 
     let detail
     if(detailTab === '소개') {

@@ -1,4 +1,4 @@
-import 'pages/css/event/FestivalDetail.css'
+import './FestivalDetail.css'
 import { useNavigate } from 'react-router-dom'
 
 export default function FestivalDetail() {

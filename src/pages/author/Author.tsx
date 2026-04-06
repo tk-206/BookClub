@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import 'pages/css/author/Author.css'
+import './Author.css'
 
 
 export default function Author() {
