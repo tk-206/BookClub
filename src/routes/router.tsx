@@ -14,6 +14,7 @@ import Festival from "../pages/event/Festival";
 import FestivalMain from "../pages/event/components/FestivalMain";
 import FestivalDetail from "../pages/event/components/FestivalDetail";
 import FestivalCalendar from "../pages/event/components/FestivalCalendar";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 export const router = createBrowserRouter([
     {
@@ -21,10 +22,13 @@ export const router = createBrowserRouter([
         element: <Layout />,
         children: [
             { index: true, element: <Home /> },
-            { path: "내 서재", element: <Library />},
             { path: "커뮤니티", element: <Community />},
+            { element: <ProtectedRoute />,
+                children: [ { path: "내 서재", element: <Library />}, ]
+            },
             { path: "출판사", element: <Publisher />},
-            { path: "작가", element: <Author />, children: [ { index: true, element: <AuthorMain />}, { path: '채널', element: <AuthorChannel />}, { path: '라운지', element: <AuthorLounge />} ]},
+            { path: "작가", element: <Author />, 
+                children: [ { index: true, element: <AuthorMain />}, { path: '채널', element: <AuthorChannel />}, { element: <ProtectedRoute />, children: [ { path: '라운지', element: <AuthorLounge />}, ]}, ]},
             { path: "행사", element: <Festival />, children: [ { index: true, element: <FestivalMain />}, { path: '상세', element: <FestivalDetail />}, { path: '캘린더', element: <FestivalCalendar />},]},
              
         ]

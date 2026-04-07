@@ -3,6 +3,7 @@ import './css/Navbar.css'
 import clsx from "clsx";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import ProfileDropdown from "./ProfileDropdown";
 
 type NavTab = '' | '내 서재' | '커뮤니티' | '출판사' | '작가' | '행사'
 
@@ -22,7 +23,7 @@ export default function Navbar() {
         actions = (
             <>
                 <button>🔔</button>
-                <button className="nav-avatar">김</button>
+                <ProfileDropdown />
             </>
         )
     }
@@ -30,36 +31,35 @@ export default function Navbar() {
         actions = (
             <>
                 <button className="btn-primary">✏️ 글쓰기</button>
-                <button className="nav-avatar">김</button>
+                <ProfileDropdown />
             </>
         )
     }
     else if (isPublisher) {
         actions = (
             <>   
-                <button className="nav-avatar">김</button>
+                <ProfileDropdown />
             </>
         )
     }
     else if (isAuthor) {
         actions = (
             <>   
-                <button className="nav-avatar">김</button>
+                <ProfileDropdown />
             </>
         )
     }
     else if (isFestival) {
         actions = (
             <>   
-                <button className="nav-avatar">김</button>
+                <ProfileDropdown />
             </>
         )
     }
     else {
         actions = (
-            <>
-                <NavLink to="로그인"><button className="btn-ghost">로그인</button></NavLink>
-                <button className="btn-primary">가입하기</button>
+            <>   
+                <ProfileDropdown />
             </>
         )
     }
@@ -81,7 +81,10 @@ export default function Navbar() {
             </ul>   
         
             {/* 버튼 */}
-            <div className="nav-actions">{actions}</div>
+            <div className="nav-actions">{isLoggedIn ? (actions) : (<><>
+                <NavLink to="로그인"><button className="btn-ghost">로그인</button></NavLink>
+                <button className="btn-primary">가입하기</button>
+            </></>) }</div>
         </nav>
     )
 }

@@ -7,7 +7,7 @@ export interface User {
     role: UserRole,
 }
 
-type UserRole = 'user' | 'author' | 'admin'
+type UserRole = 'user' | 'author' | 'admin' | 'publisher'
 
 
 export interface AuthContextType {

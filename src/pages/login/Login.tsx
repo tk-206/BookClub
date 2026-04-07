@@ -1,16 +1,26 @@
 import './Login.css'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { useAuth } from '../../context/AuthContext'
 import clsx from 'clsx'
 
 type LoginTab = '로그인' | '회원가입'
 
 export default function Login() {
+    const { login } = useAuth()
     const navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [tab, setTab] = useState<LoginTab>('로그인')
     const [showPw, setShowPw] = useState(false)
+    const location = useLocation()
+
+    const handleLogin = () => {
+        login({ id : 1, name : '김독서', email : 'test@test.com', role : 'admin', createAt : '2026-04-07'})
+
+        const from = location.state?.from?.pathname || '/'
+        navigate(from, { replace: true })
+    }
 
     return (
         <section className="login-page">
@@ -100,7 +110,7 @@ export default function Login() {
                             <input type='checkbox' className='auto-btn'/>
                             <div className='auto-text'>로그인 상태 유지</div>
                         </div>
-                        <button className='btn-submit'>로그인</button>
+                        <button className='btn-submit' onClick={handleLogin}>로그인</button>
                         <div className='login-footer'>
                             계정이 없으신가요? <NavLink to={'#'}>회원가입</NavLink>
                         </div>

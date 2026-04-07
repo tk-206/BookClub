@@ -1,0 +1,97 @@
+/* 기존 Navbar.css 또는 ProfileDropdown.css에 추가 */
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);  /* 아바타 바로 아래 */
+  right: 0;                 /* 오른쪽 정렬 */
+  width: 220px;
+  background: var(--ivory);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  z-index: 200;
+  animation: dropdownIn 0.15s ease;
+}
+
+@keyframes dropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.dropdown-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--navy), var(--navy-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.dropdown-name {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 0.88rem;
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.dropdown-role {
+  font-size: 0.68rem;
+  color: var(--gold);
+  margin-top: 0.15rem;
+  letter-spacing: 0.05em;
+}
+
+.dropdown-email {
+  font-size: 0.68rem;
+  color: var(--muted);
+  margin-top: 0.1rem;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: rgba(201, 168, 76, 0.15);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.65rem 1rem;
+  font-size: 0.82rem;
+  color: var(--ink);
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif;
+  transition: background 0.15s;
+}
+
+.dropdown-item:hover {
+  background: var(--cream);
+}
+
+.dropdown-item-danger {
+  color: var(--rose);
+}
+
+.dropdown-item-danger:hover {
+  background: rgba(196, 116, 110, 0.08);
+}
