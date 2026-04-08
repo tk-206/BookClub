@@ -105,8 +105,16 @@
     cursor: pointer;
 }
 
+#shTabMo {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .nav-links {
         display: none;
+    }
+
+    #shTabMo {
+        display: block;
     }
 }

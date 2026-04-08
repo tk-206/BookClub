@@ -1,9 +1,10 @@
 import { NavLink, useLocation } from "react-router-dom";
 import './css/Navbar.css'
 import clsx from "clsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import ProfileDropdown from "./ProfileDropdown";
+import AllCate from "./AllCate";
 
 type NavTab = '' | '내 서재' | '커뮤니티' | '출판사' | '작가' | '행사'
 
@@ -17,6 +18,7 @@ export default function Navbar() {
     const isAuthor = path.includes("작가")
     const isFestival = path.includes("행사")
     const { isLoggedIn, user, logout } = useAuth()
+    const [menuOpen, setMenuOpen] = useState(false)
 
     let actions
     if (isLibrary) {
@@ -24,6 +26,10 @@ export default function Navbar() {
             <>
                 <button>🔔</button>
                 <ProfileDropdown />
+                {/* 모바일 메뉴 */}
+                <div id="shTabMo">
+                    <button type="button" className="nav-btn" onClick={() => setMenuOpen(true)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+                </div>
             </>
         )
     }
@@ -32,6 +38,10 @@ export default function Navbar() {
             <>
                 <button className="btn-primary">✏️ 글쓰기</button>
                 <ProfileDropdown />
+                {/* 모바일 메뉴 */}
+                <div id="shTabMo">
+                    <button type="button" className="nav-btn" onClick={() => setMenuOpen(true)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+                </div>
             </>
         )
     }
@@ -39,6 +49,10 @@ export default function Navbar() {
         actions = (
             <>   
                 <ProfileDropdown />
+                {/* 모바일 메뉴 */}
+                <div id="shTabMo">
+                    <button type="button" className="nav-btn" onClick={() => setMenuOpen(true)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+                </div>
             </>
         )
     }
@@ -46,6 +60,10 @@ export default function Navbar() {
         actions = (
             <>   
                 <ProfileDropdown />
+                {/* 모바일 메뉴 */}
+                <div id="shTabMo">
+                    <button type="button" className="nav-btn" onClick={() => setMenuOpen(true)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+                </div>
             </>
         )
     }
@@ -53,6 +71,10 @@ export default function Navbar() {
         actions = (
             <>   
                 <ProfileDropdown />
+                {/* 모바일 메뉴 */}
+                <div id="shTabMo">
+                    <button type="button" className="nav-btn" onClick={() => setMenuOpen(true)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+                </div>
             </>
         )
     }
@@ -60,9 +82,21 @@ export default function Navbar() {
         actions = (
             <>   
                 <ProfileDropdown />
+                {/* 모바일 메뉴 */}
+                <div id="shTabMo">
+                    <button type="button" className="nav-btn" onClick={() => setMenuOpen(true)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+                </div>
             </>
         )
     }
+
+    useEffect(() => {
+        if (menuOpen) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = 'auto'
+        }
+    }, [menuOpen])
 
     return (
         <nav className="nav">
@@ -85,6 +119,8 @@ export default function Navbar() {
                 <NavLink to="로그인"><button className="btn-ghost">로그인</button></NavLink>
                 <button className="btn-primary">가입하기</button>
             </></>) }</div>
+
+            <AllCate isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
         </nav>
     )
 }
