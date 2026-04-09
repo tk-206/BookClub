@@ -132,7 +132,7 @@ export default function Publisher() {
                         국내 주요 출판사의 소개, 대표 도서, 채용 정보까지.<br/>
                         책이 만들어지는 곳을 만나보세요.
                     </div>
-                    <NavLink to='' className='header-hire'>
+                    <NavLink to='/구인구직' className='header-hire'>
                         구인 구직 →
                     </NavLink>
                     <div className="header-stats">

@@ -1,0 +1,40 @@
+.recruiting-page {
+    margin-top: 64px;
+}
+
+.job-header {
+    background: var(--cream);
+    padding: 3rem 5%;
+    border-bottom: 1px solid rgba(201,168,76,.15);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 64px;
+}
+
+.job-header-title {
+    font-family: 'Playfair Display',serif;
+    font-size: 2rem;
+    color: var(--navy);
+    margin-bottom: .4rem;
+}
+
+.job-header-desc {
+    font-size: .82rem;
+    color: var(--gold-3);
+    font-weight: 300;
+    line-height: 1.7;
+}
+
+.btn-post-job {
+    padding: .75rem 1.5rem;
+    background: var(--navy);
+    border: none;
+    color: var(--ivory);
+    font-size: .82rem;
+    cursor: pointer;
+    font-family: 'Noto Sans KR',sans-serif;
+    transition: background .2s;
+    white-space: nowrap;
+}

@@ -224,6 +224,7 @@
     color: var(--ink);
     outline: none;
     transition: border-color 0.15s;
+    border-radius: 10px;
 }
 
 .login-title {
@@ -261,6 +262,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    border-radius: 10px;
 }
 
 .header-divider {
@@ -324,13 +326,12 @@
 
 .login-auto-check {
     display: flex;
-    align-items: flex-start;
     gap: 0.6rem;
     margin-bottom: 1rem;
+    align-items: center;
 }
 
 .auto-btn {
-    margin-top: 2px;
     width: 14px;
     height: 14px;
     accent-color: var(--navy);
@@ -356,6 +357,7 @@
     transition: background 0.2s;
     letter-spacing: 0.05em;
     margin-top: 0.5rem;
+    border-radius: 10px;
 }
 
 .login-footer {
@@ -370,4 +372,112 @@
     text-decoration: none;
     font-weight: 500;
     border-bottom: 1px solid rgba(26, 39, 68, 0.2);
+}
+
+.signup-input {
+    width: 100%;
+    padding: 0.65rem 0.85rem;
+    background: var(--cream);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.85rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+}
+
+.signup-input-password {
+    width: 100%;
+    padding: 0.65rem 0.85rem;
+    background: var(--cream);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.85rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s;
+    border-radius: 10px;
+}
+
+.signup-form-list li input~input {
+    margin-top: 8px;
+}
+
+.signup-form-list li input~input+div {
+    margin-bottom: 1rem;
+}
+
+.check-password {
+    font-size: 0.85rem;
+}
+
+.check-password.error{
+    color: var(--rose);
+}
+
+.check-password.check{
+    color: var(--sage);
+}
+
+.login-label.name {
+    margin-top: 15px;
+}
+
+.social-btn.google {
+    color: cornflowerblue;
+}
+
+.social-btn.kakao {
+    color: brown;
+}
+
+.agreements {
+    display: flex;
+    flex-direction: column;
+}
+
+.agreements input {
+    width: 14px;
+    height: 14px;
+    accent-color: var(--navy);
+}
+
+.agreements p {
+    display: flex;
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(26, 39, 68, 0.2);
+}
+
+.agreements p label {
+    margin-bottom: 0;
+}
+
+.agreements li label {
+    margin-bottom: 0;
+}
+
+
+.agreements li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 3px;
+}
+
+
+.agreements li a {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    border-bottom: 1px solid var(--gold);
+}
+
+.agreements li:last-child {
+    margin-bottom: 1rem;
 }

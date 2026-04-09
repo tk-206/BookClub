@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from '../layout/Layout'
 import Home from "../pages/home/Home";
-import Login from "../pages/login/Login";
+import Login from "../pages/login/Auth";
 import Library from "../pages/library/Library";
 import AuthLayout from "../layout/AuthLayout";
 import Community from "../pages/community/Community";
@@ -15,6 +15,8 @@ import FestivalMain from "../pages/event/components/FestivalMain";
 import FestivalDetail from "../pages/event/components/FestivalDetail";
 import FestivalCalendar from "../pages/event/components/FestivalCalendar";
 import ProtectedRoute from "../components/ProtectedRoute";
+import Auth from "../pages/login/Auth";
+import Recruiting from "../pages/job/Recruiting";
 
 export const router = createBrowserRouter([
     {
@@ -26,18 +28,20 @@ export const router = createBrowserRouter([
             { element: <ProtectedRoute />,
                 children: [ { path: "내 서재", element: <Library />}, ]
             },
-            { path: "출판사", element: <Publisher />},
+            { path: "출판사", element: <Publisher />,
+                children: [ { index: true, element: <Publisher /> } ]
+            },
             { path: "작가", element: <Author />, 
                 children: [ { index: true, element: <AuthorMain />}, { path: '채널', element: <AuthorChannel />}, { element: <ProtectedRoute />, children: [ { path: '라운지', element: <AuthorLounge />}, ]}, ]},
             { path: "행사", element: <Festival />, children: [ { index: true, element: <FestivalMain />}, { path: '상세', element: <FestivalDetail />}, { path: '캘린더', element: <FestivalCalendar />},]},
-             
+            { path: "구인구직", element: <Recruiting />}
         ]
     },
     {
         path: "로그인",
         element: <AuthLayout />,
         children: [
-            { index: true, element: <Login />},
+            { index: true, element: <Auth />},
         ]
     },
 ])
