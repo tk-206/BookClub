@@ -5,6 +5,8 @@ import MyBook from './components/LibraryMyBook'
 import Calendar from '../../components/Calendar'
 import StatsView from './components/LibraryStatsView'
 import AddBookModal from '../../components/AddBookModal'
+import type { Book } from '../../types'
+import { readingList } from '../../data/mock/DummyData'
 
 type SideTab = '전체 서재' | '읽는 중' | '읽은 책' | '읽고 싶어요' | '독서 캘린더' | '독서 통계' | '내 게시글' | '알림'
 type ContentTab = '목록' | '캘린더' | '통계'
@@ -13,6 +15,7 @@ export default function Library() {
     const [sideTab, setSideTab] = useState<SideTab>('전체 서재')
     const [contentTab, setContentTab] = useState<ContentTab>('목록')
     const [open, setOpen] = useState(false)
+    const [selectBook, setSelectBook] = useState<Book | null>(null)
 
     const tabContent = {
         목록: MyBook,
@@ -108,7 +111,7 @@ export default function Library() {
             <section className='my-library'>
                 {/* header */}
                 <div className='lib-header'>
-                    <div className='header-title'>
+                    <div className='lib-header-title'>
                         <span>MY LIBRARY</span>
                         내 서재
                     </div>
@@ -154,10 +157,10 @@ export default function Library() {
                 </div>
 
                 {/* content */}
-                <ActiveComponent />
+                <ActiveComponent bookList={readingList} onEdit={(book) => {setSelectBook(book); setOpen(true)}}/>
             </section>
 
-            <AddBookModal isOpen={open} onClose={() => setOpen(false)}/>
+            <AddBookModal isOpen={open} onClose={() => { setOpen(false); setSelectBook(null)}} initialData={selectBook ?? undefined} onSave={() => setOpen(false)} />
         </section>
     )
 }

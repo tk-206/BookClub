@@ -6,23 +6,23 @@ export default function FestivalDetail() {
 
     return (
         <div id="view-detail">
-            <div className="detail-page">
+            <div className="detail-event-page">
                 <div className="detail-hero">
                 <div className="detail-hero-bg"></div>
                 <div className="detail-hero-inner">
                     <div>
                     <button className="back-btn" onClick={() => navigate(-1)}>← 행사 목록으로</button>
                     <div className="detail-event-type">낭독회</div>
-                    <div className="detail-title">한강 작가 낭독회<br/>— 새 장편 일부 공개</div>
-                    <div className="detail-subtitle">신작 장편의 일부를 작가가 직접 낭독하는 특별한 자리입니다. 낭독 후 독자와의 짧은 Q&amp;A 시간도 마련되어 있어요.</div>
-                    <div className="detail-info-chips">
+                    <div className="detail-event-title">한강 작가 낭독회<br/>— 새 장편 일부 공개</div>
+                    <div className="detail-event-subtitle">신작 장편의 일부를 작가가 직접 낭독하는 특별한 자리입니다. 낭독 후 독자와의 짧은 Q&amp;A 시간도 마련되어 있어요.</div>
+                    <div className="detail-event-info-chips">
                         <div className="d-chip">📍 교보문고 광화문점 B1</div>
                         <div className="d-chip">🕐 오후 3:00 — 5:00</div>
                         <div className="d-chip">🎟 무료 (사전 예약)</div>
                         <div className="d-chip">👤 선착순 120명</div>
                     </div>
                     </div>
-                    <div className="detail-date-block">
+                    <div className="detail-event-date-block">
                     <div className="ddb-month">APR</div>
                     <div className="ddb-day">05</div>
                     <div className="ddb-year">2025</div>
@@ -31,16 +31,16 @@ export default function FestivalDetail() {
                 </div>
                 </div>
 
-                <div className="detail-body">
-                <div className="detail-main">
+                <div className="detail-event-body">
+                <div className="detail-event-main">
 
-                    <div className="detail-section">
-                    <div className="detail-section-title">📋 행사 소개</div>
-                    <div className="detail-text">한강 작가의 신작 장편 일부를 작가가 직접 낭독하는 특별한 자리입니다. 약 40분간의 낭독과 함께, 작가가 이번 작품을 쓰게 된 계기와 창작 과정에 대해 직접 이야기합니다.<br/><br/>낭독 후에는 참석자들과의 짧은 Q&amp;A 세션이 진행되며, 행사 종료 후 선착순 30명을 대상으로 간단한 사인 시간이 마련됩니다. 사인을 원하시는 분은 당일 교보문고에서 도서를 구매하시거나 기존 소장 도서를 지참해 주세요.</div>
+                    <div className="detail-event-section">
+                    <div className="detail-event-section-title">📋 행사 소개</div>
+                    <div className="detail-event-text">한강 작가의 신작 장편 일부를 작가가 직접 낭독하는 특별한 자리입니다. 약 40분간의 낭독과 함께, 작가가 이번 작품을 쓰게 된 계기와 창작 과정에 대해 직접 이야기합니다.<br/><br/>낭독 후에는 참석자들과의 짧은 Q&amp;A 세션이 진행되며, 행사 종료 후 선착순 30명을 대상으로 간단한 사인 시간이 마련됩니다. 사인을 원하시는 분은 당일 교보문고에서 도서를 구매하시거나 기존 소장 도서를 지참해 주세요.</div>
                     </div>
 
-                    <div className="detail-section">
-                    <div className="detail-section-title">🗓 프로그램</div>
+                    <div className="detail-event-section">
+                    <div className="detail-event-section-title">🗓 프로그램</div>
                     <div className="program-table">
                         <div className="program-row">
                         <div className="program-time">14:30</div>
@@ -65,8 +65,8 @@ export default function FestivalDetail() {
                     </div>
                     </div>
 
-                    <div className="detail-section">
-                    <div className="detail-section-title">🎤 참여 작가</div>
+                    <div className="detail-event-section">
+                    <div className="detail-event-section-title">🎤 참여 작가</div>
                     <div className="speakers-grid">
                         <div className="speaker-card">
                         <div className="speaker-avatar" style={{background:"linear-gradient(135deg,#1A2744,#243461)"}}>✍️</div>
@@ -76,14 +76,14 @@ export default function FestivalDetail() {
                     </div>
                     </div>
 
-                    <div className="detail-section">
-                    <div className="detail-section-title">📌 유의사항</div>
-                    <div className="detail-text">• 행사 당일 예약 확인 화면(문자/이메일)을 반드시 지참해 주세요.<br/>• 사진 촬영은 낭독 시작 전까지만 허용됩니다.<br/>• 5분 이상 지각 시 입장이 제한될 수 있습니다.<br/>• 예약 취소는 행사 3일 전까지 가능합니다.</div>
+                    <div className="detail-event-section">
+                    <div className="detail-event-section-title">📌 유의사항</div>
+                    <div className="detail-event-text">• 행사 당일 예약 확인 화면(문자/이메일)을 반드시 지참해 주세요.<br/>• 사진 촬영은 낭독 시작 전까지만 허용됩니다.<br/>• 5분 이상 지각 시 입장이 제한될 수 있습니다.<br/>• 예약 취소는 행사 3일 전까지 가능합니다.</div>
                     </div>
                 </div>
 
                 {/* <!-- Sidebar --> */}
-                <div className="detail-sidebar">
+                <div className="detail-event-sidebar">
                     <div className="sidebar-card">
                     <div className="sc-title">예약 정보</div>
                     <div className="seats-visual">

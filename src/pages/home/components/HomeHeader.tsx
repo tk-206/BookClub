@@ -1,5 +1,8 @@
+import { useNavigate } from "react-router-dom"
 
 export default function HomeHeader() {
+    const navigate = useNavigate()
+
     return (
         <section className='home-header'>
             <div className='home-header-text'>
@@ -17,8 +20,8 @@ export default function HomeHeader() {
                 </div>
 
                 <div className='home-header-button'>
-                    <button className='btn-large'>무료로 시작하기</button>
-                    <button className='btn-link'>기능 살펴보기 →</button>
+                    <button className='btn-large' onClick={() => navigate('/로그인')}>무료로 시작하기</button>
+                    <button className='btn-link' onClick={() => navigate('/커뮤니티')}>기능 살펴보기 →</button>
                 </div>
 
                 <div className='home-header-stats'>

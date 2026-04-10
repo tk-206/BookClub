@@ -1,17 +1,32 @@
 import { useState, useEffect } from 'react'
 import './css/AddBookModal.css'
 import clsx from 'clsx'
+import type { Book } from '../types'
 
 type Props = {
   isOpen: boolean
   onClose: () => void
+  initialData?: Book
+  onSave: (data:Book) => void
 }
 
-export default function AddBookModal({ isOpen, onClose }: Props) {
+export default function AddBookModal({ isOpen, onClose, initialData, onSave }: Props) {
+  const isEditMode = !!initialData
+  const [form, setForm] = useState<Book>({
+    label: '',
+    author: '',
+    color: '',
+    createAt: '',
+    doneDate: '',
+    readingDate: '',
+    review: '',
+    stars: 0,
+    status: '희망'
+  })
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [publisher, setPublisher] = useState('')
-  const [status, setStatus] = useState('읽는 중')
+  const [status, setStatus] = useState('희망')
   const [date, setDate] = useState('')
   const [rating, setRating] = useState(0)
   const [review, setReview] = useState('')
@@ -31,6 +46,27 @@ export default function AddBookModal({ isOpen, onClose }: Props) {
         window.removeEventListener('keydown', handleEsc)
     }
     }, [isOpen, onClose])
+
+    useEffect(() => {
+      if (initialData) {
+        setTitle(initialData.label)
+        setAuthor(initialData.author)
+        setPublisher(initialData.publisher ?? '')
+        setStatus(initialData.status ?? '')
+        setDate(initialData.doneDate ?? '')
+        setRating(initialData.stars ?? 0)
+        setReview(initialData.review ?? '')
+      } else {
+        // 생성 모드 초기화
+        setTitle('')
+        setAuthor('')
+        setPublisher('')
+        setStatus('희망')
+        setDate('')
+        setRating(0)
+        setReview('')
+      }
+    }, [initialData, isOpen])
 
   return (
     <div className={clsx('modal-overlay', {open: isOpen})} onClick={onClose}>

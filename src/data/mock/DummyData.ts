@@ -1,46 +1,54 @@
+import type { Book } from "../../types"
+
 /* MyBook */
-export const readingList = [
+export const readingList: Book[] = [
     {
         color: 'a',
         label: '채식주의자',
         author: '한강 · 창비',
-        date: '2025.03.01 시작'
+        readingDate: '2025.03.01 시작',
+        status: '읽는중',
+        stars: 0,
     },
     {
         color: 'b',
         label: '작별하지 않는다',
         author: '한강 · 문학동네',
-        date: '2025.02.20 시작'
+        readingDate: '2025.02.20 시작',
+        status: '읽는중',
+        stars: 0,
     },
     {
         color: 'c',
         label: '흰',
         author: '한강 · 문학동네',
-        date: '2025.03.10 시작'
+        readingDate: '2025.03.10 시작',
+        status: '읽는중',
+        stars: 0,
     },
-]
-
-export const doneList = [
     {
         color: 'd',
         label: '아몬드',
         author: '손원평 · 창비',
-        stars: '★★★★☆',
-        date: '2025.02.14'
+        stars: 4,
+        doneDate: '2025.02.14',
+        status: '완독'
     },
     {
         color: 'e',
         label: '82년생 김지영',
         author: '조남주 · 문학동네',
-        stars: '★★★★★',
-        date: '2025.01.22'
+        stars: 5,
+        doneDate: '2025.01.22',
+        status: '완독'
     },
     {
         color: 'f',
         label: '시선으로부터',
         author: '정세랑 · 문학동네',
-        stars: '★★★★★',
-        date: '2025.01.08'
+        stars: 5,
+        doneDate: '2025.01.08',
+        status: '완독'
     },
 ]
 

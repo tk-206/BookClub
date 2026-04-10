@@ -1,7 +1,7 @@
 .recruiting-page {
     margin-top: 64px;
 }
-
+/* Header */
 .job-header {
     background: var(--cream);
     padding: 3rem 5%;
@@ -37,4 +37,274 @@
     font-family: 'Noto Sans KR',sans-serif;
     transition: background .2s;
     white-space: nowrap;
+}
+
+.btn-post-job:hover {
+    color: var(--navy);
+    background: var(--gold);
+}
+
+/* Body */
+.job-body {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    padding: 2.5rem 5%;
+    gap: 2.5rem;
+}
+
+.content-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+}
+
+.filter-section {
+    margin-bottom: 1.75rem;
+}
+
+.filter-title {
+    font-size: .68rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: .75rem;
+}
+
+.filter-tab:hover {
+    color: var(--navy);
+}
+
+.filter-opt {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin-bottom: .4rem;
+    cursor: pointer;
+    font-size: .8rem;
+    color: var(--gold-3);
+    transition: color .15s;
+}
+
+.filter-opt:hover {
+    color: var(--navy);
+}
+
+.filter-opt input {
+    accent-color: var(--navy);
+    width: 14px;
+    height: 14px;
+}
+
+.content-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+}
+
+.jobs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: rgba(201,168,76,.08);
+    border: 1px solid rgba(201,168,76,.15);
+}
+
+.bjc {
+    background: var(--ivory);
+    padding: 1.5rem 1.75rem;
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 1.25rem;
+    align-items: start;
+    cursor: pointer;
+    transition: background .15s;
+}
+
+.bjc.hot {
+    border-left: 3px solid var(--gold);
+}
+
+.bjc-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    border: 1px solid rgba(201,168,76,.2);
+    flex-shrink: 0;
+}
+
+.bjc-title {
+    font-family: 'Noto Serif KR',serif;
+    font-size: .95rem;
+    color: var(--navy);
+    font-weight: 700;
+    margin-bottom: .35rem;
+}
+
+.bjc-pub {
+    font-size: .75rem;
+    color: var(--gold-3);
+    margin-bottom: .6rem;
+}
+
+.bjc-tags {
+    display: flex;
+    gap: .35rem;
+    flex-wrap: wrap;
+}
+
+.bjc-tag {
+    font-size: .65rem;
+    padding: .15rem .5rem;
+    border: 1px solid rgba(201,168,76,.2);
+    color: var(--gold-3);
+    border-radius: 2px;
+}
+
+.bjc-right {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.type-badge {
+    font-size: .65rem;
+    padding: .2rem .55rem;
+    border-radius: 2px;
+    margin-bottom: .5rem;
+    display: inline-block;
+}
+
+.jb-full {
+    background: rgba(26,39,68,.08);
+    color: var(--navy);
+}
+
+.dline {
+    font-size: .7rem;
+    color: var(--gold-3);
+}
+
+.dline span {
+    color: var(--rose);
+    font-weight: 500;
+}
+
+.jb-contract {
+    background: rgba(107,140,123,.12);
+    color: var(--sage);
+}
+
+.jb-intern {
+    background: rgba(196,116,110,.12);
+    color: var(--rose);
+}
+
+.jb-freelancer {
+    background: rgba(201,168,76,.1);
+    color: #9a7010;
+}
+
+/* RecruitingPost */
+.jm-header {
+    padding: 1.75rem 2rem 1.25rem;
+    border-bottom: 1px solid rgba(201,168,76,.15);
+    position: sticky;
+    top: 0;
+    background: var(--ivory);
+    z-index: 1;
+}
+
+.jm-close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    color: var(--gold-3);
+    cursor: pointer;
+}   
+
+.jm-pub {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin-bottom: 1rem;
+}
+
+.jm-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    border: 1px solid rgba(201,168,76,.2);
+}
+
+.jm-pub-name {
+    font-size: .8rem;
+    color: var(--gold-3);
+}
+
+.jm-title {
+    font-family: 'Playfair Display',serif;
+    font-size: 1.4rem;
+    color: var(--navy);
+    line-height: 1.3;
+    margin-bottom: .75rem;
+}
+
+.jm-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.jm-meta-item {
+    font-size: .72rem;
+    color: var(--gold-3);
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+}
+
+.jm-body {
+    padding: 1.75rem 2rem;
+}
+
+.jm-footer {
+    padding: 1.25rem 2rem;
+    border-top: 1px solid rgba(201,168,76,.15);
+    display: flex;
+    gap: .75rem;
+    justify-content: flex-end;
+}
+
+.btn-save-job {
+    padding: .65rem 1.1rem;
+    border: 1px solid rgba(201,168,76,.3);
+    background: none;
+    color: var(--gold-3);
+    font-size: .82rem;
+    cursor: pointer;
+    font-family: 'Noto Sans KR',sans-serif;
+    transition: all .15s;
+}
+
+.btn-apply {
+    padding: .65rem 1.75rem;
+    background: var(--navy);
+    border: none;
+    color: var(--ivory);
+    font-size: .85rem;
+    cursor: pointer;
+    font-family: 'Noto Sans KR',sans-serif;
+    transition: background .2s;
 }

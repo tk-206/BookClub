@@ -135,13 +135,13 @@
     margin-bottom: 2.5rem;
 }
 
-.header-title {
+.lib-header-title {
     font-family: 'Playfair Display', serif;
     font-size: 2rem;
     color: var(--navy);
 }
 
-.header-title span {
+.lib-header-title span {
     display: block;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 0.78rem;
