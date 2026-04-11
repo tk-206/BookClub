@@ -25,7 +25,7 @@ export default function LibraryMyBook({ bookList = [], onEdit }: Props ) {
                     </div>
                     <div className="book-status-badge badge-reading">{l.status}</div>
                     <div className="book-stars">— — — — —</div>
-                    <div className="book-date">{l.readingDate}</div>
+                    <div className="book-date">{l.readingDate} 시작</div>
                 </div>
                 ))}
             </div>
