@@ -7,6 +7,7 @@ import StatsView from './components/LibraryStatsView'
 import AddBookModal from '../../components/AddBookModal'
 import type { Book } from '../../types'
 import { readingList } from '../../data/mock/DummyData'
+import { useAuth } from '../../context/AuthContext'
 
 type SideTab = '전체 서재' | '읽는 중' | '읽은 책' | '읽고 싶어요' | '독서 캘린더' | '독서 통계' | '내 게시글' | '알림'
 type ContentTab = '목록' | '캘린더' | '통계'
@@ -16,6 +17,7 @@ export default function Library() {
     const [contentTab, setContentTab] = useState<ContentTab>('목록')
     const [open, setOpen] = useState(false)
     const [selectBook, setSelectBook] = useState<Book | null>(null)
+    const { user } = useAuth()
 
     const tabContent = {
         목록: MyBook,
@@ -72,18 +74,18 @@ export default function Library() {
                 <div className='side-profile'>
                     <div className='profile-icon'>📚</div>
                     <div className='profile-nickname'>김독서</div>
-                    <div className='profile-info'>독서가 · 가입 2025.01</div>
+                    <div className='profile-info'>{user?.role} · 가입 {user?.createAt}</div>
                     <div className='profile-card'>
                         <div className='card-box'>
-                            <div className='box-num'>24</div>
+                            <div className='box-num'>{readingList.filter(b => b.status === '완독').length}</div>
                             <div className='box-text'>읽은 책</div>
                         </div>
                         <div className='card-box'>
-                            <div className='box-num'>3</div>
+                            <div className='box-num'>{readingList.filter(b => b.status === '읽는중').length}</div>
                             <div className='box-text'>읽는 중</div>
                         </div>
                         <div className='card-box'>
-                            <div className='box-num'>12</div>
+                            <div className='box-num'>{readingList.filter(b => b.status === '희망').length}</div>
                             <div className='box-text'>읽고 싶어요</div>
                         </div>
                         <div className='card-box'>
@@ -122,7 +124,7 @@ export default function Library() {
                         <span>📖</span>
                         <div>
                             <div className='status-label'>읽는 중</div>
-                            <div className='status-num'>3</div>
+                            <div className='status-num'>{readingList.filter(b => b.status === '읽는중').length}</div>
                             <div className='status-sub'>권</div>
                         </div>
                     </div>
@@ -130,7 +132,7 @@ export default function Library() {
                         <span>✅</span>
                         <div>
                             <div className='status-label'>완독</div>
-                            <div className='status-num'>24</div>
+                            <div className='status-num'>{readingList.filter(b => b.status === '완독').length}</div>
                             <div className='status-sub'>2025년 기준</div>
                         </div>
                     </div>

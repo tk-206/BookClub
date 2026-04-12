@@ -7,7 +7,7 @@ export interface User {
     role: UserRole,
 }
 
-type UserRole = 'user' | 'author' | 'admin' | 'publisher'
+type UserRole = '독서가' | '작가' | '관리자' | '출판사'
 
 
 export interface AuthContextType {

@@ -27,6 +27,14 @@ export default function Recruiting() {
             type: '계약직',
             dday: 'D-28'
         },
+        {
+            title: '북 디자이너 (표지·내지)',
+            company: '문학동네',
+            location: '서울 파주',
+            tags: ['경력 1년 이상', 'Illustrator'],
+            type: '인턴',
+            dday: 'D-28'
+        },
     ]
 
 
