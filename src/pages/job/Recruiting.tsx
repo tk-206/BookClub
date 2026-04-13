@@ -2,40 +2,13 @@ import clsx from 'clsx'
 import './Recruiting.css'
 import { useState } from 'react'
 import RecruitingPost from './components/RecruitingPost'
+import { jobs } from '../../data/mock/DummyData'
 
 type FilterTab = '최신순' | '마감임박' | '인기순'
 
 export default function Recruiting() {
     const [filterTab, setFilterTab] = useState<FilterTab>('최신순')
     const [postOpen, setPostOpen] = useState(false)
-    const jobs = [
-        {
-            logo: '📚',
-            title: '문학 편집자 (소설·에세이)',
-            company: '민음사',
-            location: '서울 강남구',
-            tags: ['경력 2년 이상', '편집', '교정·교열'],
-            type: '정규직',
-            dday: 'D-12',
-            hot: true
-        },
-        {
-            title: '북 디자이너 (표지·내지)',
-            company: '문학동네',
-            location: '서울 파주',
-            tags: ['경력 1년 이상', 'Illustrator'],
-            type: '계약직',
-            dday: 'D-28'
-        },
-        {
-            title: '북 디자이너 (표지·내지)',
-            company: '문학동네',
-            location: '서울 파주',
-            tags: ['경력 1년 이상', 'Illustrator'],
-            type: '인턴',
-            dday: 'D-28'
-        },
-    ]
 
 
     return (
