@@ -117,7 +117,7 @@ export default function AddBookModal({ isOpen, onClose, initialData, onSave }: P
                 <select value={status} onChange={(e) => setStatus(e.target.value)}>
                 <option>읽는 중</option>
                 <option>완독</option>
-                <option>읽고 싶어요</option>
+                <option>희망</option>
                 </select>
             </div>
             <div className="form-group">

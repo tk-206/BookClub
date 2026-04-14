@@ -38,13 +38,6 @@ export default function Library() {
             ],
         },
         {
-            title: '통계',
-            pages: [
-                {label: '독서 캘린더', icon: '📅'},
-                {label: '독서 통계', icon: '📊'},
-            ],
-        },
-        {
             title: '활동',
             pages: [
                 {label: '내 게시글', icon: '💬'},
@@ -159,7 +152,7 @@ export default function Library() {
                 </div>
 
                 {/* content */}
-                <ActiveComponent bookList={readingList} onEdit={(book) => {setSelectBook(book); setOpen(true)}}/>
+                <ActiveComponent bookList={readingList} onEdit={(book) => {setSelectBook(book); setOpen(true)}} onFilter={sideTab}/>
             </section>
 
             <AddBookModal isOpen={open} onClose={() => { setOpen(false); setSelectBook(null)}} initialData={selectBook ?? undefined} onSave={() => setOpen(false)} />

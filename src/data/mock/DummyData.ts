@@ -6,7 +6,7 @@ export const readingList: Book[] = [
         color: 'a',
         label: '채식주의자',
         author: '한강 · 창비',
-        readingDate: '2025.03.01',
+        readingDate: '2026.03.01',
         status: '읽는중',
         stars: 0,
     },
@@ -14,7 +14,7 @@ export const readingList: Book[] = [
         color: 'b',
         label: '작별하지 않는다',
         author: '한강 · 문학동네',
-        readingDate: '2025.02.20',
+        readingDate: '2026.02.20',
         status: '읽는중',
         stars: 0,
     },
@@ -22,7 +22,7 @@ export const readingList: Book[] = [
         color: 'c',
         label: '흰',
         author: '한강 · 문학동네',
-        readingDate: '2025.03.10',
+        readingDate: '2026.03.10',
         status: '읽는중',
         stars: 0,
     },
@@ -31,7 +31,7 @@ export const readingList: Book[] = [
         label: '아몬드',
         author: '손원평 · 창비',
         stars: 4,
-        doneDate: '2025.02.14',
+        doneDate: '2026.02.14',
         status: '완독'
     },
     {
@@ -39,7 +39,7 @@ export const readingList: Book[] = [
         label: '82년생 김지영',
         author: '조남주 · 문학동네',
         stars: 5,
-        doneDate: '2025.01.22',
+        doneDate: '2026.01.22',
         status: '완독'
     },
     {
@@ -47,8 +47,16 @@ export const readingList: Book[] = [
         label: '시선으로부터',
         author: '정세랑 · 문학동네',
         stars: 5,
-        doneDate: '2025.01.08',
+        doneDate: '2026.01.08',
         status: '완독'
+    },
+    {
+        color: 'f',
+        label: '시선으로부터',
+        author: '정세랑 · 문학동네',
+        stars: 0,
+        doneDate: '2026.01.08',
+        status: '희망'
     },
 ]
 
