@@ -4,6 +4,8 @@ import { useState } from 'react'
 import DetailPostModal from '../../components/DetailPostModal'
 import AddPostModal from '../../components/AddPostModal'
 import { boardList, authorList, tagList, noticeList, filterTabList, postList, hotPostList, meetingList, festivalList } from '../../data/mock/DummyData'
+import PostItem from './components/PostItem'
+import PostList from './components/PostList'
 
 type Menu = '전체 글' | '독서 토론' | '책 리뷰' | '질문 · 추천' | '모임 모집' | '정보 공유' | '작가 채널' | '출판사 소식' | '구인구직'
 type FilterTab = '최신순' | '인기순' | '댓글순' | '조회순'
@@ -114,31 +116,7 @@ export default function Community() {
                         </div>
                         <div className='featured-img'>📚</div>
                     </div>
-                    {postList.map((l) => (
-                        <div className={clsx('post-item', {unread: l.isRead === false})} onClick={() => setDetailOpen(true)}>
-                            <div>
-                                <div className='post-top'>
-                                    <span className={clsx('post-category', l.category)}>{l.category}</span>
-                                </div>
-                                <div className='post-mid'>
-                                    <div className='post-title'>{l.title}</div>
-                                    <div className='post-preview'>{l.content}</div>
-                                </div>
-                                <div className='post-bottom'>
-                                    <div className='post-author'>
-                                        <div className='post-author-avatar'>{l.author.avatar}</div>
-                                        <div className='post-author-name'>{l.author.name}</div>
-                                    </div>
-                                    <div className='post-date'>{l.createdAt}</div>
-                                    <div className='post-stats'>
-                                        <div className='post-stat'>❤️ {l.stats.like}</div>
-                                        <div className='post-stat'>💬 {l.stats.commentCount}</div>
-                                        <div className='post-stat'>🫣 {l.stats.view}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+                    <PostList posts={postList} onClickPost={() => setDetailOpen(true)} />
                 </div>
                 <div className="pagination">
                     <button className="page-btn">‹</button>

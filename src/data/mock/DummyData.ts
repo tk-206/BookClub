@@ -1,4 +1,4 @@
-import type { Book } from "../../types"
+import type { Book, Post } from "../../types"
 
 /* MyBook */
 export const readingList: Book[] = [
@@ -89,7 +89,7 @@ export const filterTabList = [
     '최신순', '인기순', '댓글순', '조회순'
 ] as const
 
-export const postList = [
+export const postList: Post[] = [
     {
         id: 'post-1',
         category: '독서 토론',
@@ -98,9 +98,12 @@ export const postList = [
         isRead: false,
 
         author: {
-            id: 'user-1',
+            id: 1,
             name: '김태경',
-            avatar: '김',
+            profileImage: '김',
+            role: '독서가',
+            email: 'dbdb@naver.com',
+            createAt: '2025-02-02'
         },
 
         createdAt: '2025-03-01',
@@ -119,9 +122,12 @@ export const postList = [
             {
                 id: 'c1',
                 author: {
-                    id: 'user-2',
+                    id: 2,
                     name: '이수민',
-                    avatar: '이',
+                    profileImage: '이',
+                    role: '독서가',
+                    email: 'dbdb@naver.com',
+                    createAt: '2025-02-02'
                 },
                 content: '저도 비슷하게 느꼈어요',
                 createdAt: '2025-03-01',
@@ -131,9 +137,12 @@ export const postList = [
                     {
                         id: 'r1',
                         author: {
-                            id: 'user-1',
+                            id: 1,
                             name: '김태경',
-                            avatar: '김',
+                            profileImage: '김',
+                            role: '독서가',
+                            email: 'dbdb@naver.com',
+                            createAt: '2025-02-02'
                         },
                         content: '오 그렇군요!',
                         createdAt: '2025-03-01',
@@ -151,9 +160,12 @@ export const postList = [
         isRead: true,
 
         author: {
-            id: 'user-2',
+            id: 2,
             name: '이수민',
-            avatar: '이',
+            profileImage: '이',
+            role: '독서가',
+            email: 'dbdb@naver.com',
+            createAt: '2025-02-02'
         },
 
         createdAt: '2025-03-01',
@@ -172,9 +184,12 @@ export const postList = [
             {
                 id: 'c2',
                 author: {
-                    id: 'user-2',
+                    id: 2,
                     name: '이수민',
-                    avatar: '이',
+                    profileImage: '이',
+                    role: '독서가',
+                    email: 'dbdb@naver.com',
+                    createAt: '2025-02-02'
                 },
                 content: '재밌더라구요',
                 createdAt: '2025-03-01',
@@ -184,9 +199,12 @@ export const postList = [
                     {
                         id: 'r2',
                         author: {
-                            id: 'user-1',
+                            id: 1,
                             name: '김태경',
-                            avatar: '김',
+                            profileImage: '김',
+                            role: '독서가',
+                            email: 'dbdb@naver.com',
+                            createAt: '2025-02-02'
                         },
                         content: '오 그렇군요!',
                         createdAt: '2025-03-01',

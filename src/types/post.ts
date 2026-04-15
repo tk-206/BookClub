@@ -6,13 +6,13 @@ export interface Post {
   category: string,
   title: string,
   content: string,
-  isRead: boolean,
+  isRead?: boolean,
   author: User,
   createdAt: string,
   stats: PostStats,
-  tags: string[],
+  tags?: string[],
   isSecret: boolean,
-  comments: Comment[],
+  comments?: Comment[],
 }
 
 export interface PostStats {
