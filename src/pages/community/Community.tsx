@@ -4,7 +4,6 @@ import { useState } from 'react'
 import DetailPostModal from '../../components/DetailPostModal'
 import AddPostModal from '../../components/AddPostModal'
 import { boardList, authorList, tagList, noticeList, filterTabList, postList, hotPostList, meetingList, festivalList } from '../../data/mock/DummyData'
-import PostItem from './components/PostItem'
 import PostList from './components/PostList'
 
 type Menu = '전체 글' | '독서 토론' | '책 리뷰' | '질문 · 추천' | '모임 모집' | '정보 공유' | '작가 채널' | '출판사 소식' | '구인구직'
