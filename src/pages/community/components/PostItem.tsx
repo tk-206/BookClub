@@ -3,12 +3,12 @@ import type { Post } from "../../../types"
 
 type Props = {
     post: Post
-    onClick: (post: Post) => void
+    clickOn: () => void
 }
 
-export default function PostItem({ post, onClick } : Props ) {
+export default function PostItem({ post, clickOn } : Props ) {
     return (
-        <div className={clsx('post-item', {unread: !post.isRead})} onClick={() => onClick}>
+        <div className={clsx('post-item', {unread: !post.isRead})} onClick={() => clickOn()}>
             <div>
                 <div className='post-top'>
                     <span className={clsx('post-category', post.category)}>{post.category}</span>

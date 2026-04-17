@@ -129,6 +129,10 @@
     position: relative;
 }
 
+.notice-card:hover {
+    background: var(--gold);
+}
+
 .notice-card:last-child {
     margin-bottom: 1.5rem;
 }
@@ -369,6 +373,10 @@
     grid-template-columns: 1fr auto;
     gap: 1rem;
     align-items: start;
+}
+
+.post-item:hover {
+    background: var(--cream);
 }
 
 .post-item.unread {

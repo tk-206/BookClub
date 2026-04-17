@@ -61,20 +61,6 @@ export const readingList: Book[] = [
 ]
 
 /* Community */
-export const boardList = [
-    {title: '전체 글', icon: '📋'},
-    {title: '독서 토론', icon: '💬'},
-    {title: '책 리뷰', icon: '📖'},
-    {title: '질문 · 추천', icon: '❓'},
-    {title: '모임 모집', icon: '🤝'},
-    {title: '정보 공유', icon: '📢'},
-] as const
-
-export const authorList = [
-    {title: '작가 채널', icon: '✍️'},
-    {title: '출판사 소식', icon: '🏢'},
-    {title: '구인구직', icon: '💼'},
-] as const
 
 export const tagList = [
     '#한강', '#SF소설', '#에세이', '#북페어', '#추천도서', '#독서모임', '#신간', '#고전'
@@ -83,10 +69,6 @@ export const tagList = [
 export const noticeList = [
     {title: '2025년 봄 북클럽 독서 챌린지 — 3월 한 달간 3권 읽기', admin: '관리자 · 2025.03.01'},
     {title: '커뮤니티 이용 규칙 및 작가 인증 절차 안내', admin: '관리자 · 2025.02.15'},
-] as const
-
-export const filterTabList = [
-    '최신순', '인기순', '댓글순', '조회순'
 ] as const
 
 export const postList: Post[] = [
