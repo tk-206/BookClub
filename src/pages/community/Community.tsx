@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import './Community.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import DetailPostModal from '../../components/DetailPostModal'
 import AddPostModal from '../../components/AddPostModal'
 import { postList } from '../../data/mock/DummyData'
@@ -20,14 +20,18 @@ export default function Community() {
     const [writeOpen, setWriteOpen] = useState(false)
     const [page, setPage] = useState(1);
 
-    
+    useEffect(() => {
+        const timer = setTimeout(() => setLoading(false),1000);
+        return() => clearTimeout(timer);
+    }, [])
+
     let content
     if(loading) {
-        content = (
+        content = ( 
             <LoadingSpinner />
         )
     }
-    else {
+    else if(!loading) {
         content = (
             <section className='community-page'>
                 {/* Left */}
