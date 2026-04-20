@@ -12,24 +12,25 @@ export default function Home() {
     
 
     return (
+        
         <section className='home-page'>
-            {/* header */}
+            /* header */
             <HomeHeader />
 
-            {/* feature */}
+            /* feature */
             <HomeFeatures />
 
-            {/* preview */}
+            /* preview */
             <HomePreview />
 
-            {/* community */}
+            /* community */
             <HomeCommunity />
 
-            {/* authors */}
+            /* authors */
             <HomeAuthors />
 
-            {/* start */}
-            <HomeStart />
+            /* start */
+            <HomeStart />  
         </section>
     )
 }
