@@ -1,0 +1,12 @@
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.empty-desc {
+    text-align: center;
+    font-weight: 500;
+}

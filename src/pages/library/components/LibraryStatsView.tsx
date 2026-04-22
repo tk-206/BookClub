@@ -3,8 +3,9 @@ import './LibraryStatsView.css'
 export default function LibraryStatsView() {
     return(
         <div className="tab-stats">
-            <div className="analytics-grid">
-                {/* Left */}
+                <div className='not-yet'>🚧 WIP 🚧</div>
+        {/* <div className="analytics-grid">
+                    Left
                 <div className="analytics-card">
                     <div className="analytics-title">장르별 독서</div>
                     <div className="genre-bars">
@@ -38,7 +39,7 @@ export default function LibraryStatsView() {
                         </div>
                     </div>
                 </div>
-                {/* Right */}
+                    Right 
                 <div className="analytics-card">
                     <div className="analytics-title">월별 독서량(2026)</div>
                     <div className='monthly-bars'>
@@ -68,7 +69,7 @@ export default function LibraryStatsView() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>  */}
         </div>
     )
 }

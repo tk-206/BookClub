@@ -1,0 +1,81 @@
+/* 전체 리스트 */
+.skeleton-list {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+/* 한 줄 */
+.skeleton-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px;
+  background: transparent;
+  min-height: 150px;
+}
+
+/* 원형 (프로필) */
+.sk-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e5e1d8;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 텍스트 라인 묶음 */
+.sk-lines {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 기본 라인 */
+.sk-line {
+  height: 20px;
+  border-radius: 6px;
+  background: #e5e1d8;
+  position: relative;
+  overflow: hidden;
+}
+
+.sk-line.body {
+    height: 100px;
+}
+
+/* 길이 variation */
+.sk-line.short {
+  width: 60%;
+}
+
+.sk-line.shorter {
+  width: 40%;
+}
+
+/* ✨ shimmer 핵심 */
+.sk-circle::after,
+.sk-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.5),
+    transparent
+  );
+  transform: translateX(-100%);
+  animation: shimmer 1.4s infinite;
+}
+
+/* 애니메이션 */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

@@ -123,3 +123,11 @@ main {
     opacity: 1;
   }
 }
+
+.not-yet {
+  font-weight: bold;
+  font-size: 2rem;
+  flex-wrap: nowrap;
+  text-align: center;
+  color: var(--rose);
+}

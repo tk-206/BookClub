@@ -11,11 +11,11 @@
     height: 36px;
     padding: 0 8px;
     border-radius: 4px;
-    background: var(--ivory);
+    background: transparent;
     color: var(--gold-3);
     font-size: 0.875rem;
     font-weight: 500;
-    border: 1px solid var(--ivory);
+    border: 1px solid transparent;
     transition: all 0.2 ease;
 }
 
@@ -31,9 +31,9 @@
 }
 
 .pagination__btn--active {
-    background: var(--ivory) !important;
+    background: transparent !important;
     color: var(--navy) !important;
-    border-color: var(--ivory) !important;
+    border-color: transparent !important;
 }
 
 .pagination__ellipsis {

@@ -34,6 +34,7 @@
     left: 0;
     transform-origin: right center;
     animation: pageTurn 1.6s ease-in-out infinite;
+    perspective: 200px;
 }
 
 .book-page-right {
@@ -81,15 +82,4 @@
     color: var(--navy);
     text-shadow: none;
   }
-}
-
-@keyframes bounce {
-    0%, 100% {
-        opacity: 0.3;
-        transform: scaleY(0.6);
-    }
-    50% {
-        opacity: 1;
-        transform: scaleY(1);
-    }
 }
