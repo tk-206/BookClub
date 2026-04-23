@@ -28,13 +28,13 @@ export default function ProfileDropdown() {
     navigate('/')
   }
 
-  // 역할 한글 변환
+/*   // 역할 한글 변환
   const roleLabel = {
     user: '독자',
     author: '작가',
     publisher: '출판사',
     admin: '관리자',
-  }[user?.role ?? 'user']
+  }[user?.role ?? 'user'] */
 
   return (
     <div className="relative" ref={dropdownRef}>
@@ -58,7 +58,7 @@ export default function ProfileDropdown() {
             </div>
             <div>
               <div className="dropdown-name">{user?.name}</div>
-              <div className="dropdown-role">{roleLabel}</div>
+              <div className="dropdown-role">{user?.role}</div>
               <div className="dropdown-email">{user?.email}</div>
             </div>
           </div>

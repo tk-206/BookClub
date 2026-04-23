@@ -180,6 +180,48 @@ export default function FestivalMain() {
         )
     }
 
+    let festivalRight
+    if(event.length === 0) {
+        festivalRight = (
+            <EmptyState type="events"/>
+        )
+    }
+    else {
+        festivalRight = (
+            <div>
+                <div className="fe-type-badge">✦ 이달의 주요 행사</div>
+                <div className="fe-tag">서울국제도서전</div>
+
+                <div className="fe-date-block">
+                    <div>
+                        <div className="fe-month">MAY</div>
+                        <div className="fe-day">14</div>
+                    </div>
+
+                    <div className="fe-divider">–</div>
+
+                    <div>
+                        <div className="fe-month">MAY</div>
+                        <div className="fe-day">18</div>
+                    </div>
+                </div>
+
+                <div className="fe-title">2025 서울국제도서전</div>
+
+                <div className="fe-meta">
+                    <div className="fe-meta-row">📍 COEX 전시홀 A·B·C</div>
+                    <div className="fe-meta-row">🕐 오전 10시 — 오후 7시</div>
+                    <div className="fe-meta-row">🎟 무료 입장 (사전 등록 권장)</div>
+                </div>
+
+                <button className="btn-fe-detail">
+                    행사 상세 보기 →
+                    {/* onClick={() => showDetail()} */}
+                </button>
+            </div>
+        )
+    }
+
     return (
         <div className="events-main">
             {/* Hero */}
@@ -226,35 +268,7 @@ export default function FestivalMain() {
 
                 {/* Featured */}
                 <div className="hero-right-panel">
-                    <div className="fe-type-badge">✦ 이달의 주요 행사</div>
-                    <div className="fe-tag">서울국제도서전</div>
-
-                    <div className="fe-date-block">
-                        <div>
-                            <div className="fe-month">MAY</div>
-                            <div className="fe-day">14</div>
-                        </div>
-
-                        <div className="fe-divider">–</div>
-
-                        <div>
-                            <div className="fe-month">MAY</div>
-                            <div className="fe-day">18</div>
-                        </div>
-                    </div>
-
-                    <div className="fe-title">2025 서울국제도서전</div>
-
-                    <div className="fe-meta">
-                        <div className="fe-meta-row">📍 COEX 전시홀 A·B·C</div>
-                        <div className="fe-meta-row">🕐 오전 10시 — 오후 7시</div>
-                        <div className="fe-meta-row">🎟 무료 입장 (사전 등록 권장)</div>
-                    </div>
-
-                    <button className="btn-fe-detail">
-                        행사 상세 보기 →
-                        {/* onClick={() => showDetail()} */}
-                    </button>
+                    {festivalRight}
                 </div>
             </div>
 
