@@ -1,0 +1,54 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "test@test.com",
+      "password": "1234",
+      "createAt": "2026-04-22",
+      "name": "김예시",
+      "role": "관리자"
+    }
+  ],
+  "books": [
+    {
+      "label": "123",
+      "author": "123",
+      "color": "",
+      "createAt": "",
+      "doneDate": "",
+      "readingDate": "",
+      "review": "123",
+      "stars": 0,
+      "status": "희망",
+      "id": "q6pP2SA6wrA",
+      "publisher": "123"
+    },
+    {
+      "label": "14",
+      "author": "14",
+      "color": "",
+      "createAt": "",
+      "doneDate": "",
+      "readingDate": "",
+      "review": "14",
+      "stars": 0,
+      "status": "완독",
+      "id": "cn8H5zua-E4",
+      "publisher": "14"
+    },
+    {
+      "label": "123",
+      "author": "123",
+      "color": "",
+      "createAt": "",
+      "doneDate": "",
+      "readingDate": "",
+      "review": "123",
+      "stars": 0,
+      "status": "희망",
+      "id": "WuUt-cZ7dXI",
+      "publisher": "123"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

@@ -155,6 +155,17 @@ textarea {
     transition: all 0.15s;
 }
 
+.btn-delete {
+    padding: 0.6rem 1.5rem;
+    background: var(--rose);
+    border: none;
+    font-size: 0.82rem;
+    color: var(--ivory);
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+    transition: background 0.15s;
+}
+
 .btn-save {
     padding: 0.6rem 1.5rem;
     background: var(--navy);

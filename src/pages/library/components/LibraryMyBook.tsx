@@ -2,21 +2,25 @@ import clsx from 'clsx'
 import './LibraryMyBook.css'
 import type { Book } from '../../../types'
 import EmptyState from '../../../components/EmptyState'
+import SkeletonList from '../../../components/SkeletonList'
 
 
 type SideTab = '전체 서재' | '읽는 중' | '읽은 책' | '읽고 싶어요' | '독서 캘린더' | '독서 통계' | '내 게시글' | '알림'
 type Props = {
     bookList: Book[]
     onEdit: (book: Book) => void
+    isLoading: boolean
     onFilter: SideTab
 }
 
 
-export default function LibraryMyBook({ bookList = [], onEdit, onFilter }: Props ) {
+export default function LibraryMyBook({ bookList = [], onEdit, onFilter, isLoading }: Props ) {
 
     const readingBooks = bookList.filter(b => b.status === '읽는중')
     const doneBooks = bookList.filter(b => b.status === '완독')
     const wishBooks = bookList.filter(b => b.status === '희망')
+
+    if(isLoading) return <SkeletonList/>
 
     return (
         filter(onFilter)

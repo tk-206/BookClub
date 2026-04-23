@@ -5,9 +5,9 @@ import MyBook from './components/LibraryMyBook'
 import Calendar from '../../components/Calendar'
 import StatsView from './components/LibraryStatsView'
 import AddBookModal from '../../components/AddBookModal'
-import type { Book } from '../../types'
-import { readingList } from '../../data/mock/DummyData'
+import { fetchBooks, type Book } from '../../api/book'
 import { useAuth } from '../../context/AuthContext'
+import { useQuery } from '@tanstack/react-query'
 
 type SideTab = '전체 서재' | '읽는 중' | '읽은 책' | '읽고 싶어요' | '독서 캘린더' | '독서 통계' | '내 게시글' | '알림'
 type ContentTab = '목록' | '캘린더' | '통계'
@@ -18,6 +18,11 @@ export default function Library() {
     const [open, setOpen] = useState(false)
     const [selectBook, setSelectBook] = useState<Book | null>(null)
     const { user } = useAuth()
+
+    const { data: books = [], isLoading, error } = useQuery({
+    queryKey: ['books'],
+    queryFn: fetchBooks,
+    })
 
     const tabContent = {
         목록: MyBook,
@@ -60,6 +65,8 @@ export default function Library() {
         }
     }, [open])
 
+    if (error) return <div>에러 발생</div>
+
     return (
         <section className='library-page'>
             {/* sidebar */}
@@ -70,15 +77,15 @@ export default function Library() {
                     <div className='profile-info'>{user?.role} · 가입 {user?.createAt}</div>
                     <div className='profile-card'>
                         <div className='card-box'>
-                            <div className='box-num'>{readingList.filter(b => b.status === '완독').length}</div>
+                            <div className='box-num'>{books.filter(b => b.status === '완독').length}</div>
                             <div className='box-text'>읽은 책</div>
                         </div>
                         <div className='card-box'>
-                            <div className='box-num'>{readingList.filter(b => b.status === '읽는중').length}</div>
+                            <div className='box-num'>{books.filter(b => b.status === '읽는중').length}</div>
                             <div className='box-text'>읽는 중</div>
                         </div>
                         <div className='card-box'>
-                            <div className='box-num'>{readingList.filter(b => b.status === '희망').length}</div>
+                            <div className='box-num'>{books.filter(b => b.status === '희망').length}</div>
                             <div className='box-text'>읽고 싶어요</div>
                         </div>
                         <div className='card-box'>
@@ -117,7 +124,7 @@ export default function Library() {
                         <span>📖</span>
                         <div>
                             <div className='status-label'>읽는 중</div>
-                            <div className='status-num'>{readingList.filter(b => b.status === '읽는중').length}</div>
+                            <div className='status-num'>{books.filter(b => b.status === '읽는중').length}</div>
                             <div className='status-sub'>권</div>
                         </div>
                     </div>
@@ -125,7 +132,7 @@ export default function Library() {
                         <span>✅</span>
                         <div>
                             <div className='status-label'>완독</div>
-                            <div className='status-num'>{readingList.filter(b => b.status === '완독').length}</div>
+                            <div className='status-num'>{books.filter(b => b.status === '완독').length}</div>
                             <div className='status-sub'>2025년 기준</div>
                         </div>
                     </div>
@@ -152,7 +159,7 @@ export default function Library() {
                 </div>
 
                 {/* content */}
-                <ActiveComponent bookList={readingList} onEdit={(book) => {setSelectBook(book); setOpen(true)}} onFilter={sideTab}/>
+                <ActiveComponent isLoading={isLoading} bookList={books ?? []} onEdit={(book) => {setSelectBook(book); setOpen(true)}} onFilter={sideTab}/>
             </section>
 
             <AddBookModal isOpen={open} onClose={() => { setOpen(false); setSelectBook(null)}} initialData={selectBook ?? undefined} onSave={() => setOpen(false)} />

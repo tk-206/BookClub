@@ -1,8 +1,0 @@
-{
-    "users": [
-        { "id":1, "email":"test@test.com", "password":"1234", "createAt":"2026-04-22", "name":"김예시", "role":"관리자" }
-    ],
-    "books": [
-        { "id":1, "title":"리액트", "author":"홍길동"}
-    ]
-}
