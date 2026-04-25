@@ -3,7 +3,7 @@ import './LibraryStatsView.css'
 export default function LibraryStatsView() {
     return(
         <div className="tab-stats">
-                <div className='not-yet'>🚧 WIP 🚧</div>
+                <div className='not-yet'>🚧 시공중🚧</div>
         {/* <div className="analytics-grid">
                     Left
                 <div className="analytics-card">
