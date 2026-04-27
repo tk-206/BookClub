@@ -31,8 +31,8 @@
       "doneDate": "",
       "readingDate": "",
       "review": "14",
-      "stars": 0,
-      "status": "완독",
+      "stars": 4,
+      "status": "읽는중",
       "id": "cn8H5zua-E4",
       "publisher": "14"
     },
@@ -48,6 +48,32 @@
       "status": "희망",
       "id": "WuUt-cZ7dXI",
       "publisher": "123"
+    },
+    {
+      "label": "123",
+      "author": "123",
+      "color": "",
+      "createAt": "",
+      "doneDate": "",
+      "readingDate": "",
+      "review": "123",
+      "stars": 4,
+      "status": "완독",
+      "id": "zWMZjkThdos",
+      "publisher": "123"
+    },
+    {
+      "label": "14",
+      "author": "14",
+      "color": "",
+      "createAt": "",
+      "doneDate": "",
+      "readingDate": "",
+      "review": "14",
+      "stars": 4,
+      "status": "완독",
+      "id": "Ica9jir5T_c",
+      "publisher": "14"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

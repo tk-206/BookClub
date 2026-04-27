@@ -20,8 +20,8 @@ export default function Library() {
     const { user } = useAuth()
 
     const { data: books = [], isLoading, error } = useQuery({
-    queryKey: ['books'],
-    queryFn: fetchBooks,
+      queryKey: ['books'],
+      queryFn: fetchBooks,
     })
 
     const tabContent = {

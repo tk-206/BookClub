@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import './css/AddBookModal.css'
 import clsx from 'clsx'
-import { createBook, deleteBook, type Book } from '../api/book'
+import { createBook, deleteBook, updateBook, type Book } from '../api/book'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 type Props = {
@@ -61,6 +61,16 @@ export default function AddBookModal({ isOpen, onClose, initialData, onSave }: P
       }
     })
 
+    const updateMutation = useMutation({
+    mutationFn: (data: { id: number; book: Book }) =>
+      updateBook(data.id, data.book ),
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['books'] })
+      onClose()
+    },
+  })
+
     const deleteMutaion = useMutation({
       mutationFn: deleteBook,
       onSuccess: () => {
@@ -70,7 +80,11 @@ export default function AddBookModal({ isOpen, onClose, initialData, onSave }: P
     })
 
     const handleSubmit = () => {
-      saveMutaion.mutate(form, )
+      if(isEditMode) {
+        updateMutation.mutate({ id: form.id, book: form })
+      } else {
+        saveMutaion.mutate(form)
+      }
     }
 
     const handleChange = <K extends keyof Book>(key: K, value: Book[K]) => {
@@ -185,7 +199,7 @@ export default function AddBookModal({ isOpen, onClose, initialData, onSave }: P
               handleSubmit()
             }}
           >
-            저장하기
+            {!isEditMode ? '저장하기' : '수정'}
           </button>
         </div>
 

@@ -29,6 +29,17 @@ export const createBook = async (book: Omit<Book, "id">) => {
     return res.json()
 }
 
+export const updateBook = async (id: number, updatedData: Partial<Book>) => {
+  const res = await fetch(`${BASE_URL}/books/${id}`, {
+    method: 'PATCH', // 일부만 수정
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(updatedData),
+  })
+
+  if (!res.ok) throw new Error('수정 실패')
+  return res.json()
+}
+
 
 export const deleteBook = async (id: number) => {
   await fetch(`${BASE_URL}/books/${id}`, {
