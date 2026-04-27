@@ -14,7 +14,7 @@ export default function Login() {
     const [showPw, setShowPw] = useState(false)
 
     const handleLogin = () => {
-        login({ id : 1, name : '김독서', email : 'test@test.com', role : '관리자', createAt : '2026-04-07'})
+        login({ id : 1, name : '김독서', email : 'test@test.com', role : '독서가', createAt : '2026-04-07'})
 
         const from = location.state?.from?.pathname || '/'
         navigate(from, { replace: true })
