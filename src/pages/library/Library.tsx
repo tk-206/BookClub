@@ -6,8 +6,9 @@ import Calendar from '../../components/Calendar'
 import StatsView from './components/LibraryStatsView'
 import AddBookModal from '../../components/AddBookModal'
 import { fetchBooks, type Book } from '../../api/book'
-import { useAuth } from '../../context/AuthContext'
 import { useQuery } from '@tanstack/react-query'
+import { useAuth } from '../../context/AuthContext'
+import { fetchMe } from '../../api/auth'
 
 type SideTab = '전체 서재' | '읽는 중' | '읽은 책' | '읽고 싶어요' | '독서 캘린더' | '독서 통계' | '내 게시글' | '알림'
 type ContentTab = '목록' | '캘린더' | '통계'
@@ -17,11 +18,18 @@ export default function Library() {
     const [contentTab, setContentTab] = useState<ContentTab>('목록')
     const [open, setOpen] = useState(false)
     const [selectBook, setSelectBook] = useState<Book | null>(null)
-    const { user } = useAuth()
+    const { accessToken } = useAuth()
 
     const { data: books = [], isLoading, error } = useQuery({
       queryKey: ['books'],
       queryFn: fetchBooks,
+    })
+
+    const { data: user } = useQuery({
+        queryKey: ['users'],
+        queryFn: fetchMe,
+        enabled: !!accessToken,
+        retry: false,
     })
 
     const tabContent = {
@@ -73,7 +81,7 @@ export default function Library() {
             <aside className='sidebar'>
                 <div className='side-profile'>
                     <div className='profile-icon'>📚</div>
-                    <div className='profile-nickname'>김독서</div>
+                    <div className='profile-nickname'>{user?.name}</div>
                     <div className='profile-info'>{user?.role} · 가입 {user?.createAt}</div>
                     <div className='profile-card'>
                         <div className='card-box'>

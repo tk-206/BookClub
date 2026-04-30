@@ -6,7 +6,8 @@
       "password": "1234",
       "createAt": "2026-04-22",
       "name": "김예시",
-      "role": "관리자"
+      "role": "관리자",
+      "accessToken": "1"
     }
   ],
   "books": [

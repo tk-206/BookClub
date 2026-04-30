@@ -5,15 +5,17 @@ export interface User {
     email: string,
     profileImage?: string,
     role: UserRole,
+    accessToken: string,
 }
 
 type UserRole = '독서가' | '작가' | '관리자' | '출판사'
 
 
 export interface AuthContextType {
-    user: User | null,
     isLoggedIn: boolean,
-    login: (user: User) => void,
+    login: (token: string) => void,
     logout: () => void,
+    accessToken: string | null,
+    isInitializing: boolean,
 }
 

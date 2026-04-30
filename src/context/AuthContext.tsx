@@ -1,23 +1,33 @@
-import { createContext, useContext, useState, } from "react";
+import { createContext, useContext, useEffect, useState, } from "react";
 import type { ReactNode } from "react";
-import type { AuthContextType, User } from "../types";
+import type { AuthContextType } from "../types";
 
 const AuthContext = createContext<AuthContextType | null>(null)
 
 export function AuthProvider({ children }:{ children: ReactNode }) {
-    const [user, setUser] = useState<User | null>(null)
+    const [accessToken, setAccessToken] = useState<string | null>(null)
+    const [isInitializing, setIsInitializing] = useState(true)
 
-    const login = (userData: User) => {
-        setUser(userData)
+    useEffect(() => {
+        const token = localStorage.getItem('accessToken')
+        if (token) {
+            setAccessToken(token)
+        }
+        setIsInitializing(false)
+    }, [])
 
+    const login = (token: string) => {
+        setAccessToken(token)
+        localStorage.setItem('accessToken', token)
     }
 
     const logout = () => {
-        setUser(null)
+        setAccessToken(null)
+        localStorage.removeItem('accessToken')
     }
 
     return (
-        <AuthContext.Provider value={{ user, isLoggedIn: !!user, login, logout }}>
+        <AuthContext.Provider value={{ accessToken ,isLoggedIn: !!accessToken, login, logout, isInitializing}}>
             {children}
         </AuthContext.Provider>
     )
