@@ -3,12 +3,14 @@ import { useRef, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import './css/ProfileDropdown.css'
+import { useMe } from '../api/useMe'
 
 export default function ProfileDropdown() {
-  const { user, logout } = useAuth()
+  const { logout } = useAuth()
   const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const { data: user } = useMe()
 
   // 바깥 클릭하면 닫기
   useEffect(() => {

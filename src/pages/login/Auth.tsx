@@ -67,7 +67,7 @@ export default function Auth() {
                             회원가입
                         </button>
                     </div>
-                    <ActiveTab />
+                    <ActiveTab tab={() => setTab('회원가입')}/>
                 </div>
             </section>
         </section>

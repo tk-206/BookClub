@@ -8,6 +8,7 @@ export function useMe() {
             if (!user) throw new Error("no user")
             return JSON.parse(user)
         },
-        staleTime: Infinity
+        staleTime: Infinity,
+        refetchOnWindowFocus: false
     })
 }

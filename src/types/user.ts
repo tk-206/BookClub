@@ -1,7 +1,7 @@
 export interface User {
     createAt: string,
     name: string,
-    id: number,
+    id: string,
     email: string,
     profileImage?: string,
     role: UserRole,

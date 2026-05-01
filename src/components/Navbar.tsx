@@ -18,7 +18,7 @@ export default function Navbar() {
     const isPublisher = path.includes("출판사")
     const isAuthor = path.includes("작가")
     const isFestival = path.includes("행사")
-    const { isLoggedIn, user, logout } = useAuth()
+    const { isLoggedIn } = useAuth()
     const [menuOpen, setMenuOpen] = useState(false)
 
     let actions

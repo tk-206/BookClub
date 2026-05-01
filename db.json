@@ -1,13 +1,22 @@
 {
   "users": [
     {
-      "id": "1",
+      "id": "a",
       "email": "test@test.com",
       "password": "1234",
       "createAt": "2026-04-22",
       "name": "김예시",
       "role": "관리자",
       "accessToken": "1"
+    },
+    {
+      "id": "b",
+      "email": "test2@test.com",
+      "password": "1234",
+      "createAt": "2026-04-22",
+      "name": "김예지",
+      "role": "독서가",
+      "accessToken": "2"
     }
   ],
   "books": [
@@ -22,7 +31,8 @@
       "stars": 0,
       "status": "희망",
       "id": "q6pP2SA6wrA",
-      "publisher": "123"
+      "publisher": "123",
+      "userId": "b"
     },
     {
       "label": "14",
@@ -35,7 +45,8 @@
       "stars": 4,
       "status": "읽는중",
       "id": "cn8H5zua-E4",
-      "publisher": "14"
+      "publisher": "14",
+      "userId": "b"
     },
     {
       "label": "123",
@@ -48,7 +59,8 @@
       "stars": 0,
       "status": "희망",
       "id": "WuUt-cZ7dXI",
-      "publisher": "123"
+      "publisher": "123",
+      "userId": "a"
     },
     {
       "label": "123",
@@ -61,7 +73,8 @@
       "stars": 4,
       "status": "완독",
       "id": "zWMZjkThdos",
-      "publisher": "123"
+      "publisher": "123",
+      "userId": "a"
     },
     {
       "label": "14",
@@ -74,7 +87,22 @@
       "stars": 4,
       "status": "완독",
       "id": "Ica9jir5T_c",
-      "publisher": "14"
+      "publisher": "14",
+      "userId": "b"
+    },
+    {
+      "label": "123",
+      "author": "123",
+      "color": "",
+      "createAt": "",
+      "doneDate": "",
+      "readingDate": "",
+      "publisher": "123",
+      "review": "1414",
+      "stars": 0,
+      "status": "읽는중",
+      "id": "9O5tr1NCqOw",
+      "userId": "a"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
