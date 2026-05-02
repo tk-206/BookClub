@@ -1,26 +1,7 @@
 import { api } from "./client"
+import { setAccessToken } from "./tokenStore";
 
 /* export const loginApi = async (email: string, password: string) => {
-    const res = await api.get('/users', {
-        params: {
-            email: email.trim(),
-            password: password.trim()
-        }
-    })
-
-    if (res.data.length === 0) {
-        throw new Error("로그인 실패")
-    }
-
-    const user = res.data[0]
-
-    return {
-        accessToken: "new-access-token-" + Date.now(),
-        user
-    }
-} */
-
-export const loginApi = async (email: string, password: string) => {
     const res = await api.get('/users')
 
     const user = res.data.find(
@@ -36,4 +17,12 @@ export const loginApi = async (email: string, password: string) => {
         accessToken: "new-access-token-" + Date.now(),
         user
     }
+} */
+
+export async function login(data: { email: string; password: string }) {
+  const res = await api.post('/auth/login', data)
+
+  setAccessToken(res.data.accessToken)
+
+  return res.data
 }

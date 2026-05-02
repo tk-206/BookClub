@@ -1,11 +1,16 @@
 import axios, { AxiosError } from "axios";
+import { clearAccessToken, getAccessToken, setAccessToken } from "./tokenStore";
 
 export const api = axios.create({
     baseURL: "http://localhost:3001",
+    withCredentials: true,
 })
 
+let isRefreshing = false
+let queue: any[] = []
+
 api.interceptors.request.use((config) => {
-    const token = localStorage.getItem('accessToken')
+    const token = getAccessToken()
 
     if(token) {
         config.headers.Authorization = `Bearer ${token}`
@@ -16,12 +21,37 @@ api.interceptors.request.use((config) => {
 
 api.interceptors.response.use(
     (res) => res,
-    (err: AxiosError) => {
-        if(err.response?.status === 401) {
-            localStorage.removeItem('accessToken')
-            window.location.href = "/로그인"
+    async error => {
+        const originalRequest = error.config
+
+        if (error.response?.status === 401) {
+            if(!isRefreshing) {
+                isRefreshing = true
+
+                try {
+                    const res = await axios.post('/api/auth/refresh', {}, { withCredentials: true })
+                    const newToken = res.data.accessToken
+
+                    setAccessToken(newToken)
+
+                    queue.forEach(cb => cb(newToken))
+                    queue = []
+
+                } catch (e) {
+                    clearAccessToken()
+                    window.location.href = '/login'
+                } finally {
+                    isRefreshing = false
+                }
+            }
         }
-        return Promise.reject(err)
+
+        return new Promise(reslove => {
+            queue.push((token: string) => {
+                originalRequest.headers.Authorization = `Bearer ${token}`
+                reslove(api(originalRequest))
+            })
+        })
     }
 )
 
