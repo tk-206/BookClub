@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import './css/ProfileDropdown.css'
-import { useMe } from '../api/useMe'
+import { useMe } from '../hooks/useMe'
 
 export default function ProfileDropdown() {
   const { logout } = useAuth()

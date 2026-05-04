@@ -1,5 +1,5 @@
 import { api } from "./client"
-import { setAccessToken } from "./tokenStore";
+import { setAccessToken } from "../auth/tokenStore";
 
 /* export const loginApi = async (email: string, password: string) => {
     const res = await api.get('/users')

@@ -1,8 +1,11 @@
 import { createContext, useContext, useEffect, useState, } from "react";
 import type { ReactNode } from "react";
 import type { AuthContextType } from "../types";
+import { clearAccessToken } from "../auth/tokenStore";
+import { useQueryClient } from "@tanstack/react-query";
 
 const AuthContext = createContext<AuthContextType | null>(null)
+const queryClient = useQueryClient()
 
 export function AuthProvider({ children }:{ children: ReactNode }) {
     const [accessToken, setAccessToken] = useState<string | null>(null)
@@ -22,8 +25,9 @@ export function AuthProvider({ children }:{ children: ReactNode }) {
     }
 
     const logout = () => {
-        setAccessToken(null)
+        clearAccessToken()
         localStorage.removeItem('accessToken')
+        queryClient.clear()
     }
 
     return (

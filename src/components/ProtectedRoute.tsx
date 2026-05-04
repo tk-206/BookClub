@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import LoadingSpinner from "./LoadingSpinner";
-import { useMe } from "../api/useMe";
+import { useMe } from "../hooks/useMe";
 
 export default function ProtectedRoute() {
     const { isLoggedIn, isInitializing } = useAuth()
