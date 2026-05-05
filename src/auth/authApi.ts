@@ -1,75 +1,67 @@
 import axios, { AxiosError } from "axios";
 import { clearAccessToken, getAccessToken, setAccessToken } from "../auth/tokenStore";
 import { useNavigate } from "react-router-dom";
+import { api } from "../api/client";
 
 const API_URL = "http://localhost:3001"
-const navigate = useNavigate()
+let refreshPromise: Promise<string> | null = null;
 
-export const api = axios.create({
+export const authApi = axios.create({
     baseURL: API_URL,
     withCredentials: true,
 })
 
-let isRefreshing = false
-let queue: any[] = []
+authApi.interceptors.request.use(async (config) => {
+  if (refreshPromise) {
+    const token = await refreshPromise;
+    config.headers = config.headers || {};
+    config.headers.Authorization = `Bearer ${token}`;
+    return config;
+  }
 
-const processQueue = (error: any, token: string | null = null) => {
-  queue.forEach((prom) => {
-    if (error) prom.reject(error);
-    else prom.resolve(token);
-  });
-  queue = [];
-};
-
-api.interceptors.request.use((config) => {
   const token = getAccessToken();
   if (token) {
     config.headers = config.headers || {};
     config.headers.Authorization = `Bearer ${token}`;
   }
+
   return config;
 });
 
 
-api.interceptors.response.use(
-    (res) => res,
-    async error => {
-        const originalRequest = error.config
+authApi.interceptors.request.use(async (config) => {
+  let token = getAccessToken();
 
-        if (error.response?.status !== 401) {
-            return Promise.reject(error)
-        }
-
-        if (error.response?.status === 401 && !originalRequest._retry) {
-            originalRequest._retry = true
-
-            if(!isRefreshing) {
-                isRefreshing = true
-
-                try {
-                    const res = await axios.post('/api/auth/refresh', {}, { withCredentials: true })
-                    const newToken = res.data.accessToken
-
-                    setAccessToken(newToken)
-
-                    queue.forEach(cb => cb(newToken))
-                    queue = []
-
-                } catch (e) {
-                    clearAccessToken()
-                    navigate('/로그인')
-                } finally {
-                    isRefreshing = false
-                }
-            }
-        }
-
-        return new Promise(reslove => {
-            queue.push((token: string) => {
-                originalRequest.headers.Authorization = `Bearer ${token}`
-                reslove(api(originalRequest))
-            })
+  if (token && isTokenExpired(token)) {
+    if (!refreshPromise) {
+      refreshPromise = api.post('/refresh')
+        .then(res => {
+          const newToken = res.data.accessToken;
+          setAccessToken(newToken);
+          return newToken;
         })
+        .finally(() => {
+          refreshPromise = null;
+        });
     }
-)
 
+    token = await refreshPromise;
+  }
+
+  if (token) {
+    config.headers = config.headers || {};
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
+});
+
+function getTokenExpiration(token: string) {
+  const payload = JSON.parse(atob(token.split('.')[1]));
+  return payload.exp * 1000;
+}
+
+function isTokenExpired(token: string) {
+  const exp = getTokenExpiration(token);
+  return Date.now() > exp - 60 * 1000; // 1분 전 미리 갱신
+}
