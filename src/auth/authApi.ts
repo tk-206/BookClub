@@ -1,6 +1,5 @@
-import axios, { AxiosError } from "axios";
-import { clearAccessToken, getAccessToken, setAccessToken } from "../auth/tokenStore";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { getAccessToken, setAccessToken } from "../auth/tokenStore";
 import { api } from "../api/client";
 
 const API_URL = "http://localhost:3001"
