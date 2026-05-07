@@ -1,7 +1,8 @@
 import {
   createContext, useContext, useState,
-  useEffect, useCallback, ReactNode
+  useEffect, useCallback
 } from 'react'
+import type { ReactNode } from 'react'
 import { loginAPI, logoutAPI, silentRefreshAPI } from '../api/auth'
 import type { User } from '../types/user'
 

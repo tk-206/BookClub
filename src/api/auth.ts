@@ -1,6 +1,8 @@
 import api from './client';
 import { setAccessToken, clearAccessToken, getAccessToken } from '../auth/tokenStore'
-import type { User } from '../types';
+import type { SignUpPayload, User } from '../types';
+
+const BASE_URL = 'http://localhost:3001'
 
 export async function loginAPI(email: string, password: string) {
 
@@ -47,4 +49,29 @@ export async function silentRefreshAPI(): Promise<User> {
   const { data } = await api.get<User>(`/users/${userId}`)
 
   return data
+}
+
+export async function signUpAPI(payload: SignUpPayload) {
+  
+  const newUser: User = {
+    id: crypto.randomUUID(),
+    createAt: new Date().toISOString(),
+    role: '독서가',
+
+    ...payload
+  }
+
+  const res = await fetch(`${BASE_URL}/users`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newUser)
+  })
+
+  if (!res.ok) {
+    throw new Error('회원가입 실패')
+  }
+
+  return res.json()
 }

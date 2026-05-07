@@ -3,18 +3,20 @@
     {
       "id": "a",
       "email": "test@test.com",
-      "password": "1234",
+      "password": "12341234",
       "createAt": "2026-04-22",
       "name": "김예시",
-      "role": "관리자"
+      "role": "관리자",
+      "agreement": { "terms": true, "privacy": true, "marketing": false, "age": true }
     },
     {
       "id": "b",
       "email": "test2@test.com",
-      "password": "1234",
+      "password": "12341234",
       "createAt": "2026-04-22",
       "name": "김예지",
-      "role": "독서가"
+      "role": "독서가",
+      "agreement": { "terms": true, "privacy": true, "marketing": false, "age": true }
     }
   ],
   "books": [
@@ -97,7 +99,7 @@
       "readingDate": "",
       "publisher": "123",
       "review": "1414",
-      "stars": 0,
+      "stars": 4,
       "status": "완독",
       "id": "9O5tr1NCqOw",
       "userId": "a"

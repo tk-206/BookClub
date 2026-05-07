@@ -1,5 +1,6 @@
 import clsx from "clsx"
-import { useState } from "react"
+import React, { useState } from "react"
+import { signUpAPI } from "../../../api/auth"
 
 export default function SignUp() {
     const [email, setEmail] = useState('')
@@ -7,13 +8,52 @@ export default function SignUp() {
     const [checkPassword, setCheckPassword] = useState('')
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
-    const [touched, setTouched] = useState(false)
     const [agreements, setAgreements] = useState({
         terms: false,        // 이용약관 (필수)
         privacy: false,      // 개인정보 (필수)
         marketing: false,    // 선택
         age: false           // 14세 이상 (필수)
     })
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+
+        if (!validate()) return
+
+        try {
+            await signUpAPI({
+                email,
+                password,
+                name,
+                agreement: agreements
+            })
+
+            alert('회원가입 완료')
+
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+    const validate = () => {
+        if (!email.trim()) {
+            alert('이메일 입력')
+            return false
+        }
+        if (!isValidPassword) {
+            alert('비밀번호 형식 확인')
+            return false
+        }
+        if (password !== checkPassword) {
+            alert('비밀번호 불일치')
+            return false
+        }
+        if (!isRequiredChecked) {
+            alert('필수 약관 동의 필요')
+            return false
+        }
+        return true
+    }
 
     const handleAllCheck = (checked: boolean) => {
         setAgreements({
@@ -38,7 +78,7 @@ export default function SignUp() {
 
     return (
         <section className="sign-up">
-            <form className="signup-form">
+            <form className="signup-form" onSubmit={handleSubmit}>
                 <ul className="signup-form-list">
                     <li>
                         <div className="login-label">이메일</div>
@@ -57,7 +97,6 @@ export default function SignUp() {
                             onChange={(e) => setPassword(e.target.value)}
                             type="password"
                             placeholder="비밀번호"
-                            onBlur={() => setTouched(true)}
                         />
                         {password && (
                             <div className={clsx('check-password', {
@@ -75,7 +114,6 @@ export default function SignUp() {
                             onChange={(e) => setCheckPassword(e.target.value)}
                             type="password"
                             placeholder="비밀번호 확인"
-                            onBlur={() => setTouched(true)}
                         />
                         {checkPassword && (
                             <div className={clsx('check-password', {
@@ -98,12 +136,13 @@ export default function SignUp() {
                         />
                     </li>
                     <li>
-                        <div className="login-label">연락처</div>
+                        <div className="login-label">연락처(X)</div>
                         <input
                             className='signup-input'
                             value={phone}
+                            disabled={true}
                             onChange={(e) => setPhone(e.target.value)}
-                            placeholder="ex) 010-0000-0000"
+                            placeholder=/* "ex) 010-0000-0000" */"X"
                         />
                     </li>
                 </ul>
@@ -171,7 +210,7 @@ export default function SignUp() {
 
                     </ul>
                 </div>
-                <button disabled={!isRequiredChecked} className="btn-submit">가입하기</button>
+                <button disabled={!isRequiredChecked} type='submit' className="btn-submit">가입하기</button>
             </form>
         </section>
     )

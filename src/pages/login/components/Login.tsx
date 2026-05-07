@@ -1,6 +1,7 @@
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useAuth } from '../../../context/AuthContext'
+import LoadingSpinner from '../../../components/LoadingSpinner'
 
 type Props = {
     tab: () => void
@@ -22,6 +23,18 @@ export default function Login({tab} : Props) {
         setErrorMsg('')
         setLoading(true)
 
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+        if(!emailRegex.test(email)) {
+            setErrorMsg('올바른 이메일 형식을 입력해주세요.')
+            return
+        }
+
+        if(password.length < 8) {
+            setErrorMsg('비밀번호는 8자 이상이어야 합니다.')
+            return
+        }
+
         try {
             await login(email, password)
 
@@ -39,6 +52,7 @@ export default function Login({tab} : Props) {
 
     return (
         <section className="login">
+            {loading && <LoadingSpinner />}
             <form onSubmit={handleLogin}>
                 <div className='right-header'>
                     <div className='login-title'>만나서 반가워요.</div>
@@ -73,7 +87,7 @@ export default function Login({tab} : Props) {
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="••••••••"
                             />
-                            <button className='eye-btn' onClick={() => setShowPw(prev => !prev)}>{showPw ? '🙈' : '👁'}</button>
+                            <button type='button' className='eye-btn' onClick={() => setShowPw(prev => !prev)}>{showPw ? '🙈' : '👁'}</button>
                         </div>
                     </div>
                     <div className='login-auto-check'>
