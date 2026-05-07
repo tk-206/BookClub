@@ -1,28 +1,50 @@
-import { api } from "./client"
-import { setAccessToken } from "../auth/tokenStore";
+import api from './client';
+import { setAccessToken, clearAccessToken, getAccessToken } from '../auth/tokenStore'
+import type { User } from '../types';
 
-/* export const loginApi = async (email: string, password: string) => {
-    const res = await api.get('/users')
+export async function loginAPI(email: string, password: string) {
 
-    const user = res.data.find(
-        (u: { email: string; password: string }) =>
-            u.email === email.trim() && u.password === password.trim()
-    )
+  const res = await api.get('/users', {
+    params: { email }
+  });
 
-    if (!user) {
-        throw new Error("로그인 실패")
-    }
+  const user = res.data[0];
 
-    return {
-        accessToken: "new-access-token-" + Date.now(),
-        user
-    }
-} */
+  if (!user) {
+    throw new Error('이메일을 확인해주세요.');
+  }
 
-export async function login(data: { email: string; password: string }) {
-  const res = await api.post('/auth/login', data)
+  if (user.password !== password) {
+    throw new Error('비밀번호가 올바르지 않습니다.')
+  }
 
-  setAccessToken(res.data.accessToken)
+  // 가짜 토큰 생성
+  const fakeToken = `token-${user.id}`;
 
-  return res.data
+  setAccessToken(fakeToken);
+
+  return {
+    accessToken: fakeToken,
+    user
+  };
+}
+
+export function logoutAPI() {
+  clearAccessToken();
+}
+
+export async function silentRefreshAPI(): Promise<User> {
+
+  const token = getAccessToken()
+
+  if (!token) {
+    throw new Error('토큰 없음')
+  }
+
+  // token-1 → 1
+  const userId = token.split('-')[1]
+
+  const { data } = await api.get<User>(`/users/${userId}`)
+
+  return data
 }

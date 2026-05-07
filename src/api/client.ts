@@ -1,8 +1,18 @@
-import axios, { AxiosError } from "axios";
+import axios from 'axios';
+import { getAccessToken } from '../auth/tokenStore';
 
-const API_URL = "http://localhost:3001"
+const api = axios.create({
+  baseURL: 'http://localhost:3001',
+});
 
-export const api = axios.create({
-    baseURL: API_URL,
-    withCredentials: true,
-})
+api.interceptors.request.use((config) => {
+  const token = getAccessToken();
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
+});
+
+export default api;

@@ -1,4 +1,3 @@
-// src/components/layout/ProfileDropdown.tsx
 import { useRef, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'

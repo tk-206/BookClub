@@ -6,8 +6,7 @@
       "password": "1234",
       "createAt": "2026-04-22",
       "name": "김예시",
-      "role": "관리자",
-      "accessToken": "1"
+      "role": "관리자"
     },
     {
       "id": "b",
@@ -15,8 +14,7 @@
       "password": "1234",
       "createAt": "2026-04-22",
       "name": "김예지",
-      "role": "독서가",
-      "accessToken": "2"
+      "role": "독서가"
     }
   ],
   "books": [
