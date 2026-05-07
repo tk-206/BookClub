@@ -69,7 +69,7 @@
       "readingDate": "",
       "review": "123",
       "stars": 4,
-      "status": "완독",
+      "status": "읽는중",
       "id": "zWMZjkThdos",
       "publisher": "123",
       "userId": "a"
@@ -98,7 +98,7 @@
       "publisher": "123",
       "review": "1414",
       "stars": 0,
-      "status": "읽는중",
+      "status": "완독",
       "id": "9O5tr1NCqOw",
       "userId": "a"
     }
