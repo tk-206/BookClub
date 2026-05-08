@@ -4,7 +4,7 @@ import LoadingSpinner from "./LoadingSpinner";
 import { useMe } from "../hooks/useMe";
 
 export default function ProtectedRoute() {
-    const { isLoggedIn } = useAuth()
+    const { isAuthenticated } = useAuth()
     const location = useLocation()
     const { isLoading, isError } = useMe()
 
@@ -12,7 +12,7 @@ export default function ProtectedRoute() {
 
     if (isError) return <Navigate to='/로그인' state={{ from: location }} replace />
     
-    if (!isLoggedIn) return <Navigate to='/로그인' state={{ from : location }} replace />
+    if (!isAuthenticated) return <Navigate to='/로그인' state={{ from : location }} replace />
     
 
     return <Outlet />

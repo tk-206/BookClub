@@ -76,7 +76,7 @@ export default function Library() {
                 <div className='side-profile'>
                     <div className='profile-icon'>📚</div>
                     <div className='profile-nickname'>{user?.name}</div>
-                    <div className='profile-info'>{user?.role} · 가입 {user?.createAt}</div>
+                    <div className='profile-info'>{user?.role} · 가입 {user?.createAt?.split('T')[0]}</div>
                     <div className='profile-card'>
                         <div className='card-box'>
                             <div className='box-num'>{books.filter(b => b.status === '완독').length}</div>

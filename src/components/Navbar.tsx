@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import ProfileDropdown from "./ProfileDropdown";
 import AllCate from "./AllCate";
-import AddPostModal from "./AddPostModal";
 
 type NavTab = '' | '내 서재' | '커뮤니티' | '출판사' | '작가' | '행사'
 
@@ -18,7 +17,7 @@ export default function Navbar() {
     const isPublisher = path.includes("출판사")
     const isAuthor = path.includes("작가")
     const isFestival = path.includes("행사")
-    const { isLoggedIn } = useAuth()
+    const { isAuthenticated } = useAuth()
     const [menuOpen, setMenuOpen] = useState(false)
 
     let actions
@@ -36,7 +35,6 @@ export default function Navbar() {
     else if (isCommunity) {
         actions = (
             <>
-                <button className="btn-primary">✏️ 글쓰기</button>
                 <ProfileDropdown />
                 {/* 모바일 메뉴 */}
                 <div id="shTabMo">
@@ -115,7 +113,7 @@ export default function Navbar() {
             </ul>   
         
             {/* 버튼 */}
-            <div className="nav-actions">{isLoggedIn ? (actions) : (<>
+            <div className="nav-actions">{isAuthenticated ? (actions) : (<>
                 <NavLink to="로그인"><button className="btn-ghost">로그인</button></NavLink>
                 <button className="btn-primary">가입하기</button>
             </>) }</div>

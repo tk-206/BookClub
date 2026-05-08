@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import './css/AddPostModal.css'
 import clsx from 'clsx'
+import type { Post } from '../types'
 
 type Props = {
   isOpen: boolean
@@ -13,6 +14,41 @@ export default function AddPostModal({ isOpen, onClose }: Props) {
 
     const category = ['독서 토론', '책 리뷰', '질문 · 추천', '모임 모집', '정보 공유', '구인구직'] as const
     const [categorySel,setCategorysel] = useState<Category>('독서 토론')
+    const [tagInput, setTagInput] = useState('')
+    const tags = tagInput
+        .split(',')
+        .map(tag => tag.trim())
+        .filter(Boolean)
+        .map(tag => tag.startsWith('#') ? tag : `#${tag}`)
+    const emptyPost: Post = {
+        id: '',
+        category: '',
+        title: '',
+        content: '',
+        isRead: false,
+        author: '',
+        createdAt: '',
+        stats: {
+            likeCount: 0,
+            viewCount: 0,
+            commentCount: 0,
+        },
+        tags: [],
+        isSecret: false,
+        comments: []
+    }
+    const [post, setPost] = useState<Post>(emptyPost)
+
+    /*     const handleSubmit = () => {
+        
+    } */
+
+    const handleChange = <K extends keyof Post>(key: K, value: Post[K]) => {
+        setPost(prev => ({
+            ...prev,
+            [key]: value
+        }))
+    }
 
     useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -44,13 +80,13 @@ export default function AddPostModal({ isOpen, onClose }: Props) {
                 <div className='write-label'>게시판 선택</div>
                 <div className='write-cats'>
                     {category.map((c) => (
-                        <button className={clsx('write-cat', {sel: categorySel === c})} onClick={() => setCategorysel(c)}>{c}</button>
+                        <button key={c} className={clsx('write-cat', {sel: categorySel === c})} value={post.category} onChange={e => handleChange('category', e.target.value)} onClick={() => setCategorysel(c)}>{c}</button>
                     ))}
                 </div>
             </div>
             <div className='write-field'>
                 <div className='write-label'>제목</div>
-                <input type="text" placeholder='제목을 입력하세요'/>
+                <input type="text" value={post.title} onChange={e => handleChange('title', e.target.value)} placeholder='제목을 입력하세요'/>
             </div>
             <div className='write-field'>
                 <div className='write-label'>내용</div>
@@ -61,17 +97,17 @@ export default function AddPostModal({ isOpen, onClose }: Props) {
                     <div className='toolbar-btn'>🖼</div>
                     <div className='toolbar-btn'>❝</div>
                 </div>
-                <textarea placeholder='독서 이야기를 나눠보세요...'/>
+                <textarea value={post.content} onChange={e => handleChange('content', e.target.value)} placeholder='독서 이야기를 나눠보세요...'/>
             </div>
             <div className='write-field'>
                 <div className='write-label'>태그</div>
-                <input type="text" placeholder='#태그 입력 (쉼표로 구분)'/>
+                <input type="text" value={tagInput} onChange={e => setTagInput(e.target.value)} placeholder='#태그 입력 (쉼표로 구분) ex) 소설, SF'/>
             </div>
         </div>
 
         <div className='write-footer'>
             <div className='write-secret'>
-                <input type='checkbox'></input> 🔒 비밀글 
+                <input type='checkbox' checked={post.isSecret} onChange={() => handleChange('isSecret', !post.isSecret) } ></input> 🔒 비밀글 
             </div>
             <button className='btn-ghost'>임시저장</button>
             <button className='btn-primary'>게시하기</button>

@@ -1,5 +1,6 @@
-import type { User } from "./user";
 import type { Comment } from "./comment";
+
+const BASE_URL = 'http://localhost:3001'
 
 export interface Post {
   id: string,
@@ -7,7 +8,7 @@ export interface Post {
   title: string,
   content: string,
   isRead?: boolean,
-  author: User,
+  author: string,
   createdAt: string,
   stats: PostStats,
   tags?: string[],
@@ -16,7 +17,16 @@ export interface Post {
 }
 
 export interface PostStats {
-    like: number,
+    likeCount: number,
     commentCount: number,
-    view: number,
+    viewCount: number,
+}
+
+export const createPost = async (post: Post) => {
+  const res = await fetch(`${BASE_URL}/posts`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(post)
+  })
+  return res.json()
 }
