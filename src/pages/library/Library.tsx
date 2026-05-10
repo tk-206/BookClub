@@ -101,7 +101,7 @@ export default function Library() {
                     {menu.map((me) => (
                         <div key={me.title} className='sidebar-nav'>
                             <h2 className='sidebar-nav-title'>{me.title}</h2>
-                            {me.pages.map((page, i) => (
+                            {me.pages.map((page) => (
                                 <button key={page.label} className={clsx('sidebar-nav-btn', {active: sideTab === page.label})} onClick={() => setSideTab(page.label)}>
                                     <span className='icon'>{page.icon}</span>
                                     {page.label}
