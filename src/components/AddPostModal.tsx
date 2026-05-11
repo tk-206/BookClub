@@ -1,27 +1,17 @@
 import { useState, useEffect } from 'react'
 import './css/AddPostModal.css'
 import clsx from 'clsx'
-import type { Post } from '../types'
+import { createPost, type Post, type User } from '../types'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 type Props = {
   isOpen: boolean
   onClose: () => void
+  initialData?: Post
+  user?: User
 }
 
-type Category = '독서 토론' | '책 리뷰' | '질문 · 추천' | '모임 모집' | '정보 공유' | '구인구직'
-
-export default function AddPostModal({ isOpen, onClose }: Props) {
-
-    const category = ['독서 토론', '책 리뷰', '질문 · 추천', '모임 모집', '정보 공유', '구인구직'] as const
-    const [categorySel,setCategorysel] = useState<Category>('독서 토론')
-    const [tagInput, setTagInput] = useState('')
-    const tags = tagInput
-        .split(',')
-        .map(tag => tag.trim())
-        .filter(Boolean)
-        .map(tag => tag.startsWith('#') ? tag : `#${tag}`)
-    const emptyPost: Post = {
-        id: '',
+const emptyPost: Omit<Post, 'id'> = {
         category: '',
         title: '',
         content: '',
@@ -37,11 +27,50 @@ export default function AddPostModal({ isOpen, onClose }: Props) {
         isSecret: false,
         comments: []
     }
-    const [post, setPost] = useState<Post>(emptyPost)
 
-    /*     const handleSubmit = () => {
-        
-    } */
+type Category = '독서 토론' | '책 리뷰' | '질문 · 추천' | '모임 모집' | '정보 공유' | '구인구직'
+
+export default function AddPostModal({ isOpen, onClose, initialData, user }: Props) {
+    const queryClient = useQueryClient()
+    const isEditMode = !!initialData
+    const category = ['독서 토론', '책 리뷰', '질문 · 추천', '모임 모집', '정보 공유', '구인구직'] as const
+    const [categorySel,setCategorysel] = useState<Category>('독서 토론')
+    const [tagInput, setTagInput] = useState('')
+    const tags = tagInput
+        .split(',')
+        .map(tag => tag.trim())
+        .filter(Boolean)
+        .map(tag => tag.startsWith('#') ? tag : `#${tag}`)
+    const [post, setPost] = useState<Omit<Post, 'id'>>(emptyPost)
+
+    useEffect(() => {
+        setPost(initialData ?? emptyPost)
+    }, [!!initialData, isOpen])
+
+    // 로그인 안되어있을 경우 로그인 시키기.
+    const saveMutation = useMutation({
+        mutationFn: (post: Omit<Post, "id">) => createPost(post, user.id),
+        onSuccess: (newPost) => {
+            queryClient.setQueryData<Post[]>(
+                ['posts'],
+                (old = []) => [...old, newPost]
+            )
+        }
+    })
+
+    const updateMutation = () => {}
+
+    const handleSubmit = () => {
+        const payload = {
+            ...post,
+            tags
+        }
+        if(isEditMode) {
+            updateMutation()
+        } else {
+            saveMutation.mutate(payload)
+        }
+    }
 
     const handleChange = <K extends keyof Post>(key: K, value: Post[K]) => {
         setPost(prev => ({
@@ -80,7 +109,7 @@ export default function AddPostModal({ isOpen, onClose }: Props) {
                 <div className='write-label'>게시판 선택</div>
                 <div className='write-cats'>
                     {category.map((c) => (
-                        <button key={c} className={clsx('write-cat', {sel: categorySel === c})} value={post.category} onChange={e => handleChange('category', e.target.value)} onClick={() => setCategorysel(c)}>{c}</button>
+                        <button key={c} className={clsx('write-cat', {sel: categorySel === c})} value={post.category} onClick={() => { setCategorysel(c); handleChange('category', c) }}>{c}</button>
                     ))}
                 </div>
             </div>
@@ -110,7 +139,7 @@ export default function AddPostModal({ isOpen, onClose }: Props) {
                 <input type='checkbox' checked={post.isSecret} onChange={() => handleChange('isSecret', !post.isSecret) } ></input> 🔒 비밀글 
             </div>
             <button className='btn-ghost'>임시저장</button>
-            <button className='btn-primary'>게시하기</button>
+            <button className='btn-primary' onClick={handleSubmit} >게시하기</button>
         </div>
       </div>
     </div>

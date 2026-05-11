@@ -1,6 +1,5 @@
-import clsx from 'clsx'
 import './Community.css'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import DetailPostModal from '../../components/DetailPostModal'
 import AddPostModal from '../../components/AddPostModal'
 import { postList } from '../../data/mock/DummyData'
@@ -12,30 +11,35 @@ import Header from './components/Header'
 import Pagination from '../../components/Pagination'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import EmptyState from '../../components/EmptyState'
+import { fetchPosts, type Post } from '../../types'
+import { useMe } from '../../hooks/useMe'
+import { useQuery } from '@tanstack/react-query'
 
 
 
 export default function Community() {
-    const [loading, setLoading] = useState(true)
     const [detailOpen, setDetailOpen] = useState(false)
     const [writeOpen, setWriteOpen] = useState(false)
     const [page, setPage] = useState(1);
-    const [post, setPost] = useState([])
+    const [selectPost, setSelectPost] = useState<Post | null>()
+    const { data: user } = useMe()
 
-    useEffect(() => {
-        const timer = setTimeout(() => setLoading(false), 1000);
-        return() => clearTimeout(timer);
-    }, [])
+    const { data: post = [], isLoading, error } = useQuery({
+        queryKey: ['posts'],
+        queryFn: () => fetchPosts(),
+        refetchOnWindowFocus: false,
+    })
 
     let content
-    if(loading) {
+    if(isLoading) {
         content = (
             <LoadingSpinner />
         )
     }
-    else if(!loading) {
+    else if(!isLoading) {
         content = (
             <section className='community-page'>
+                {/* 수정하기 만들어서 넣어주는 방법 구상해야함 */}
                 {/* Left */}
                 <Sidebar />
                 {/* Mid */}
@@ -59,7 +63,7 @@ export default function Community() {
                 <RightSidebar modalOpen={() => setWriteOpen(true)} />
 
                 <DetailPostModal isOpen={detailOpen} onClose={() => setDetailOpen(false)}/>
-                <AddPostModal isOpen={writeOpen} onClose={() => setWriteOpen(false)}/>
+                <AddPostModal isOpen={writeOpen} onClose={() => setWriteOpen(false)} user={user} initialData={selectPost ?? undefined}/>
             </section>
         )
     }

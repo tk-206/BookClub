@@ -1,6 +1,5 @@
 import type { Comment } from "./comment";
-
-const BASE_URL = 'http://localhost:3001'
+import api from '../api/client'
 
 export interface Post {
   id: string,
@@ -22,11 +21,20 @@ export interface PostStats {
     viewCount: number,
 }
 
-export const createPost = async (post: Post) => {
-  const res = await fetch(`${BASE_URL}/posts`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(post)
+export const fetchPosts = async (): Promise<Post[]> => {
+  const res = await api.get('posts')
+
+  return res.data
+}
+
+export const createPost = async (
+  post: Omit<Post, 'id'>,
+  userId: string
+): Promise<Post> => {
+  const res = await api.post('/posts', {
+    ...post,
+    userId,
   })
-  return res.json()
+
+  return res.data
 }

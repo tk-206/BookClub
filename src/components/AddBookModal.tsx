@@ -12,24 +12,26 @@ type Props = {
   user: User
 }
 
+const emptyForm: Book = {
+  label: '',
+  author: '',
+  color: '',
+  createAt: '',
+  doneDate: '',
+  readingDate: '',
+  publisher: '',
+  review: '',
+  stars: 0,
+  status: '희망',
+  id: '',
+}
+
 type Status = "읽는중" | "완독" | "희망"
 
 export default function AddBookModal({ isOpen, onClose, initialData, user }: Props) {
   const isEditMode = !!initialData
   const queryClient = useQueryClient()
-  const emptyForm: Book = {
-    label: '',
-    author: '',
-    color: '',
-    createAt: '',
-    doneDate: '',
-    readingDate: '',
-    publisher: '',
-    review: '',
-    stars: 0,
-    status: '희망',
-    id: '',
-  }
+
 
   const [form, setForm] = useState<Book>(emptyForm)
   
