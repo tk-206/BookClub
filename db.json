@@ -143,5 +143,28 @@
       "userId": "KXuvb49Vnxw"
     }
   ],
+  "posts": [
+    {
+      "category": "",
+      "title": "1234",
+      "content": "213124",
+      "isRead": false,
+      "author": "",
+      "createdAt": "",
+      "stats": {
+        "likeCount": 0,
+        "viewCount": 0,
+        "commentCount": 0
+      },
+      "tags": [
+        "#1231",
+        "#124"
+      ],
+      "isSecret": false,
+      "comments": [],
+      "userId": "KXuvb49Vnxw",
+      "id": "hv4V8E8ykTQ"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

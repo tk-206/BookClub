@@ -2,7 +2,6 @@ import './Community.css'
 import { useState } from 'react'
 import DetailPostModal from '../../components/DetailPostModal'
 import AddPostModal from '../../components/AddPostModal'
-import { postList } from '../../data/mock/DummyData'
 import PostList from './components/PostList'
 import Sidebar from './components/Sidebar'
 import FilterBar from './components/FilterBar'
@@ -40,6 +39,7 @@ export default function Community() {
         content = (
             <section className='community-page'>
                 {/* 수정하기 만들어서 넣어주는 방법 구상해야함 */}
+                {/* post 데이터 올릴 때 프로필 넣을지랑, 이름 넣어줘야함 */}
                 {/* Left */}
                 <Sidebar />
                 {/* Mid */}
@@ -47,7 +47,7 @@ export default function Community() {
                     <main className='board-content'>
                         <Header clickOn={() => setDetailOpen(true) }/>
                         <FilterBar />
-                        <PostList posts={postList} onClickPost={() => setDetailOpen(true)} />
+                        <PostList posts={post} onClickPost={() => setDetailOpen(true)} />
                         <Pagination
                             currentPage={page}
                             totalPages={5}

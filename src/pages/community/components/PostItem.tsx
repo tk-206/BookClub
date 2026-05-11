@@ -19,14 +19,14 @@ export default function PostItem({ post, clickOn } : Props ) {
                 </div>
                 <div className='post-bottom'>
                     <div className='post-author'>
-                        <div className='post-author-avatar'>{post.author.profileImage}</div>
-                        <div className='post-author-name'>{post.author.name}</div>
+                        <div className='post-author-avatar'>{post.author}</div>
+                        <div className='post-author-name'>{post.author}</div>
                     </div>
                     <div className='post-date'>{post.createdAt}</div>
                     <div className='post-stats'>
-                        <div className='post-stat'>❤️ {post.stats.like}</div>
+                        <div className='post-stat'>❤️ {post.stats.likeCount}</div>
                         <div className='post-stat'>💬 {post.stats.commentCount}</div>
-                        <div className='post-stat'>🫣 {post.stats.view}</div>
+                        <div className='post-stat'>🫣 {post.stats.viewCount}</div>
                     </div>
                 </div>
             </div>

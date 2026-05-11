@@ -49,12 +49,18 @@ export default function AddPostModal({ isOpen, onClose, initialData, user }: Pro
 
     // 로그인 안되어있을 경우 로그인 시키기.
     const saveMutation = useMutation({
-        mutationFn: (post: Omit<Post, "id">) => createPost(post, user.id),
+        mutationFn: (post: Omit<Post, "id">) => {
+            if(!user) {
+                throw new Error('로그인이 필요합니다.')
+            }
+            return createPost(post, user.id)
+        },
         onSuccess: (newPost) => {
             queryClient.setQueryData<Post[]>(
                 ['posts'],
                 (old = []) => [...old, newPost]
             )
+            onClose()
         }
     })
 
