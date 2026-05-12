@@ -18,6 +18,7 @@ export default function Library() {
     const [open, setOpen] = useState(false)
     const [selectBook, setSelectBook] = useState<Book | null>(null)
     const { data: user } = useMe()
+    const currentYear = new Date().getFullYear()
 
     const { data: books = [], isLoading, error } = useQuery({
         queryKey: ['books', user?.id],
@@ -25,12 +26,6 @@ export default function Library() {
         enabled: !!user?.id,
         refetchOnWindowFocus: false,
     })
-
-    const tabContent = {
-        목록: MyBook,
-        캘린더: Calendar,
-        통계: StatsView,
-    }
 
     const ActiveComponent = tabContent[contentTab]
 
@@ -135,7 +130,7 @@ export default function Library() {
                         <div>
                             <div className='status-label'>완독</div>
                             <div className='status-num'>{books.filter(b => b.status === '완독').length}</div>
-                            <div className='status-sub'>2025년 기준</div>
+                            <div className='status-sub'>{currentYear}년 기준</div>
                         </div>
                     </div>
                     <div className='lib-status'>
@@ -161,7 +156,29 @@ export default function Library() {
                 </div>
 
                 {/* content */}
-                <ActiveComponent isLoading={isLoading && !books.length} bookList={books ?? []} onEdit={(book) => {setSelectBook(book); setOpen(true)}} onFilter={sideTab}/>
+                {contentTab === '목록' && (
+                    <MyBook
+                        isLoading={isLoading && !books.length}
+                        bookList={books ?? []}
+                        onEdit={(book) => {
+                        setSelectBook(book)
+                        setOpen(true)
+                        }}
+                        onFilter={sideTab}
+                    />
+                    )}
+
+                    {contentTab === '캘린더' && (
+                    <Calendar
+                        bookList={books ?? []}
+                    />
+                    )}
+
+                    {contentTab === '통계' && (
+                    <StatsView
+                        
+                    />
+                )}
             </section>
 
             <AddBookModal isOpen={open} onClose={() => { setOpen(false); setSelectBook(null)}} initialData={selectBook ?? undefined} user={user} />

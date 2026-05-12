@@ -5,17 +5,15 @@ import useCommunityFilter from '../hooks/useCommunityFilter'
 
 type Props = {
   posts: Post[]
-  onClickPost: () => void
+  onClickPost: (post: Post) => void
 }
 
 export default function PostList({ posts = [], onClickPost }: Props) {
     const { filteredPosts } = useCommunityFilter(posts)
   if (!posts.length) return <div>게시글이 없습니다.</div>
-
-
   return (
     <div className='post-list'>
-      <div className='featured-post' onClick={() => onClickPost()}>
+      <div className='featured-post'>
       <div>
           <div className='featured-label'>이주의 화제글</div>
           <div className='featured-title'>한강 작가의 노벨상 수상 이후, 한국 문학은 어떻게 변했나</div>
@@ -38,7 +36,7 @@ export default function PostList({ posts = [], onClickPost }: Props) {
         <PostItem
           key={post.id}
           post={post}
-          clickOn={() => onClickPost()}
+          clickOn={() => onClickPost(post)}
         />
       ))}
     </div>

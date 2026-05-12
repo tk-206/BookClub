@@ -12,7 +12,7 @@ type Props = {
 }
 
 const emptyPost: Omit<Post, 'id'> = {
-        category: '',
+        category: '독서 토론',
         title: '',
         content: '',
         isRead: false,
@@ -25,7 +25,8 @@ const emptyPost: Omit<Post, 'id'> = {
         },
         tags: [],
         isSecret: false,
-        comments: []
+        comments: [],
+        profileImage: '',
     }
 
 type Category = '독서 토론' | '책 리뷰' | '질문 · 추천' | '모임 모집' | '정보 공유' | '구인구직'
@@ -67,9 +68,16 @@ export default function AddPostModal({ isOpen, onClose, initialData, user }: Pro
     const updateMutation = () => {}
 
     const handleSubmit = () => {
+        if(!user) {
+            alert('로그인이 필요합니다')
+            return
+        }
         const payload = {
             ...post,
-            tags
+            tags,
+            author: user.name,
+            profileImage: user.profileImage ?? /*기본 프로필 넣어주기*/'',
+            createAt: new Date().toISOString(),
         }
         if(isEditMode) {
             updateMutation()

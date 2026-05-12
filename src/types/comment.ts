@@ -7,4 +7,5 @@ export interface Comment {
   createdAt: string,
   isSecret: boolean,
   replies?: Comment[],
+  postId: string
 }

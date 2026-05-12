@@ -52,10 +52,37 @@
     letter-spacing: 0.04em;
 }
 
-.post-category 독서{
+.post-category .독서{
     background: rgba(26, 39, 68, 0.08);
     color: var(--navy);
 }
+
+.post-category .책{
+    background: rgba(26, 39, 68, 0.08);
+    color: var(--navy);
+}
+
+.post-category .질문{
+    background: rgba(26, 39, 68, 0.08);
+    color: var(--navy);
+}
+
+.post-category .모임{
+    background: rgba(26, 39, 68, 0.08);
+    color: var(--navy);
+}
+
+.post-category .정보{
+    background: rgba(26, 39, 68, 0.08);
+    color: var(--navy);
+}
+
+.post-category .구인구직{
+    background: rgba(26, 39, 68, 0.08);
+    color: var(--navy);
+}
+
+/* type Category = '독서 토론' | '책 리뷰' | '질문 · 추천' | '모임 모집' | '정보 공유' | '구인구직' */
 
 .detail-title {
     font-family: 'Playfair Display', serif;
@@ -103,6 +130,7 @@
     color: var(--ink);
     margin-bottom: 2rem;
     font-weight: 300;
+    white-space: pre-wrap;
 }
 
 .detail-tags {

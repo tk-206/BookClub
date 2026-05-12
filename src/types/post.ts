@@ -8,11 +8,11 @@ export interface Post {
   content: string,
   isRead?: boolean,
   author: string,
-  createdAt: string,
+  profileImage: string,
+  createAt: string,
   stats: PostStats,
   tags?: string[],
   isSecret: boolean,
-  comments?: Comment[],
 }
 
 export interface PostStats {

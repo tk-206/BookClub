@@ -39,7 +39,6 @@ export default function Community() {
         content = (
             <section className='community-page'>
                 {/* 수정하기 만들어서 넣어주는 방법 구상해야함 */}
-                {/* post 데이터 올릴 때 프로필 넣을지랑, 이름 넣어줘야함 */}
                 {/* Left */}
                 <Sidebar />
                 {/* Mid */}
@@ -47,10 +46,10 @@ export default function Community() {
                     <main className='board-content'>
                         <Header clickOn={() => setDetailOpen(true) }/>
                         <FilterBar />
-                        <PostList posts={post} onClickPost={() => setDetailOpen(true)} />
+                        <PostList posts={post} onClickPost={(post: Post) => {setDetailOpen(true); setSelectPost(post) }} />
                         <Pagination
                             currentPage={page}
-                            totalPages={5}
+                            totalPages={5}/* API로 넘겨오는 거 받아야함. */
                             onPageChange={(p) => {
                                 setPage(p);
                                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -62,7 +61,7 @@ export default function Community() {
                 {/* Right */}
                 <RightSidebar modalOpen={() => setWriteOpen(true)} />
 
-                <DetailPostModal isOpen={detailOpen} onClose={() => setDetailOpen(false)}/>
+                <DetailPostModal isOpen={detailOpen} onClose={() => setDetailOpen(false)} post={selectPost ?? undefined}/>
                 <AddPostModal isOpen={writeOpen} onClose={() => setWriteOpen(false)} user={user} initialData={selectPost ?? undefined}/>
             </section>
         )
