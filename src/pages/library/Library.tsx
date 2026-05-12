@@ -27,7 +27,7 @@ export default function Library() {
         refetchOnWindowFocus: false,
     })
 
-    const tabContent = {
+        const tabContent = {
         목록: MyBook,
         캘린더: Calendar,
         통계: StatsView,
@@ -161,7 +161,8 @@ export default function Library() {
                     ))}
                 </div>
 
-            <ActiveComponent isLoading={isLoading && !books.length} bookList={books ?? []} onEdit={(book) => {setSelectBook(book); setOpen(true)}} onFilter={sideTab}/>
+                {/* content */}
+                <ActiveComponent isLoading={isLoading && !books.length} bookList={books ?? []} onEdit={(book) => {setSelectBook(book); setOpen(true)}} onFilter={sideTab}/>
             </section>
             
 
