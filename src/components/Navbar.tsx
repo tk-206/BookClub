@@ -24,6 +24,7 @@ export default function Navbar() {
     if (isLibrary) {
         actions = (
             <>
+            {/* 하나로 합치고 분기마다 들어가야하는 것을 조건부로 넣어주는 게 나을거같음. */}
                 <ProfileDropdown />
                 {/* 모바일 메뉴 */}
                 <div id="shTabMo">

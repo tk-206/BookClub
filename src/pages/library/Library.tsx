@@ -27,6 +27,12 @@ export default function Library() {
         refetchOnWindowFocus: false,
     })
 
+    const tabContent = {
+        목록: MyBook,
+        캘린더: Calendar,
+        통계: StatsView,
+    }
+
     const ActiveComponent = tabContent[contentTab]
 
     const menu = [
@@ -155,31 +161,9 @@ export default function Library() {
                     ))}
                 </div>
 
-                {/* content */}
-                {contentTab === '목록' && (
-                    <MyBook
-                        isLoading={isLoading && !books.length}
-                        bookList={books ?? []}
-                        onEdit={(book) => {
-                        setSelectBook(book)
-                        setOpen(true)
-                        }}
-                        onFilter={sideTab}
-                    />
-                    )}
-
-                    {contentTab === '캘린더' && (
-                    <Calendar
-                        bookList={books ?? []}
-                    />
-                    )}
-
-                    {contentTab === '통계' && (
-                    <StatsView
-                        
-                    />
-                )}
+            <ActiveComponent isLoading={isLoading && !books.length} bookList={books ?? []} onEdit={(book) => {setSelectBook(book); setOpen(true)}} onFilter={sideTab}/>
             </section>
+            
 
             <AddBookModal isOpen={open} onClose={() => { setOpen(false); setSelectBook(null)}} initialData={selectBook ?? undefined} user={user} />
         </section>

@@ -1,7 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import './css/DetailPostModal.css'
 import clsx from 'clsx'
-import type { Post } from '../types'
+import { createComment, type CommentType, type Post } from '../types'
+import { QueryClient, useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMe } from '../hooks/useMe'
 
 type Props = {
   isOpen: boolean
@@ -10,6 +12,10 @@ type Props = {
 }
 
 export default function DetailPostModal({ isOpen, onClose, post }: Props) {
+    const queryClient = useQueryClient()
+    const { data: user } = useMe()
+    const [comment, setComment] = useState<Omit<CommentType, "id">>()
+    
 
     useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -26,6 +32,22 @@ export default function DetailPostModal({ isOpen, onClose, post }: Props) {
         window.removeEventListener('keydown', handleEsc)
     }
     }, [isOpen, onClose])
+/* 댓글, 답글 저장 + 표시 해야함. */
+    const saveMutation = useMutation({
+        mutationFn: (com: Omit<CommentType, "id">) => {
+            if(!user) {
+                throw new Error('로그인이 필요합니다.')
+            }
+            return createComment(com, user.id)
+        },
+        onSuccess: (newComment) => {
+            queryClient.setQueryData<CommentType[]>(
+                ['comments'],
+                (old = []) => [...(old ?? []), newComment]
+            )
+            onClose()
+        }
+    })
 
   return (
     <div className={clsx('modal-overlay', {open: isOpen})} onClick={onClose}>
@@ -65,7 +87,6 @@ export default function DetailPostModal({ isOpen, onClose, post }: Props) {
             </div>
             <div className='comments-label'>댓글 {post?.stats.commentCount}개</div>
             <div className='comment-item'>
-                <div className='comment-av a'>김</div>
                 <div className='comment-bubble'>
                     <div className='comment-author'>김하늘</div>
                     <div className='comment-text'>2부에서 형부의 시선에 대한 분석이 정말 인상적이에요. 저도 이번에 다시 읽으면서 '예술'이라는 이름 아래 이뤄지는 착취의 구조가 선명하게 보였어요.</div>
@@ -77,7 +98,6 @@ export default function DetailPostModal({ isOpen, onClose, post }: Props) {
                 </div>
             </div>
             <div className='comment-item mine'>
-                <div className='comment-av b'>박</div>
                 <div className='comment-bubble'>
                     <div className='comment-author'>박소담 <span>작성자</span></div>
                     <div className='comment-text'>맞아요. 그래서 3부에서 인혜의 시선이 더 아프게 읽혀요. 영혜를 구하려 하지만, '정상적인 삶'의 논리를 놓지 못하는 모순 속에 있잖아요.</div>
@@ -105,7 +125,7 @@ export default function DetailPostModal({ isOpen, onClose, post }: Props) {
   )
 }
 
-export const formatTimeAgo = (
+const formatTimeAgo = (
     dataString: string
 ) => {
     const now = new Date()

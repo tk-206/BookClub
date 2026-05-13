@@ -1,4 +1,3 @@
-import type { Comment } from "./comment";
 import api from '../api/client'
 
 export interface Post {
