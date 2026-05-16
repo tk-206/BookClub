@@ -1,19 +1,16 @@
-import {
-  createContext, useContext, useState,
-  useEffect, useCallback, ReactNode
-} from 'react'
+import { useState, useEffect, useCallback } from 'react'
+import type { ReactNode } from 'react'
 import { loginAPI, logoutAPI, silentRefreshAPI } from '../api/auth'
 import type { User } from '../api/auth'
+import { AuthContext } from './authContextValue'
 
-interface AuthContextType {
+export interface AuthContextType {
   user: User | null
   isLoggedIn: boolean
   isLoading: boolean       // 초기 인증 확인 중인지
   login: (email: string, password: string) => Promise<void>
   logout: () => Promise<void>
 }
-
-const AuthContext = createContext<AuthContextType | null>(null)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
@@ -51,10 +48,4 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       {!isLoading && children}
     </AuthContext.Provider>
   )
-}
-
-export function useAuth() {
-  const context = useContext(AuthContext)
-  if (!context) throw new Error('AuthProvider 밖에서 useAuth 사용 불가')
-  return context
 }

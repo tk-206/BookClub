@@ -5,7 +5,7 @@ export interface User {
     email: string,
     profileImage?: string,
     role: UserRole,
-    accessToken: string,
+    accessToken?: string,
 }
 
 type UserRole = '독서가' | '작가' | '관리자' | '출판사'
@@ -18,4 +18,3 @@ export interface AuthContextType {
     accessToken: string | null,
     isInitializing: boolean,
 }
-

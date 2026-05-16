@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import clsx from 'clsx'
 import './PostModal.css'
 

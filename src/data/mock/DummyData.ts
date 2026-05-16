@@ -3,6 +3,7 @@ import type { Book, Post } from "../../types"
 /* MyBook */
 export const readingList: Book[] = [
     {
+        id: 'book-1',
         color: 'a',
         label: '채식주의자',
         author: '한강 · 창비',
@@ -11,6 +12,7 @@ export const readingList: Book[] = [
         stars: 0,
     },
     {
+        id: 'book-2',
         color: 'b',
         label: '작별하지 않는다',
         author: '한강 · 문학동네',
@@ -19,6 +21,7 @@ export const readingList: Book[] = [
         stars: 0,
     },
     {
+        id: 'book-3',
         color: 'c',
         label: '흰',
         author: '한강 · 문학동네',
@@ -27,6 +30,7 @@ export const readingList: Book[] = [
         stars: 0,
     },
     {
+        id: 'book-4',
         color: 'd',
         label: '아몬드',
         author: '손원평 · 창비',
@@ -35,6 +39,7 @@ export const readingList: Book[] = [
         status: '완독'
     },
     {
+        id: 'book-5',
         color: 'e',
         label: '82년생 김지영',
         author: '조남주 · 문학동네',
@@ -43,6 +48,7 @@ export const readingList: Book[] = [
         status: '완독'
     },
     {
+        id: 'book-6',
         color: 'f',
         label: '시선으로부터',
         author: '정세랑 · 문학동네',
@@ -51,6 +57,7 @@ export const readingList: Book[] = [
         status: '완독'
     },
     {
+        id: 'book-7',
         color: 'f',
         label: '시선으로부터',
         author: '정세랑 · 문학동네',
@@ -80,7 +87,7 @@ export const postList: Post[] = [
         isRead: false,
 
         author: {
-            id: 1,
+            id: '1',
             name: '김태경',
             profileImage: '김',
             role: '독서가',
@@ -104,7 +111,7 @@ export const postList: Post[] = [
             {
                 id: 'c1',
                 author: {
-                    id: 2,
+                    id: '2',
                     name: '이수민',
                     profileImage: '이',
                     role: '독서가',
@@ -119,7 +126,7 @@ export const postList: Post[] = [
                     {
                         id: 'r1',
                         author: {
-                            id: 1,
+                            id: '1',
                             name: '김태경',
                             profileImage: '김',
                             role: '독서가',
@@ -142,7 +149,7 @@ export const postList: Post[] = [
         isRead: true,
 
         author: {
-            id: 2,
+            id: '2',
             name: '이수민',
             profileImage: '이',
             role: '독서가',
@@ -166,7 +173,7 @@ export const postList: Post[] = [
             {
                 id: 'c2',
                 author: {
-                    id: 2,
+                    id: '2',
                     name: '이수민',
                     profileImage: '이',
                     role: '독서가',
@@ -181,7 +188,7 @@ export const postList: Post[] = [
                     {
                         id: 'r2',
                         author: {
-                            id: 1,
+                            id: '1',
                             name: '김태경',
                             profileImage: '김',
                             role: '독서가',

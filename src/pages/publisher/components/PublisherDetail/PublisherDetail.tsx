@@ -2,7 +2,6 @@ import { dummyGenre, dummybook } from "../../../../data/mock/DummyData"
 import { useState } from "react"
 import clsx from "clsx"
 import { useNavigate } from "react-router-dom"
-import DetailPostModal from "../../../../components/DetailPostModal"
 import PostModal from "./PostModal"
 
 type DetailTab = '소개' | '도서 목록' | '채용 공고'
@@ -200,4 +199,3 @@ export default function PublisherDetail() {
         </section>
     )
 }
-

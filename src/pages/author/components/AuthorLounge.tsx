@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import './AuthorLounge.css'
 import { useNavigate } from 'react-router-dom'
 import SkeletonList from '../../../components/SkeletonList'
-import { useAuth } from '../../../context/AuthContext'
+import { useAuth } from '../../../context/useAuth'
 import Pagination from '../../../components/Pagination'
 
 export default function AuthorLounge() {
@@ -192,7 +192,7 @@ export default function AuthorLounge() {
                     <Pagination totalPages={10} currentPage={1} onPageChange={() => 1}/>
 
                     {/* <!-- Write box --> */}
-                    {user?.role === '작가' && (
+                    {user?.role === 'author' && (
                         <div className="lounge-write-box">
                             <div className="write-row">
                                 <div className="write-my-avatar">김</div>
@@ -282,4 +282,3 @@ export default function AuthorLounge() {
         </div>
     )
 }
-

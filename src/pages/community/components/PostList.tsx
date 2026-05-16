@@ -9,8 +9,9 @@ type Props = {
 }
 
 export default function PostList({ posts = [], onClickPost }: Props) {
-  if (!posts.length) return <div>게시글이 없습니다.</div>
   const { filteredPosts } = useCommunityFilter(posts)
+
+  if (!posts.length) return <div>게시글이 없습니다.</div>
 
   return (
     <div className='post-list'>

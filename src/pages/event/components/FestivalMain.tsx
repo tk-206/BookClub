@@ -5,7 +5,7 @@ import EmptyState from "../../../components/EmptyState"
 
 export default function FestivalMain() {
     const navigate = useNavigate()
-    const [event, setEvent] = useState([])
+    const [event] = useState([])
 
     let festivalRow
     if(event.length === 0) {

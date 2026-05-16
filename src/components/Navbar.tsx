@@ -2,10 +2,9 @@ import { NavLink, useLocation } from "react-router-dom";
 import './css/Navbar.css'
 import clsx from "clsx";
 import { useState, useEffect } from "react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/useAuth";
 import ProfileDropdown from "./ProfileDropdown";
 import AllCate from "./AllCate";
-import AddPostModal from "./AddPostModal";
 
 type NavTab = '' | '내 서재' | '커뮤니티' | '출판사' | '작가' | '행사'
 

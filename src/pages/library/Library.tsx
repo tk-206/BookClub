@@ -7,7 +7,6 @@ import StatsView from './components/LibraryStatsView'
 import AddBookModal from '../../components/AddBookModal'
 import { fetchBooks, type Book } from '../../api/book'
 import { useQuery } from '@tanstack/react-query'
-import { useAuth } from '../../context/AuthContext'
 import { useMe } from '../../hooks/useMe'
 
 type SideTab = '전체 서재' | '읽는 중' | '읽은 책' | '읽고 싶어요' | '독서 캘린더' | '독서 통계' | '내 게시글' | '알림'
@@ -18,7 +17,6 @@ export default function Library() {
     const [contentTab, setContentTab] = useState<ContentTab>('목록')
     const [open, setOpen] = useState(false)
     const [selectBook, setSelectBook] = useState<Book | null>(null)
-    const { accessToken } = useAuth()
     const { data: user } = useMe()
 
     const { data: books = [], isLoading, error } = useQuery({
@@ -103,7 +101,7 @@ export default function Library() {
                     {menu.map((me) => (
                         <div key={me.title} className='sidebar-nav'>
                             <h2 className='sidebar-nav-title'>{me.title}</h2>
-                            {me.pages.map((page, i) => (
+                            {me.pages.map((page) => (
                                 <button key={page.label} className={clsx('sidebar-nav-btn', {active: sideTab === page.label})} onClick={() => setSideTab(page.label)}>
                                     <span className='icon'>{page.icon}</span>
                                     {page.label}
@@ -166,7 +164,15 @@ export default function Library() {
                 <ActiveComponent isLoading={isLoading && !books.length} bookList={books ?? []} onEdit={(book) => {setSelectBook(book); setOpen(true)}} onFilter={sideTab}/>
             </section>
 
-            <AddBookModal isOpen={open} onClose={() => { setOpen(false); setSelectBook(null)}} initialData={selectBook ?? undefined} user={user} />
+            {user && (
+                <AddBookModal
+                    key={selectBook?.id ?? 'new-book'}
+                    isOpen={open}
+                    onClose={() => { setOpen(false); setSelectBook(null)}}
+                    initialData={selectBook ?? undefined}
+                    user={user}
+                />
+            )}
         </section>
     )
 }

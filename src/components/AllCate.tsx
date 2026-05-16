@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import './css/AllCate.css'
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/useAuth";
 import { NavLink } from "react-router-dom";
 
 type Props = {
