@@ -7,7 +7,6 @@ export default function SignUp() {
     const [checkPassword, setCheckPassword] = useState('')
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
-    const [touched, setTouched] = useState(false)
     const [agreements, setAgreements] = useState({
         terms: false,        // 이용약관 (필수)
         privacy: false,      // 개인정보 (필수)
@@ -57,7 +56,6 @@ export default function SignUp() {
                             onChange={(e) => setPassword(e.target.value)}
                             type="password"
                             placeholder="비밀번호"
-                            onBlur={() => setTouched(true)}
                         />
                         {password && (
                             <div className={clsx('check-password', {
@@ -75,7 +73,6 @@ export default function SignUp() {
                             onChange={(e) => setCheckPassword(e.target.value)}
                             type="password"
                             placeholder="비밀번호 확인"
-                            onBlur={() => setTouched(true)}
                         />
                         {checkPassword && (
                             <div className={clsx('check-password', {
@@ -176,4 +173,3 @@ export default function SignUp() {
         </section>
     )
 }
-

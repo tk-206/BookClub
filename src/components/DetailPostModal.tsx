@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import './css/DetailPostModal.css'
 import clsx from 'clsx'
 
@@ -61,7 +61,7 @@ export default function DetailPostModal({ isOpen, onClose }: Props) {
             </div>
             <div className='detail-tags'>
                 {tags.map((t) => (
-                    <div className='detail-tag'>#{t}</div>
+                    <div key={t} className='detail-tag'>#{t}</div>
                 ))}
             </div>
             <div className='detail-reactions'>

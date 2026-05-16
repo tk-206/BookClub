@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import './Community.css'
 import { useEffect, useState } from 'react'
 import DetailPostModal from '../../components/DetailPostModal'
@@ -20,7 +19,7 @@ export default function Community() {
     const [detailOpen, setDetailOpen] = useState(false)
     const [writeOpen, setWriteOpen] = useState(false)
     const [page, setPage] = useState(1);
-    const [post, setPost] = useState([])
+    const [post] = useState(postList)
 
     useEffect(() => {
         const timer = setTimeout(() => setLoading(false), 1000);

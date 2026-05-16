@@ -1,6 +1,7 @@
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { useAuth } from '../../../context/AuthContext'
+import { useAuth } from '../../../context/useAuth'
+import { AxiosError } from 'axios'
 
 type Props = {
     tab: () => void
@@ -15,25 +16,28 @@ export default function Login({tab} : Props) {
     const [password, setPassword] = useState('')
     const [showPw, setShowPw] = useState(false)
     const [errorMsg, setErrorMsg] = useState('')
-    const [loading, setLoading] = useState(false)
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault()
         setErrorMsg('')
-        setLoading(true)
+        setIsSubmitting(true)
 
         try {
             await login(email, password)
 
             // 원래 가려던 페이지로
-            const from = (location.state as any)?.from?.pathname || '/'
+            const from = (location.state as { from?: { pathname?: string } } | null)?.from?.pathname || '/'
             navigate(from, { replace: true })
 
-        } catch (err: any) {
+        } catch (err) {
             // 서버에서 오는 에러 메시지 표시
-            setErrorMsg(err.response?.data?.message || '이메일 또는 비밀번호를 확인해주세요')
+            const message = err instanceof AxiosError
+                ? err.response?.data?.message
+                : undefined
+            setErrorMsg(message || '이메일 또는 비밀번호를 확인해주세요')
         } finally {
-            setLoading(false)
+            setIsSubmitting(false)
         }
     }
 
@@ -80,7 +84,7 @@ export default function Login({tab} : Props) {
                         <input id='auto-btn' type='checkbox' className='auto-btn' />
                         <label htmlFor='auto-btn' className='auto-text'>로그인 유지</label>
                     </div>
-                    <button className='btn-submit' onClick={handleLogin}>로그인</button>
+                    <button className='btn-submit' disabled={isSubmitting}>{isSubmitting ? '로그인 중...' : '로그인'}</button>
                     {errorMsg && (
                         <div style={{ color: '#e53e3e', fontSize: '0.875rem', marginTop: '0.5rem', textAlign: 'center' }}>
                             {errorMsg}

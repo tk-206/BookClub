@@ -14,24 +14,25 @@ type Props = {
 
 type Status = "읽는중" | "완독" | "희망"
 
+const emptyForm: Book = {
+  label: '',
+  author: '',
+  color: '',
+  createAt: '',
+  doneDate: '',
+  readingDate: '',
+  publisher: '',
+  review: '',
+  stars: 0,
+  status: '희망',
+  id: '',
+}
+
 export default function AddBookModal({ isOpen, onClose, initialData, user }: Props) {
   const isEditMode = !!initialData
   const queryClient = useQueryClient()
-  const emptyForm: Book = {
-    label: '',
-    author: '',
-    color: '',
-    createAt: '',
-    doneDate: '',
-    readingDate: '',
-    publisher: '',
-    review: '',
-    stars: 0,
-    status: '희망',
-    id: '',
-  }
 
-  const [form, setForm] = useState<Book>(emptyForm)
+  const [form, setForm] = useState<Book>(() => initialData ?? emptyForm)
   
     useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -48,10 +49,6 @@ export default function AddBookModal({ isOpen, onClose, initialData, user }: Pro
         window.removeEventListener('keydown', handleEsc)
     }
     }, [isOpen, onClose])
-
-    useEffect(() => {
-      setForm(initialData ?? emptyForm)
-    }, [initialData, isOpen])
 
   const saveMutation = useMutation({
     mutationFn: (book: Omit<Book, "id" | "userId">) =>
