@@ -33,7 +33,7 @@ export default function AddBookModal({ isOpen, onClose, initialData, user }: Pro
   const queryClient = useQueryClient()
 
 
-  const [form, setForm] = useState<Book>(emptyForm)
+  const [form, setForm] = useState<Book>(() => initialData ?? emptyForm)
   
     useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -50,10 +50,6 @@ export default function AddBookModal({ isOpen, onClose, initialData, user }: Pro
         window.removeEventListener('keydown', handleEsc)
     }
     }, [isOpen, onClose])
-
-    useEffect(() => {
-      setForm(initialData ?? emptyForm)
-    }, [initialData, isOpen])
 
   const saveMutation = useMutation({
     mutationFn: (book: Omit<Book, "id" | "userId">) =>
