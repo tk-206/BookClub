@@ -2,7 +2,6 @@ import './css/Calendar.css'
 import clsx from 'clsx'
 import { useState, useMemo } from 'react'
 import type { Book } from '../types'
-import { data } from 'react-router-dom'
 
 const today = new Date()
 
@@ -143,5 +142,5 @@ function getCalendar(year: number, month: number) {
 function formatDate(year: number, month: number, date: number) {
   const m = String(month + 1).padStart(2, '0')
   const d = String(date).padStart(2, '0')
-  return `${year}.${m}.${d}`
+  return `${year}-${m}-${d}`
 }

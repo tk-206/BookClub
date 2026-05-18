@@ -1,3 +1,10 @@
+export interface Agreement {
+  terms: boolean
+  privacy: boolean
+  marketing: boolean
+  age: boolean
+}
+
 export interface User {
     createAt: string,
     name: string,
@@ -5,7 +12,9 @@ export interface User {
     email: string,
     profileImage?: string,
     role: UserRole,
-    accessToken: string,
+    accessToken?: string,
+    agreement: Agreement
+    password: string,
 }
 
 type UserRole = '독서가' | '작가' | '관리자' | '출판사'
@@ -17,5 +26,12 @@ export interface AuthContextType {
     logout: () => void,
     accessToken: string | null,
     isInitializing: boolean,
+}
+
+export interface SignUpPayload {
+  email: string
+  password: string
+  name: string
+  agreement: Agreement
 }
 

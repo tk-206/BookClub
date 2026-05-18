@@ -1,9 +1,7 @@
-import clsx from 'clsx'
 import './Community.css'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import DetailPostModal from '../../components/DetailPostModal'
 import AddPostModal from '../../components/AddPostModal'
-import { postList } from '../../data/mock/DummyData'
 import PostList from './components/PostList'
 import Sidebar from './components/Sidebar'
 import FilterBar from './components/FilterBar'
@@ -12,30 +10,35 @@ import Header from './components/Header'
 import Pagination from '../../components/Pagination'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import EmptyState from '../../components/EmptyState'
+import { fetchPosts, type Post } from '../../types'
+import { useMe } from '../../hooks/useMe'
+import { useQuery } from '@tanstack/react-query'
 
 
 
 export default function Community() {
-    const [loading, setLoading] = useState(true)
     const [detailOpen, setDetailOpen] = useState(false)
     const [writeOpen, setWriteOpen] = useState(false)
     const [page, setPage] = useState(1);
-    const [post, setPost] = useState([])
+    const [selectPost, setSelectPost] = useState<Post | null>()
+    const { data: user } = useMe()
 
-    useEffect(() => {
-        const timer = setTimeout(() => setLoading(false), 1000);
-        return() => clearTimeout(timer);
-    }, [])
+    const { data: post = [], isLoading, error } = useQuery({
+        queryKey: ['posts'],
+        queryFn: () => fetchPosts(),
+        refetchOnWindowFocus: false,
+    })
 
     let content
-    if(loading) {
+    if(isLoading) {
         content = (
             <LoadingSpinner />
         )
     }
-    else if(!loading) {
+    else if(!isLoading) {
         content = (
             <section className='community-page'>
+                {/* 수정하기 만들어서 넣어주는 방법 구상해야함 */}
                 {/* Left */}
                 <Sidebar />
                 {/* Mid */}
@@ -43,10 +46,10 @@ export default function Community() {
                     <main className='board-content'>
                         <Header clickOn={() => setDetailOpen(true) }/>
                         <FilterBar />
-                        <PostList posts={postList} onClickPost={() => setDetailOpen(true)} />
+                        <PostList posts={post} onClickPost={(post: Post) => {setDetailOpen(true); setSelectPost(post) }} />
                         <Pagination
                             currentPage={page}
-                            totalPages={5}
+                            totalPages={5}/* API로 넘겨오는 거 받아야함. */
                             onPageChange={(p) => {
                                 setPage(p);
                                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -58,8 +61,8 @@ export default function Community() {
                 {/* Right */}
                 <RightSidebar modalOpen={() => setWriteOpen(true)} />
 
-                <DetailPostModal isOpen={detailOpen} onClose={() => setDetailOpen(false)}/>
-                <AddPostModal isOpen={writeOpen} onClose={() => setWriteOpen(false)}/>
+                <DetailPostModal isOpen={detailOpen} onClose={() => setDetailOpen(false)} post={selectPost ?? undefined}/>
+                <AddPostModal isOpen={writeOpen} onClose={() => setWriteOpen(false)} user={user} initialData={selectPost ?? undefined}/>
             </section>
         )
     }

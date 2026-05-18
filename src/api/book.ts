@@ -28,6 +28,7 @@ export const createBook = async (book: Omit<Book, "id" | "userId">, userId: stri
         body: JSON.stringify({
           ...book,
           userId,
+          createAt: new Date().toISOString(),
         }),
     })
     return res.json()

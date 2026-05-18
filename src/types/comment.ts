@@ -1,10 +1,24 @@
+import api from "../api/client";
 import type { User } from "./user";
 
-export interface Comment {
+export interface CommentType {
   id: string,
-  author: User,
+  userId: User,
   content: string,
-  createdAt: string,
+  createAt: string,
   isSecret: boolean,
-  replies?: Comment[],
+  parentId: string | null,
+  postId: string
+}
+
+export const createComment = async (
+  comment: Omit<CommentType, 'id'>,
+  userId: string,
+): Promise<CommentType> => {
+  const res = await api.post('/comments', {
+    ...comment,
+    userId,
+  })
+
+  return res.data
 }

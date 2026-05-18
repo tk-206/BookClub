@@ -1,5 +1,4 @@
-import type { User } from "./user";
-import type { Comment } from "./comment";
+import api from '../api/client'
 
 export interface Post {
   id: string,
@@ -7,16 +6,34 @@ export interface Post {
   title: string,
   content: string,
   isRead?: boolean,
-  author: User,
-  createdAt: string,
+  author: string,
+  profileImage: string,
+  createAt: string,
   stats: PostStats,
   tags?: string[],
   isSecret: boolean,
-  comments?: Comment[],
 }
 
 export interface PostStats {
-    like: number,
+    likeCount: number,
     commentCount: number,
-    view: number,
+    viewCount: number,
+}
+
+export const fetchPosts = async (): Promise<Post[]> => {
+  const res = await api.get('posts')
+
+  return res.data
+}
+
+export const createPost = async (
+  post: Omit<Post, 'id'>,
+  userId: string
+): Promise<Post> => {
+  const res = await api.post('/posts', {
+    ...post,
+    userId,
+  })
+
+  return res.data
 }

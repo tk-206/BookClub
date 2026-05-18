@@ -3,20 +3,44 @@
     {
       "id": "a",
       "email": "test@test.com",
-      "password": "1234",
+      "password": "12341234",
       "createAt": "2026-04-22",
       "name": "김예시",
       "role": "관리자",
-      "accessToken": "1"
+      "agreement": {
+        "terms": true,
+        "privacy": true,
+        "marketing": false,
+        "age": true
+      }
     },
     {
       "id": "b",
       "email": "test2@test.com",
-      "password": "1234",
+      "password": "12341234",
       "createAt": "2026-04-22",
       "name": "김예지",
       "role": "독서가",
-      "accessToken": "2"
+      "agreement": {
+        "terms": true,
+        "privacy": true,
+        "marketing": false,
+        "age": true
+      }
+    },
+    {
+      "id": "KXuvb49Vnxw",
+      "createAt": "2026-05-08T02:34:43.598Z",
+      "role": "독서가",
+      "email": "test3@test.com",
+      "password": "12341234",
+      "name": "홍길동",
+      "agreement": {
+        "terms": true,
+        "privacy": true,
+        "marketing": true,
+        "age": true
+      }
     }
   ],
   "books": [
@@ -71,7 +95,7 @@
       "readingDate": "",
       "review": "123",
       "stars": 4,
-      "status": "완독",
+      "status": "읽는중",
       "id": "zWMZjkThdos",
       "publisher": "123",
       "userId": "a"
@@ -99,11 +123,133 @@
       "readingDate": "",
       "publisher": "123",
       "review": "1414",
-      "stars": 0,
-      "status": "읽는중",
+      "stars": 4,
+      "status": "완독",
       "id": "9O5tr1NCqOw",
       "userId": "a"
+    },
+    {
+      "label": "첫번째 책",
+      "author": "저자",
+      "color": "",
+      "createAt": "",
+      "doneDate": "2026-05-11",
+      "readingDate": "",
+      "publisher": "출판사",
+      "review": "",
+      "stars": 3,
+      "status": "완독",
+      "id": "Dt-ZjfSit4g",
+      "userId": "KXuvb49Vnxw"
     }
   ],
+  "posts": [
+    {
+      "category": "독서 토론",
+      "title": "1234",
+      "content": "213124",
+      "isRead": false,
+      "author": "",
+      "profileImage": "김",
+      "createAt": "2026-05-08T02:34:43.598Z",
+      "stats": {
+        "likeCount": 0,
+        "viewCount": 0,
+        "commentCount": 0
+      },
+      "tags": [
+        "#1231",
+        "#124"
+      ],
+      "isSecret": false,
+      "userId": "KXuvb49Vnxw",
+      "id": "hv4V8E8ykTQ"
+    },
+    {
+      "category": "책 리뷰",
+      "title": "31",
+      "content": "124",
+      "isRead": false,
+      "author": "홍길동",
+      "createAt": "2026-05-08T02:34:43.598Z",
+      "stats": {
+        "likeCount": 0,
+        "viewCount": 0,
+        "commentCount": 0
+      },
+      "tags": [
+        "#소설",
+        "#SF"
+      ],
+      "isSecret": false,
+      "profileImage": "",
+      "userId": "KXuvb49Vnxw",
+      "id": "WZ6RnDBHUyc"
+    },
+    {
+      "category": "독서 토론",
+      "title": "124",
+      "content": "노벨문학상 수상 이후 1년이 지난 지금, 한국 문학 시장의 변화를 독자의 시선으로 돌아봅니다. 번역 출판의 확대, 독자층의 다양화, 그리고 창작자들이 느끼는 기대와 부담감...",
+      "isRead": false,
+      "author": "홍길동",
+      "createdAt": "",
+      "stats": {
+        "likeCount": 0,
+        "viewCount": 0,
+        "commentCount": 0
+      },
+      "tags": [
+        "#1234"
+      ],
+      "isSecret": false,
+      "profileImage": "",
+      "createAt": "2026-05-12T02:59:48.719Z",
+      "userId": "KXuvb49Vnxw",
+      "id": "gv4YhJ41APg"
+    },
+    {
+      "category": "독서 토론",
+      "title": "124",
+      "content": "노벨문학상 수상 이후 1년이 지난 지금, 한국 문학 시장의 변화를 독자의 시선으로 돌아봅니다. 번역 출판의 확대, 독자층의 다양화, 그리고 창작자들이 느끼는 기대와 부담감...노벨문학상 수상 이후 1년이 지난 지금, 한국 문학 시장의 변화를 독자의 시선으로 돌아봅니다. 번역 출판의 확대, 독자층의 다양화, 그리고 창작자들이 느끼는 기대와 부담감...노벨문학상 수상 이후 1년이 지난 지금, 한국 문학 시장의 변화를 독자의 시선으로 돌아봅니다. 번역 출판의 확대, 독자층의 다양화, 그리고 창작자들이 느끼는 기대와 부담감...노벨문학상 수상 이후 1년이 지난 지금, 한국 문학 시장의 변화를 독자의 시선으로 돌아봅니다. 번역 출판의 확대, 독자층의 다양화, 그리고 창작자들이 느끼는 기대와 부담감...",
+      "isRead": false,
+      "author": "홍길동",
+      "createdAt": "",
+      "stats": {
+        "likeCount": 0,
+        "viewCount": 0,
+        "commentCount": 0
+      },
+      "tags": [
+        "#123123"
+      ],
+      "isSecret": false,
+      "profileImage": "",
+      "createAt": "2026-05-12T02:59:54.567Z",
+      "userId": "KXuvb49Vnxw",
+      "id": "YKA-eCjviKw"
+    },
+    {
+      "category": "독서 토론",
+      "title": "111",
+      "content": "노벨문학상 수상 이후 1년이 지난 지금, 한국 문학 시장의 변화를 독자의 시선으로 돌아봅니다. 번역 출판의 확대, 독자층의 다양화, 그리고 창작자들이 느끼는 기대와 부담감...\n\n\n노벨문학상 수상 이후 1년이 지난 지금, 한국 문학 시장의 변화를 독자의 시선으로 돌아봅니다. 번역 출판의 확대, 독자층의 다양화, 그리고 창작자들이 느끼는 기대와 부담감...노벨문학상 수상 이후 1년이 지난 지금, 한국 문학 시장의 변화를 독자의 시선으로 돌아봅니다. 번역 출판의 확대, 독자층의 다양화, 그리고 창작자들이 느끼는 기대와 부담감...",
+      "isRead": false,
+      "author": "홍길동",
+      "createdAt": "",
+      "stats": {
+        "likeCount": 0,
+        "viewCount": 0,
+        "commentCount": 0
+      },
+      "tags": [
+        "#111"
+      ],
+      "isSecret": false,
+      "profileImage": "",
+      "createAt": "2026-05-12T03:00:24.944Z",
+      "userId": "KXuvb49Vnxw",
+      "id": "CO6QO6JrJkc"
+    }
+  ],
+  "comments": [],
   "$schema": "./node_modules/json-server/schema.json"
 }
