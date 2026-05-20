@@ -1,14 +1,14 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/useAuth";
 import LoadingSpinner from "./LoadingSpinner";
 import { useMe } from "../hooks/useMe";
 
 export default function ProtectedRoute() {
     const { isAuthenticated } = useAuth()
     const location = useLocation()
-    const { isLoading, isError } = useMe()
+    const { isLoading: isAuthLoading , isError } = useMe()
 
-    if (isLoading) return <LoadingSpinner/>
+    if (isAuthLoading) return <LoadingSpinner/>
 
     if (isError) return <Navigate to='/로그인' state={{ from: location }} replace />
     

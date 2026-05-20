@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react'
 import './AuthorLounge.css'
 import { useNavigate } from 'react-router-dom'
 import SkeletonList from '../../../components/SkeletonList'
-import { useAuth } from '../../../context/AuthContext'
 import Pagination from '../../../components/Pagination'
+import { useMe } from '../../../hooks/useMe'
 
 export default function AuthorLounge() {
     const [loading, setLoading] = useState(true)
     const navigate = useNavigate()
-    const { user } = useAuth()
+    const { data: user } = useMe()
 
     useEffect(() => {
         const timer = setTimeout(() => setLoading(false), 3000);

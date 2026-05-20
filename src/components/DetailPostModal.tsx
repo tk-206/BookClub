@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './css/DetailPostModal.css'
 import clsx from 'clsx'
 import { createComment, type CommentType, type Post } from '../types'
-import { QueryClient, useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useMe } from '../hooks/useMe'
 
 type Props = {
@@ -77,7 +77,7 @@ export default function DetailPostModal({ isOpen, onClose, post }: Props) {
             </div>
             <div className='detail-tags'>
                 {!!post?.tags && post?.tags.map((t) => (
-                    <div className='detail-tag'>{t}</div>
+                    <div key={t} className='detail-tag'>{t}</div>
                 ))}
             </div>
             <div className='detail-reactions'>

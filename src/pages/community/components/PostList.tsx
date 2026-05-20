@@ -1,4 +1,3 @@
-// components/PostList.tsx
 import PostItem from './PostItem'
 import type { Post } from '../../../types'
 import useCommunityFilter from '../hooks/useCommunityFilter'

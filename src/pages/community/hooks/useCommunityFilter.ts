@@ -30,7 +30,7 @@ export default function useCommunityFilter(initialPosts: Post[] = []) {
         }
 
         if(filterTab === '인기순') {
-            result.sort((a, b) => b.stats.like - a.stats.like)
+            result.sort((a, b) => b.stats.likeCount - a.stats.likeCount)
         }
 
         if(filterTab === '댓글순') {
@@ -38,7 +38,7 @@ export default function useCommunityFilter(initialPosts: Post[] = []) {
         }
 
         if(filterTab === '조회순') {
-            result.sort((a, b) => b.stats.view - a.stats.view)
+            result.sort((a, b) => b.stats.viewCount - a.stats.viewCount)
         }
 
         return result

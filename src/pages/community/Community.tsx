@@ -23,7 +23,7 @@ export default function Community() {
     const [selectPost, setSelectPost] = useState<Post | null>()
     const { data: user } = useMe()
 
-    const { data: post = [], isLoading, error } = useQuery({
+    const { data: post = [], isLoading } = useQuery({
         queryKey: ['posts'],
         queryFn: () => fetchPosts(),
         refetchOnWindowFocus: false,

@@ -17,7 +17,7 @@ const emptyPost: Omit<Post, 'id'> = {
         content: '',
         isRead: false,
         author: '',
-        createdAt: '',
+        createAt: '',
         stats: {
             likeCount: 0,
             viewCount: 0,
@@ -41,11 +41,7 @@ export default function AddPostModal({ isOpen, onClose, initialData, user }: Pro
         .map(tag => tag.trim())
         .filter(Boolean)
         .map(tag => tag.startsWith('#') ? tag : `#${tag}`)
-    const [post, setPost] = useState<Omit<Post, 'id'>>(emptyPost)
-
-    useEffect(() => {
-        setPost(initialData ?? emptyPost)
-    }, [!!initialData, isOpen])
+    const [post, setPost] = useState<Omit<Post, 'id'>>(() => initialData ?? emptyPost)
 
     // 로그인 안되어있을 경우 로그인 시키기.
     const saveMutation = useMutation({

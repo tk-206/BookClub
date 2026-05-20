@@ -2,7 +2,7 @@ import './AuthorMain.css'
 import { useState } from 'react'
 import clsx from 'clsx'
 import { useNavigate } from 'react-router-dom'
-import EmptyState from '../../../components/EmptyState'
+/* import EmptyState from '../../../components/EmptyState' */
 
 type TabFilter = '전체' | '소설' | '시' | 'SF·장르' | '에세이' | '신규 작가'
 

@@ -1,8 +1,5 @@
 import {
-  createContext,
-  useContext,
   useState,
-  useEffect
 } from 'react'
 
 import {
@@ -10,14 +7,13 @@ import {
   setAccessToken,
   clearAccessToken
 } from '../auth/tokenStore'
+import { AuthContext } from './authContextValue'
 
-type AuthContextType = {
+export interface AuthContextType {
   isAuthenticated: boolean
   login: (token: string) => void
   logout: () => void
 }
-
-const AuthContext = createContext<AuthContextType | null>(null)
 
 export function AuthProvider({
   children
@@ -25,11 +21,7 @@ export function AuthProvider({
   children: React.ReactNode
 }) {
 
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-
-  useEffect(() => {
-    setIsAuthenticated(!!getAccessToken())
-  }, [])
+  const [isAuthenticated, setIsAuthenticated] = useState(() => !!getAccessToken())
 
   const login = (token: string) => {
     setAccessToken(token)
@@ -54,13 +46,3 @@ export function AuthProvider({
   )
 }
 
-export function useAuth() {
-
-  const context = useContext(AuthContext)
-
-  if (!context) {
-    throw new Error('AuthProvider 필요')
-  }
-
-  return context
-}

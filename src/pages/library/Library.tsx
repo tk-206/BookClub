@@ -166,7 +166,7 @@ export default function Library() {
             </section>
             
 
-            <AddBookModal isOpen={open} onClose={() => { setOpen(false); setSelectBook(null)}} initialData={selectBook ?? undefined} user={user} />
+            {user && <AddBookModal key={selectBook?.id ?? 'new-book'} isOpen={open} onClose={() => { setOpen(false); setSelectBook(null)}} initialData={selectBook ?? undefined} user={user} /> }
         </section>
     )
 }

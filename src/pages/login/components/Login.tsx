@@ -1,8 +1,9 @@
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { useAuth } from '../../../context/AuthContext'
+import { useAuth } from '../../../context/useAuth'
 import LoadingSpinner from '../../../components/LoadingSpinner'
 import { loginAPI } from '../../../api/auth'
+import { AxiosError } from 'axios'
 
 type Props = {
     tab: () => void
@@ -17,24 +18,24 @@ export default function Login({tab} : Props) {
     const [password, setPassword] = useState('')
     const [showPw, setShowPw] = useState(false)
     const [errorMsg, setErrorMsg] = useState('')
-    const [loading, setLoading] = useState(false)
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault()
         setErrorMsg('')
-        setLoading(true)
+        setIsSubmitting(true)
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
         if(!emailRegex.test(email)) {
             setErrorMsg('올바른 이메일 형식을 입력해주세요.')
-            setLoading(false)
+            setIsSubmitting(false)
             return
         }
 
         if(password.length < 8) {
             setErrorMsg('비밀번호는 8자 이상이어야 합니다.')
-            setLoading(false)
+            setIsSubmitting(false)
             return
         }
 
@@ -44,22 +45,23 @@ export default function Login({tab} : Props) {
             login(res.accessToken)
 
             // 원래 가려던 페이지로
-            const from = (location.state as any)?.from?.pathname || '/'
+            const from = (location.state as { from?: { pathname?: string } } || null )?.from?.pathname || '/'
             navigate(from, { replace: true })
 
         } catch (err) {
             // 서버에서 오는 에러 메시지 표시
-            setErrorMsg(err.response?.data?.message || '이메일 또는 비밀번호를 확인해주세요')
+            const message = err instanceof AxiosError ? err.response?.data?.message : undefined
+            setErrorMsg(message || '이메일 또는 비밀번호를 확인해주세요')
         } finally {
-            setLoading(false)
+            setIsSubmitting(false)
             tab()
         }
     }
 
     return (
         <section className="login">
-            {loading && <LoadingSpinner />}
-            {!loading && 
+            {isSubmitting && <LoadingSpinner />}
+            {!isSubmitting && 
                 <form onSubmit={handleLogin}>
                     <div className='right-header'>
                         <div className='login-title'>만나서 반가워요.</div>
@@ -101,7 +103,7 @@ export default function Login({tab} : Props) {
                             <input id='auto-btn' type='checkbox' className='auto-btn' />
                             <label htmlFor='auto-btn' className='auto-text'>로그인 유지</label>
                         </div>
-                        <button type='submit' className='btn-submit'>로그인</button>
+                        <button type='submit' className='btn-submit' onClick={handleLogin} disabled={isSubmitting}>{isSubmitting ? '로그인 중...' : '로그인'}</button>
                         {errorMsg && (
                             <div style={{ color: '#e53e3e', fontSize: '0.875rem', marginTop: '0.5rem', textAlign: 'center' }}>
                                 {errorMsg}
