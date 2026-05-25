@@ -4,18 +4,19 @@ import clsx from 'clsx'
 import { createComment, type CommentType, type Post } from '../types'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useMe } from '../hooks/useMe'
+import CommentList from './CommentList'
 
 type Props = {
   isOpen: boolean
   onClose: () => void
-  post?: Post 
+  post: Post 
 }
 
 export default function DetailPostModal({ isOpen, onClose, post }: Props) {
     const queryClient = useQueryClient()
     const { data: user } = useMe()
-    const [comment, setComment] = useState<Omit<CommentType, "id">>()
-    
+    const [commentContent, setCommentContent] = useState('')
+    const [isSecret, setIsSecret] = useState(false)
 
     useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -32,7 +33,7 @@ export default function DetailPostModal({ isOpen, onClose, post }: Props) {
         window.removeEventListener('keydown', handleEsc)
     }
     }, [isOpen, onClose])
-/* 댓글, 답글 저장 + 표시 해야함. */
+    /* 댓글, 답글 저장 + 표시 해야함. */
     const saveMutation = useMutation({
         mutationFn: (com: Omit<CommentType, "id">) => {
             if(!user) {
@@ -48,6 +49,10 @@ export default function DetailPostModal({ isOpen, onClose, post }: Props) {
             onClose()
         }
     })
+
+    const handleSave = () => {
+        saveMutation.mutate()
+    }
 
   return (
     <div className={clsx('modal-overlay', {open: isOpen})} onClick={onClose}>
@@ -86,38 +91,13 @@ export default function DetailPostModal({ isOpen, onClose, post }: Props) {
                 <button className='reaction-btn'>↗️ 공유</button>
             </div>
             <div className='comments-label'>댓글 {post?.stats.commentCount}개</div>
-            <div className='comment-item'>
-                <div className='comment-bubble'>
-                    <div className='comment-author'>김하늘</div>
-                    <div className='comment-text'>2부에서 형부의 시선에 대한 분석이 정말 인상적이에요. 저도 이번에 다시 읽으면서 '예술'이라는 이름 아래 이뤄지는 착취의 구조가 선명하게 보였어요.</div>
-                    <div className='comment-footer'>
-                        <span className='comment-date'>30분 전</span>
-                        <button className='comment-action'>❤️ 5</button>
-                        <button className='comment-action'>↩ 답글</button>
-                    </div>
-                </div>
-            </div>
-            <div className='comment-item mine'>
-                <div className='comment-bubble'>
-                    <div className='comment-author'>박소담 <span>작성자</span></div>
-                    <div className='comment-text'>맞아요. 그래서 3부에서 인혜의 시선이 더 아프게 읽혀요. 영혜를 구하려 하지만, '정상적인 삶'의 논리를 놓지 못하는 모순 속에 있잖아요.</div>
-                    <div className='comment-footer'>
-                        <span className='comment-date'>22분 전</span>
-                        <button className='comment-action'>❤️ 3</button>
-                        <button className='comment-action'>↩ 답글</button>
-                    </div>
-                </div>
-            </div>
-            <div className='comment-item'>
-                <div className='comment-av s'>?</div>
-                <div className='secret-bubble'>🔒 비밀 댓글입니다. 작성자만 볼 수 있어요.</div>
-            </div>
+            <CommentList postId={post.id} />
             <div className='comment-input-area'>
                 <textarea className='comment-textarea' placeholder='댓글을 남겨보세요...'></textarea>
             </div>
             <div className='comment-options'>
                 <label className='secret-check'><input type='checkbox'/> 🔒 비밀 댓글 </label>
-                <button className='btn-comment'>등록</button>
+                <button className='btn-comment' onClick={() => handleSave}>등록</button>
             </div>
         </section>
       </div>
