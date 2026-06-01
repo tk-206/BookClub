@@ -149,13 +149,13 @@
       "title": "1234",
       "content": "213124",
       "isRead": false,
-      "author": "",
+      "author": "김김김",
       "profileImage": "김",
       "createAt": "2026-05-08T02:34:43.598Z",
       "stats": {
         "likeCount": 0,
         "viewCount": 0,
-        "commentCount": 0
+        "commentCount": 1
       },
       "tags": [
         "#1231",
@@ -250,6 +250,17 @@
       "id": "CO6QO6JrJkc"
     }
   ],
-  "comments": [],
+  "comments": [
+    {
+      "content": "123",
+      "isSecret": false,
+      "userId": "KXuvb49Vnxw",
+      "postId": "hv4V8E8ykTQ",
+      "author": "홍길동",
+      "createAt": "2026-06-01T02:02:11.106Z",
+      "parentId": null,
+      "id": "xvNcio9v-_Y"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

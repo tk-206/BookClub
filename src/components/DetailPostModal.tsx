@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './css/DetailPostModal.css'
 import clsx from 'clsx'
-import { createComment, type CommentType, type Post } from '../types'
+import { createComment, type CommentType, type CreateCommentInput, type Post } from '../types'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useMe } from '../hooks/useMe'
 import CommentList from './CommentList'
@@ -13,9 +13,9 @@ type Props = {
 }
 
 export default function DetailPostModal({ isOpen, onClose, post }: Props) {
-    const queryClient = useQueryClient()
+    const queryClient = useQueryClient()    
     const { data: user } = useMe()
-    const [commentContent, setCommentContent] = useState('')
+    const [commentContent, setCommentContent] = useState<string>('')
     const [isSecret, setIsSecret] = useState(false)
 
     useEffect(() => {
@@ -35,23 +35,28 @@ export default function DetailPostModal({ isOpen, onClose, post }: Props) {
     }, [isOpen, onClose])
     /* 댓글, 답글 저장 + 표시 해야함. */
     const saveMutation = useMutation({
-        mutationFn: (com: Omit<CommentType, "id">) => {
+        mutationFn: (com: CreateCommentInput) => {
             if(!user) {
                 throw new Error('로그인이 필요합니다.')
             }
-            return createComment(com, user.id)
+            return createComment(com, user.id, post.id, user.name)
         },
         onSuccess: (newComment) => {
             queryClient.setQueryData<CommentType[]>(
-                ['comments'],
-                (old = []) => [...(old ?? []), newComment]
+                ['comments', post.id],
+                (old = []) => [...old, newComment]
             )
-            onClose()
+            setCommentContent('')
+            setIsSecret(false)
         }
     })
 
     const handleSave = () => {
-        saveMutation.mutate()
+        if(!commentContent || !user ) return
+        saveMutation.mutate({
+            content: commentContent,
+            isSecret: isSecret,
+        })
     }
 
   return (
@@ -91,13 +96,13 @@ export default function DetailPostModal({ isOpen, onClose, post }: Props) {
                 <button className='reaction-btn'>↗️ 공유</button>
             </div>
             <div className='comments-label'>댓글 {post?.stats.commentCount}개</div>
-            <CommentList postId={post.id} />
+            <CommentList postId={post?.id}/>
             <div className='comment-input-area'>
-                <textarea className='comment-textarea' placeholder='댓글을 남겨보세요...'></textarea>
+                <textarea className='comment-textarea' placeholder='댓글을 남겨보세요...'  value={commentContent} onChange={(e) => setCommentContent(e.target.value)}></textarea>
             </div>
             <div className='comment-options'>
-                <label className='secret-check'><input type='checkbox'/> 🔒 비밀 댓글 </label>
-                <button className='btn-comment' onClick={() => handleSave}>등록</button>
+                <label className='secret-check'><input type='checkbox' checked={isSecret} onChange={(e) => setIsSecret(e.target.checked)} maxLength={1000}/> 🔒 비밀 댓글 </label>
+                <button className='btn-comment' onClick={handleSave}>등록</button>
             </div>
         </section>
       </div>
@@ -128,7 +133,7 @@ const formatTimeAgo = (
     const year = date.getFullYear()
 
     const month = String(
-        date.getDate()
+        date.getMonth()
     ).padStart(2,'0')
 
     const day = String(

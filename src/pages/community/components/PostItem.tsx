@@ -57,7 +57,7 @@ export const formatTimeAgo = (
     const year = date.getFullYear()
 
     const month = String(
-        date.getDate()
+        date.getMonth()
     ).padStart(2,'0')
 
     const day = String(
