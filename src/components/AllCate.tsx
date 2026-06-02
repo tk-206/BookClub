@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import './css/AllCate.css'
 import { useAuth } from "../context/useAuth";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 type Props = {
   isOpen: boolean
@@ -15,14 +15,14 @@ export default function AllCate({ isOpen, onClose }: Props) {
     return (
         <div className={clsx('moCate', {open: isOpen})}>
             <div className="top">
-                <button type="button" className="cate_back" onClick={onClose}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+                <button type="button" className="cate_back" onClick={onClose}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
                 {isAuthenticated ? 
                     (<div className="user">
-                        <button onClick={logout} style={{color:'var(--rose)'}}>로그아웃</button>           
+                        <button type="button" onClick={logout} style={{color:'var(--rose)'}}>로그아웃</button>           
                     </div>) : 
                     (<div className="user">
-                        <a href="/로그인">로그인</a>
-                        <a href="/로그인">회원가입</a>           
+                        <Link to="/로그인" onClick={onClose}>로그인</Link>
+                        <Link to="/로그인" onClick={onClose}>회원가입</Link>           
                     </div>)
                 }
             </div>

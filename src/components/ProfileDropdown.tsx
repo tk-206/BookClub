@@ -42,6 +42,7 @@ export default function ProfileDropdown() {
 
       {/* 아바타 버튼 */}
       <button
+        type="button"
         onClick={() => setIsOpen(prev => !prev)}
         className="nav-avatar"  /* 기존 클래스 그대로 */
       >
@@ -68,12 +69,14 @@ export default function ProfileDropdown() {
 
           {/* 메뉴 아이템 */}
           <button
+            type="button"
             className="dropdown-item"
             onClick={() => { navigate('/내 서재'); setIsOpen(false) }}
           >
             📚 내 서재
           </button>
           <button
+            type="button"
             className="dropdown-item"
             onClick={() => { navigate('/'); setIsOpen(false) }}
           >
@@ -83,6 +86,7 @@ export default function ProfileDropdown() {
           <div className="dropdown-divider" />
 
           <button
+            type="button"
             className="dropdown-item dropdown-item-danger"
             onClick={handleLogout}
           >

@@ -5,6 +5,7 @@ import { createComment, type CommentType, type CreateCommentInput, type Post } f
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useMe } from '../hooks/useMe'
 import CommentList from './CommentList'
+import { formatTimeAgo } from '../utils/date'
 
 type Props = {
   isOpen: boolean
@@ -64,7 +65,7 @@ export default function DetailPostModal({ isOpen, onClose, post }: Props) {
       <div className={clsx('detail-modal', {open: isOpen})} onClick={(e) => e.stopPropagation()}>
         
         <section className='detail-header'>
-            <button className='detail-close' onClick={() => onClose()}>✕</button>
+            <button className='detail-close' type="button" onClick={() => onClose()}>✕</button>
             <div className='detail-cats'>
                 <div className={clsx('post-category', post?.category)}>{post?.category}</div>
             </div>
@@ -91,54 +92,21 @@ export default function DetailPostModal({ isOpen, onClose, post }: Props) {
                 ))}
             </div>
             <div className='detail-reactions'>
-                <button className='reaction-btn liked'>❤️ {post?.stats.likeCount}</button>
-                <button className='reaction-btn'>🔖 저장</button>
-                <button className='reaction-btn'>↗️ 공유</button>
+                <button type="button" className='reaction-btn liked'>❤️ {post?.stats.likeCount}</button>
+                <button type="button" className='reaction-btn'>🔖 저장</button>
+                <button type="button" className='reaction-btn'>↗️ 공유</button>
             </div>
             <div className='comments-label'>댓글 {post?.stats.commentCount}개</div>
-            <CommentList postId={post?.id}/>
+            <CommentList postId={post?.id} postUserId={post.userId}/>
             <div className='comment-input-area'>
-                <textarea className='comment-textarea' placeholder='댓글을 남겨보세요...'  value={commentContent} onChange={(e) => setCommentContent(e.target.value)}></textarea>
+                <textarea className='comment-textarea' placeholder='댓글을 남겨보세요...'  value={commentContent} onChange={(e) => setCommentContent(e.target.value)} maxLength={1000}></textarea>
             </div>
             <div className='comment-options'>
-                <label className='secret-check'><input type='checkbox' checked={isSecret} onChange={(e) => setIsSecret(e.target.checked)} maxLength={1000}/> 🔒 비밀 댓글 </label>
-                <button className='btn-comment' onClick={handleSave}>등록</button>
+                <label className='secret-check'><input type='checkbox' checked={isSecret} onChange={(e) => setIsSecret(e.target.checked)}/> 🔒 비밀 댓글 </label>
+                <button className='btn-comment' type="button" onClick={handleSave}>등록</button>
             </div>
         </section>
       </div>
     </div>
   )
-}
-
-const formatTimeAgo = (
-    dataString: string
-) => {
-    const now = new Date()
-    const date = new Date(dataString)
-
-    const diff = now.getTime() - date.getTime()
-
-    const minutes = Math.floor(diff / 1000 / 60)
-    const hours = Math.floor(diff / 1000 / 60 / 60)
-    const days = Math.floor(diff / 1000 / 60 / 60 / 24)
-
-    if(minutes < 1) return '방금 전'
-
-    if(minutes < 60) return `${minutes}분 전`
-
-    if(hours < 24) return `${hours}시간 전`
-    
-    if(days < 7) return `${days}일 전`
-
-    const year = date.getFullYear()
-
-    const month = String(
-        date.getMonth()
-    ).padStart(2,'0')
-
-    const day = String(
-        date.getDate()
-    ).padStart(2,'0')
-
-    return `${year}.${month}.${day}`
 }

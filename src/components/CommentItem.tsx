@@ -1,60 +1,125 @@
+import clsx from "clsx"
 import { useMe } from "../hooks/useMe"
-import type { CommentType } from "../types"
+import { createComment, toggleCommentLike, type CommentType, type CreateCommentInput } from "../types"
+import { formatTimeAgo } from "../utils/date"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useState } from "react"
 
 type Props = {
     comment: CommentType,
-    postId: string
+    postId: string,
+    postAuthorId: string,
+    replies: CommentType[],
 }
 
-export default function CommentItem({comment, postId}:Props) {
-    const { data: me } = useMe()
+type ToggleLikeInput = {
+  commentId: string
+  userId: string
+}
 
+export default function CommentItem({comment, postId, postAuthorId, replies}:Props) {
+    const { data: me } = useMe()
+    const queryClient = useQueryClient()
     const isMine = me?.id === comment.userId
-    const isAuthor = comment.userId === postId
+    const isPostAuthor = comment.userId === postAuthorId
+    const isViewerPostAuthor = me?.id === postAuthorId
+    const [isReplyOpen, setIsReplyOpen] = useState(false)
+    const [replyContent, setReplyContent] = useState('')
+    const [isSecret, setIsSecret]= useState(false)
 
     const canSeeSecret =
         !comment.isSecret ||
         isMine ||
-        isAuthor
+        isViewerPostAuthor
+
+    const likeMutation = useMutation({
+        mutationFn: ({
+            commentId,
+            userId,
+        }: ToggleLikeInput) => 
+            toggleCommentLike(
+                commentId,
+                userId
+            ),
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: ['comments', postId]
+            })
+        }
+    })
+    const saveMutation = useMutation({
+        mutationFn: (com: CreateCommentInput) => {
+            if(!me) {
+                throw new Error('로그인이 필요합니다.')
+            }
+            return createComment(com, me.id, postId, me.name)
+        },
+        onSuccess: (newComment) => {
+            queryClient.setQueryData<CommentType[]>(
+                ['comments', postId],
+                (old = []) => [...old, newComment]
+            )
+            setReplyContent('')
+            setIsSecret(false)
+        }
+    })
+
+    const handleSave = () => {
+        if(!replyContent || !me ) return
+        saveMutation.mutate({
+            content: replyContent,
+            isSecret: isSecret,
+        })
+    }
+
+    const handleLike = () => {
+        if (!me) return
+        likeMutation.mutate({
+            commentId: comment.id,
+            userId: me.id,
+        })
+    }
 
     if (!canSeeSecret) {
         return (
             <div className='comment-item'>
-                <div className='secret-bubble'>
-                    🔒 비밀 댓글입니다.
-                </div>
+                <div className='comment-av s'>?</div>
+                <div className='secret-bubble'>🔒 비밀 댓글입니다. 작성자만 볼 수 있어요.</div>
             </div>
         )
     }
 
     return (
         <section>
-            <div className='comment-item'>
+            <div className={clsx('comment-item', { mine: isPostAuthor })}>
                 <div className='comment-bubble'>
-                    <div className='comment-author'>김하늘</div>
-                    <div className='comment-text'>2부에서 형부의 시선에 대한 분석이 정말 인상적이에요. 저도 이번에 다시 읽으면서 '예술'이라는 이름 아래 이뤄지는 착취의 구조가 선명하게 보였어요.</div>
+                    <div className='comment-author'>{comment.author} {isPostAuthor && <span>작성자</span>}</div>
+                    <div className='comment-text'>{comment.content}</div>
                     <div className='comment-footer'>
-                        <span className='comment-date'>30분 전</span>
-                        <button className='comment-action'>❤️ 5</button>
-                        <button className='comment-action'>↩ 답글</button>
+                        <span className='comment-date'>{formatTimeAgo(comment.createAt)}</span>
+                        <button className='comment-action' type="button" onClick={handleLike}>❤️ {comment.likeCount}</button>
+                        <button className='comment-action' type="button" onClick={() => setIsReplyOpen(prev => !prev)}>↩ 답글</button>
                     </div>
                 </div>
             </div>
-            <div className='comment-item mine'>
-                <div className='comment-bubble'>
-                    <div className='comment-author'>박소담 <span>작성자</span></div>
-                    <div className='comment-text'>맞아요. 그래서 3부에서 인혜의 시선이 더 아프게 읽혀요. 영혜를 구하려 하지만, '정상적인 삶'의 논리를 놓지 못하는 모순 속에 있잖아요.</div>
-                    <div className='comment-footer'>
-                        <span className='comment-date'>22분 전</span>
-                        <button className='comment-action'>❤️ 3</button>
-                        <button className='comment-action'>↩ 답글</button>
-                    </div>
+            {isReplyOpen && 
+                <div className='reply-form'>
+                    <textarea
+                        value={replyContent}
+                        onChange={(e) =>
+                            setReplyContent(e.target.value)
+                        }
+                        maxLength={500}
+                    />
+                    <label className='secret-check'><input type='checkbox' checked={isSecret} onChange={(e) => setIsSecret(e.target.checked)}/> 🔒 비밀 댓글 </label>
+                    <button type="button" onClick={handleSave}>
+                        등록
+                    </button>
                 </div>
-            </div>
-            <div className='comment-item'>
-                <div className='comment-av s'>?</div>
-                <div className='secret-bubble'>🔒 비밀 댓글입니다. 작성자만 볼 수 있어요.</div>
-            </div>
+            }
+            {isReplyOpen && replies.length > 0 && replies.map((reply) => (
+                <div key={reply.id}>{reply.content}</div>
+            ))}
         </section>
     )
 }

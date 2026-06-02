@@ -19,4 +19,9 @@ export default defineConfig({
       'pages': path.resolve(__dirname, 'src/pages') // 필요하면 추가
     }
   },
+  server: {
+    watch: {
+      ignored: ['**/db.json']
+    }
+  }
 })

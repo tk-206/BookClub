@@ -28,6 +28,7 @@ export default function Sidebar() {
                 <div className='sidebar-title'>게시판</div>
                 {boardList.map((l) => (
                     <button 
+                        key={l.title}
                         className={clsx('sidebar-btn', { active: menu === l.title})} 
                         onClick={() => setMenu(l.title)}
                     >
@@ -40,6 +41,7 @@ export default function Sidebar() {
                 <div className='sidebar-title'>작가 & 출판사</div>
                 {authorList.map((l) => (
                     <button 
+                        key={l.title}
                         className={clsx('sidebar-btn', { active: menu === l.title})} 
                         onClick={() => setMenu(l.title)}
                     >
@@ -52,6 +54,7 @@ export default function Sidebar() {
                 <div className='tag-cloud'>
                     {tagList.map((l) => (
                         <button 
+                            key={l}
                             className={clsx('tag', {active: activeTags.includes(l)})} 
                             onClick={() => toggleTab(l)}
                         >

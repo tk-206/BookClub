@@ -16,7 +16,7 @@ export default function Header({ clickOn }:Props) {
             </div>
             <div className='board-notice'>
                 {noticeList.map((l) => (
-                    <div className='notice-card' onClick={() => clickOn()}>
+                    <div key={l.title} className='notice-card' onClick={() => clickOn()}>
                         <span className='notice-icon'>📌</span>
                         <div className='notice-text'>
                             <div className='text-title'>{l.title}</div>

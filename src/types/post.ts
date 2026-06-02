@@ -12,6 +12,7 @@ export interface Post {
   stats: PostStats,
   tags?: string[],
   isSecret: boolean,
+  userId: string,
 }
 
 export interface PostStats {

@@ -14,22 +14,16 @@ export default function Home() {
     return (
         
         <section className='home-page'>
-            /* header */
             <HomeHeader />
 
-            /* feature */
             <HomeFeatures />
 
-            /* preview */
             <HomePreview />
 
-            /* community */
             <HomeCommunity />
 
-            /* authors */
             <HomeAuthors />
 
-            /* start */
             <HomeStart />  
         </section>
     )

@@ -61,7 +61,7 @@ export default function Community() {
                 {/* Right */}
                 <RightSidebar modalOpen={() => setWriteOpen(true)} />
 
-                <DetailPostModal isOpen={detailOpen} onClose={() => setDetailOpen(false)} post={selectPost ?? undefined}/>
+                {selectPost && (<DetailPostModal isOpen={detailOpen} onClose={() => setDetailOpen(false)} post={selectPost}/>)}
                 <AddPostModal isOpen={writeOpen} onClose={() => setWriteOpen(false)} user={user} initialData={selectPost ?? undefined}/>
             </section>
         )

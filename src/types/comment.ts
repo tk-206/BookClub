@@ -9,6 +9,8 @@ export interface CommentType {
   parentId: string | null,
   postId: string,
   author: string,
+  likeCount: number,
+  likeUserIds: string[],
 }
 
 export type CreateCommentInput = {
@@ -30,6 +32,8 @@ export const createComment = async (
     author,
     createAt: new Date().toISOString(),
     parentId: parentId ?? null,
+    likeCount: 0,
+    likeUserIds: [],
   })
 
   const post = await api.get(`/posts/${postId}`)
@@ -49,4 +53,35 @@ export const fetchComments = async (postId: string): Promise<CommentType[]> => {
   const res = await api.get(`comments?postId=${postId}`)
 
   return res.data
+}
+
+export const toggleCommentLike = async (
+  commentId: string,
+  userId: string,
+): Promise<CommentType> => {
+  const res = await api.get(`/comments/${commentId}`)
+
+  const comment: CommentType = res.data
+
+  const alreadyLiked =
+    comment.likeUserIds.includes(userId)
+
+  const updatedComment = {
+    likeCount: alreadyLiked
+      ? comment.likeCount - 1
+      : comment.likeCount + 1,
+
+    likeUserIds: alreadyLiked
+      ? comment.likeUserIds.filter(
+          id => id !== userId
+        )
+      : [...comment.likeUserIds, userId],
+  }
+
+  const updated = await api.patch(
+    `/comments/${commentId}`,
+    updatedComment
+  )
+
+  return updated.data
 }

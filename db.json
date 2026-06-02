@@ -41,6 +41,20 @@
         "marketing": true,
         "age": true
       }
+    },
+    {
+      "id": "vnVTyHDYuP4",
+      "createAt": "2026-06-02T07:38:59.669Z",
+      "role": "독서가",
+      "email": "test@example.com",
+      "password": "password123",
+      "name": "Tester",
+      "agreement": {
+        "terms": true,
+        "privacy": true,
+        "marketing": true,
+        "age": true
+      }
     }
   ],
   "books": [
@@ -149,13 +163,13 @@
       "title": "1234",
       "content": "213124",
       "isRead": false,
-      "author": "김김김",
+      "author": "홍길동",
       "profileImage": "김",
       "createAt": "2026-05-08T02:34:43.598Z",
       "stats": {
         "likeCount": 0,
         "viewCount": 0,
-        "commentCount": 1
+        "commentCount": 2
       },
       "tags": [
         "#1231",
@@ -259,7 +273,25 @@
       "author": "홍길동",
       "createAt": "2026-06-01T02:02:11.106Z",
       "parentId": null,
+      "likeCount": 1,
+      "likeUserIds": [
+        "a"
+      ],
       "id": "xvNcio9v-_Y"
+    },
+    {
+      "content": "12341234",
+      "isSecret": true,
+      "userId": "a",
+      "postId": "hv4V8E8ykTQ",
+      "author": "김예시",
+      "createAt": "2026-06-02T06:56:27.770Z",
+      "parentId": null,
+      "likeCount": 1,
+      "likeUserIds": [
+        "a"
+      ],
+      "id": "9Evwwz15tCI"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
