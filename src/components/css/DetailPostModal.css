@@ -330,3 +330,68 @@
     font-family: 'Noto Sans KR', sans-serif;
     transition: background 0.15s;
 }
+
+.comment-item.reply {
+    margin-top: 0.5rem;
+}
+
+.comment-item.reply::before {
+    content: "↳";
+    margin-right: 0.5rem;
+    color: #999;
+}
+
+.reply-option {
+    display: flex;
+    margin-bottom: 15px;
+    margin-right: 30px;
+}
+
+.reply-form {
+    margin-left: 40px;
+}
+
+.reply-form textarea {
+    width: 95%;
+    min-height: 80px;
+}
+
+.reply-list {
+    margin-left: 2rem;
+    margin-top: 0.75rem;
+}
+
+.reply-item {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.reply-line {
+    width: 16px;
+    border-left: 2px solid rgba(0,0,0,0.15);
+    border-bottom: 2px solid rgba(0,0,0,0.15);
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.reply-item .comment-bubble {
+    max-width: 85%;
+}
+
+.reply-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+
+    margin-left: 20px;
+    margin-top: 8px;
+}
+
+.reply-item.mine {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-right: 40px;
+    margin-left: 0;
+}

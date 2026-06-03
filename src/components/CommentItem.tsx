@@ -1,9 +1,11 @@
 import clsx from "clsx"
 import { useMe } from "../hooks/useMe"
-import { createComment, toggleCommentLike, type CommentType, type CreateCommentInput } from "../types"
+import { createComment, toggleCommentLike, type CommentType, type CreateCommentInput, type ToggleLikeInput } from "../types"
 import { formatTimeAgo } from "../utils/date"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useState } from "react"
+import Button from "./Button"
+import ReplyList from "./ReplyLIst"
 
 type Props = {
     comment: CommentType,
@@ -12,10 +14,6 @@ type Props = {
     replies: CommentType[],
 }
 
-type ToggleLikeInput = {
-  commentId: string
-  userId: string
-}
 
 export default function CommentItem({comment, postId, postAuthorId, replies}:Props) {
     const { data: me } = useMe()
@@ -52,7 +50,7 @@ export default function CommentItem({comment, postId, postAuthorId, replies}:Pro
             if(!me) {
                 throw new Error('로그인이 필요합니다.')
             }
-            return createComment(com, me.id, postId, me.name)
+            return createComment(com, me.id, postId, me.name, comment.id)
         },
         onSuccess: (newComment) => {
             queryClient.setQueryData<CommentType[]>(
@@ -102,6 +100,7 @@ export default function CommentItem({comment, postId, postAuthorId, replies}:Pro
                     </div>
                 </div>
             </div>
+            {isReplyOpen && replies.length > 0 && <ReplyList postAuthorId={postAuthorId} replyList={replies} postId={postId} isParentAuthor={isPostAuthor}/>}
             {isReplyOpen && 
                 <div className='reply-form'>
                     <textarea
@@ -109,17 +108,17 @@ export default function CommentItem({comment, postId, postAuthorId, replies}:Pro
                         onChange={(e) =>
                             setReplyContent(e.target.value)
                         }
+                        placeholder="답글을 남겨보세요..."
                         maxLength={500}
                     />
-                    <label className='secret-check'><input type='checkbox' checked={isSecret} onChange={(e) => setIsSecret(e.target.checked)}/> 🔒 비밀 댓글 </label>
-                    <button type="button" onClick={handleSave}>
-                        등록
-                    </button>
+                    <div className="reply-option">
+                        <label className='secret-check'><input type='checkbox' checked={isSecret} onChange={(e) => setIsSecret(e.target.checked)}/> 🔒 비밀 댓글 </label>
+                        <Button className='btn-comment' type="button" onClick={handleSave} size="sm">
+                            등록
+                        </Button>
+                    </div>
                 </div>
             }
-            {isReplyOpen && replies.length > 0 && replies.map((reply) => (
-                <div key={reply.id}>{reply.content}</div>
-            ))}
         </section>
     )
 }

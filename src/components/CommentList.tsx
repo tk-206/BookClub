@@ -4,10 +4,10 @@ import CommentItem from "./CommentItem"
 
 type Props = {
     postId: string,
-    postUserId: string,
+    postAuthorId: string,
 }
 
-export default function CommentList({postId, postUserId}: Props) {
+export default function CommentList({postId, postAuthorId}: Props) {
 
     const { data: comments = [] } = useQuery({
         queryKey: ['comments', postId],
@@ -37,7 +37,7 @@ export default function CommentList({postId, postUserId}: Props) {
     return (
         <section>
             {parentComments?.map((c) => (
-                <CommentItem key={c.id} comment={c} postId={postId} postAuthorId={postUserId} replies={repliesMap[c.id] ?? []}/>
+                <CommentItem key={c.id} comment={c} postId={postId} postAuthorId={postAuthorId} replies={repliesMap[c.id] ?? []}/>
             ))}
         </section>
     )

@@ -18,6 +18,12 @@ export type CreateCommentInput = {
   isSecret: boolean
 }
 
+
+export type ToggleLikeInput = {
+  commentId: string
+  userId: string
+}
+
 export const createComment = async (
   comment: CreateCommentInput,
   userId: string,

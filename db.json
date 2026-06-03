@@ -169,7 +169,7 @@
       "stats": {
         "likeCount": 0,
         "viewCount": 0,
-        "commentCount": 2
+        "commentCount": 4
       },
       "tags": [
         "#1231",
@@ -292,6 +292,30 @@
         "a"
       ],
       "id": "9Evwwz15tCI"
+    },
+    {
+      "content": "답글입니다.,",
+      "isSecret": false,
+      "userId": "a",
+      "postId": "hv4V8E8ykTQ",
+      "author": "김예시",
+      "createAt": "2026-06-03T05:01:36.182Z",
+      "parentId": "xvNcio9v-_Y",
+      "likeCount": 0,
+      "likeUserIds": [],
+      "id": "TLy_QhycsuY"
+    },
+    {
+      "content": "답글입니다..",
+      "isSecret": true,
+      "userId": "a",
+      "postId": "hv4V8E8ykTQ",
+      "author": "김예시",
+      "createAt": "2026-06-03T05:04:09.966Z",
+      "parentId": "9Evwwz15tCI",
+      "likeCount": 0,
+      "likeUserIds": [],
+      "id": "AkbV36pz-ag"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

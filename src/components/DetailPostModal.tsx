@@ -97,7 +97,7 @@ export default function DetailPostModal({ isOpen, onClose, post }: Props) {
                 <button type="button" className='reaction-btn'>↗️ 공유</button>
             </div>
             <div className='comments-label'>댓글 {post?.stats.commentCount}개</div>
-            <CommentList postId={post?.id} postUserId={post.userId}/>
+            <CommentList postId={post?.id} postAuthorId={post.userId}/>
             <div className='comment-input-area'>
                 <textarea className='comment-textarea' placeholder='댓글을 남겨보세요...'  value={commentContent} onChange={(e) => setCommentContent(e.target.value)} maxLength={1000}></textarea>
             </div>
