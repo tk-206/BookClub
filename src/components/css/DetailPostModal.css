@@ -348,6 +348,10 @@
 }
 
 .reply-form {
+    margin-left: 0px
+}
+
+.reply-form.mine {
     margin-left: 40px;
 }
 

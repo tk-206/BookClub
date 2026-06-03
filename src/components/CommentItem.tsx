@@ -59,6 +59,7 @@ export default function CommentItem({comment, postId, postAuthorId, replies}:Pro
             )
             setReplyContent('')
             setIsSecret(false)
+            setIsReplyOpen(false)
         }
     })
 
@@ -95,14 +96,14 @@ export default function CommentItem({comment, postId, postAuthorId, replies}:Pro
                     <div className='comment-text'>{comment.content}</div>
                     <div className='comment-footer'>
                         <span className='comment-date'>{formatTimeAgo(comment.createAt)}</span>
-                        <button className='comment-action' type="button" onClick={handleLike}>❤️ {comment.likeCount}</button>
-                        <button className='comment-action' type="button" onClick={() => setIsReplyOpen(prev => !prev)}>↩ 답글</button>
+                        <Button variant="none" size='sm' type="button" onClick={handleLike}>❤️ {comment.likeCount}</Button>
+                        <Button variant="none" size='sm' type="button" onClick={() => setIsReplyOpen(prev => !prev)}>↩ 답글</Button>
                     </div>
                 </div>
             </div>
             {isReplyOpen && replies.length > 0 && <ReplyList postAuthorId={postAuthorId} replyList={replies} postId={postId} isParentAuthor={isPostAuthor}/>}
             {isReplyOpen && 
-                <div className='reply-form'>
+                <div className={clsx('reply-form', { mine: isPostAuthor })}>
                     <textarea
                         value={replyContent}
                         onChange={(e) =>
@@ -113,7 +114,7 @@ export default function CommentItem({comment, postId, postAuthorId, replies}:Pro
                     />
                     <div className="reply-option">
                         <label className='secret-check'><input type='checkbox' checked={isSecret} onChange={(e) => setIsSecret(e.target.checked)}/> 🔒 비밀 댓글 </label>
-                        <Button className='btn-comment' type="button" onClick={handleSave} size="sm">
+                        <Button className='btn-comment' type="button" onClick={handleSave} size='sm'>
                             등록
                         </Button>
                     </div>

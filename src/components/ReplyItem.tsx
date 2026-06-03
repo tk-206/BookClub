@@ -3,6 +3,7 @@ import { useMe } from "../hooks/useMe"
 import { toggleCommentLike, type CommentType, type ToggleLikeInput } from "../types"
 import { formatTimeAgo } from "../utils/date"
 import clsx from "clsx"
+import Button from "./Button"
 
 type Props = {
     reply: CommentType,
@@ -63,7 +64,7 @@ export default function ReplyItem({reply, postAuthorId, postId, isParentAuthor}:
                 <div className='comment-text'>{reply.content}</div>
                 <div className='comment-footer'>
                     <span className='comment-date'>{formatTimeAgo(reply.createAt)}</span>
-                    <button className='comment-action' type="button" onClick={handleLike}>❤️ {reply.likeCount}</button>
+                    <Button variant="none" size='sm' type="button" onClick={handleLike}>❤️ {reply.likeCount}</Button>
                 </div>
             </div>
         </div>
