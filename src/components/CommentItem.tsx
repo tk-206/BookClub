@@ -5,7 +5,7 @@ import { formatTimeAgo } from "../utils/date"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useState } from "react"
 import Button from "./Button"
-import ReplyList from "./ReplyLIst"
+import ReplyList from "./ReplyList"
 
 type Props = {
     comment: CommentType,
@@ -97,7 +97,7 @@ export default function CommentItem({comment, postId, postAuthorId, replies}:Pro
                     <div className='comment-footer'>
                         <span className='comment-date'>{formatTimeAgo(comment.createAt)}</span>
                         <Button variant="none" size='sm' type="button" onClick={handleLike}>❤️ {comment.likeCount}</Button>
-                        <Button variant="none" size='sm' type="button" onClick={() => setIsReplyOpen(prev => !prev)}>↩ 답글</Button>
+                        <Button variant="none" size='sm' type="button" onClick={() => setIsReplyOpen(prev => !prev)}>↩ 답글 {replies.length}</Button>
                     </div>
                 </div>
             </div>

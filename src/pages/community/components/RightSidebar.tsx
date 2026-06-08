@@ -1,6 +1,7 @@
 import clsx from "clsx"
 import { hotPostList, meetingList, festivalList } from "../../../data/mock/DummyData"
 import { useState } from "react"
+import EmptyState from "../../../components/EmptyState"
 
 type Props = {
     modalOpen: () => void
@@ -12,7 +13,9 @@ export default function RightSidebar({ modalOpen }: Props) {
     let isPost
     if(post.length === 0 ) {
         isPost = (
-            <div className="not-yet">글이 준비중!!!</div>
+            <>
+                <EmptyState type="posts" />
+            </>
         )
     }
     else {
