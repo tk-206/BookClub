@@ -8,7 +8,7 @@ const boardList = [
     {title: '독서 토론', icon: '💬'},
     {title: '책 리뷰', icon: '📖'},
     {title: '질문 · 추천', icon: '❓'},
-    {title: '모임 모집', icon: '🤝'},
+    /* {title: '모임 모집', icon: '🤝'}, */
     {title: '정보 공유', icon: '📢'},
 ]
 

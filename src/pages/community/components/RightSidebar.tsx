@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { hotPostList, meetingList, festivalList } from "../../../data/mock/DummyData"
+import { hotPostList, festivalList } from "../../../data/mock/DummyData"
 import { useState } from "react"
 import EmptyState from "../../../components/EmptyState"
 
@@ -23,6 +23,7 @@ export default function RightSidebar({ modalOpen }: Props) {
             <div>
                 <div className='widget'>
                     <div className='widget-title'>🔥 인기 글</div>
+                    {/* 5개까지 */}
                     {hotPostList.map((l, i) => (
                         <div key={l.title} className='hot-item'>
                             <div className={clsx('hot-num', {top: i+1 <= 3})}>{i+1}</div>
@@ -31,7 +32,8 @@ export default function RightSidebar({ modalOpen }: Props) {
                         </div>
                     ))}
                 </div>
-                <div className='widget'>
+                {/* 수요층 구체화를 위한 삭제 */}
+                {/* <div className='widget'>
                     <div className='widget-title'>🤝 활성 모임</div>
                     {meetingList.map((l) => (
                         <div key={l.name} className='meeting-item'>
@@ -42,9 +44,10 @@ export default function RightSidebar({ modalOpen }: Props) {
                             </div>
                         </div>
                     ))}
-                </div>
+                </div> */}
                 <div className='widget'>
                     <div className='widget-title'>📅 다가오는 행사</div>
+                    {/* 3개까지 */}
                     {festivalList.map((l) => (
                         <div key={`${l.month}-${l.day}-${l.name}`} className='festival-item'>
                             <div className='festival-date'>

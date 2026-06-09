@@ -1,15 +1,15 @@
 import './AuthorMain.css'
 import { useState } from 'react'
-import clsx from 'clsx'
 import { useNavigate } from 'react-router-dom'
+import FilterButton from '../../../components/FilterButton'
 /* import EmptyState from '../../../components/EmptyState' */
 
-type TabFilter = '전체' | '소설' | '시' | 'SF·장르' | '에세이' | '신규 작가'
-const tabList = ['전체', '소설', '시', 'SF·장르', '에세이', '신규 작가'] as const
+
+const tabList = ['전체', '소설', '시', 'SF·장르', '에세이', '신규 작가']
 
 export default function AuthorMain() {
     const navigate = useNavigate() 
-    const [filter, setFilter] = useState<TabFilter>('전체')
+    const [filter, setFilter] = useState('전체')
     
 
     return (
@@ -85,11 +85,7 @@ export default function AuthorMain() {
                 </div>
 
                 <div className='list-tab'>
-                    <div className='filter-tabs'>
-                        {tabList.map((l) => (
-                            <button className={clsx('filter-tab', {active: l === filter})} onClick={() => setFilter(l)}>{l}</button>
-                        ))}
-                    </div>
+                    <FilterButton filterTab={filter} item={tabList} onChange={setFilter} />
                     <div className='search-wrap'>
                             <span>🔍</span>
                             <input type='text' placeholder='출판사 검색...'/>

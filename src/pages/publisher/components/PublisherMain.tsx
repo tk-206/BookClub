@@ -2,14 +2,13 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { topPubList, pubList } from '../../../data/mock/DummyData'
 import { useState } from 'react'
 import clsx from 'clsx'
+import FilterButton from '../../../components/FilterButton'
 
-type TabFilter = '전체' | '소설·문학' | '에세이' | 'SF·장르' | '어린이' | '채용중'
+const tabList = ['전체', '소설·문학', '에세이', 'SF·장르', '어린이', '채용중']
 
 export default function PublisherMain() {
-    const [filter, setFilter] = useState<TabFilter>('전체')
+    const [filter, setFilter] = useState('전체')
     const navigate = useNavigate()
-
-    const tabList = ['전체', '소설·문학', '에세이', 'SF·장르', '어린이', '채용중'] as const
 
     return (
         <section className="publisher-page">
@@ -43,11 +42,7 @@ export default function PublisherMain() {
             </div>
 
             <div className='list-tab'>
-                <div className='filter-tabs'>
-                    {tabList.map((l) => (
-                        <button className={clsx('filter-tab', {active: l === filter})} onClick={() => setFilter(l)}>{l}</button>
-                    ))}
-                </div>
+                <FilterButton filterTab={filter} item={tabList} onChange={setFilter} />
                 <div className='search-wrap'>
                         <span>🔍</span>
                         <input type='text' placeholder='출판사 검색...'/>

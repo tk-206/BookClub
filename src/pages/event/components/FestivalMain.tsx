@@ -1,10 +1,15 @@
 import { useNavigate } from "react-router-dom"
 import './FestivalMain.css'
 import EmptyState from "../../../components/EmptyState"
+import FilterButton from "../../../components/FilterButton"
+import { useState } from "react"
+
+const tabList = [ '전체', '낭독회', '북토크', '사인회', '도서전' ]
 
 export default function FestivalMain() {
+    const [filter, setFilter] = useState('전체')
     const navigate = useNavigate()
-    const event = []
+    const event = [ 1 ]
 
     let festivalRow
     if(event.length === 0) {
@@ -16,7 +21,7 @@ export default function FestivalMain() {
     }
     else {
         festivalRow = (
-            <div>
+            <div className="cs-wrap">
                 <div className="cs-item" onClick={() => navigate('상세')}>
                     <div className="cs-dday soon">D-3</div>
                     <div>
@@ -70,7 +75,7 @@ export default function FestivalMain() {
         festivalMain = (
             <div>
                 <div className="events-grid">
-                        <div className="ec tall" /* onclick="showDetail()" */>
+                        <div className="ec wide" /* onclick="showDetail()" */>
                         <div className="dday-badge soon">D-3</div>
                         <div className="ec-type t-reading">낭독회</div>
                         <div className="ec-date-display">
@@ -83,7 +88,6 @@ export default function FestivalMain() {
                             <div className="ec-meta-row">🕐 오후 3:00 — 5:00</div>
                             <div className="ec-meta-row">🎟 무료 (사전 예약 필수)</div>
                         </div>
-                        <div className="ec-desc">신작 장편의 일부를 작가가 직접 낭독하는 특별한 자리. 낭독 후 독자와의 짧은 Q&amp;A 시간도 마련되어 있습니다. 선착순 120명.</div>
                         <div className="ec-footer">
                             <div className="ec-seats">
                             <div className="seats-bar"><div className="seats-fill" style={{width:"88%"}}></div></div>
@@ -133,7 +137,7 @@ export default function FestivalMain() {
                         </div>
                         </div>
 
-                        <div className="ec wide" /* onclick="showDetail()" */>
+                        <div className="ec" /* onclick="showDetail()" */>
                         <div className="dday-badge upcoming">D-21</div>
                         <div className="ec-type t-sign">사인회</div>
                         <div className="ec-date-display">
@@ -279,12 +283,7 @@ export default function FestivalMain() {
 
             {/* Controls */}
             <div className="list-controls">
-                <div className="filter-tabs">
-                    <button className="ftab active">전체</button>
-                    <button className="ftab">낭독회</button>
-                    <button className="ftab">북토크</button>
-                    <button className="ftab">사인회</button>
-                </div>
+                <FilterButton filterTab={filter} item={tabList} onChange={setFilter} />
 
                 <div className="right-controls">
                     <div className="search-wrap">
