@@ -26,10 +26,8 @@ export default function PostList({ posts = [], onClickPost }: Props) {
   return (
     <div className='post-list'>
       <div className='featured-post'>
-      <div>
-          {/* 좋아요 수 제일 많은 거 불러오기 */}
-          <FeaturedPost hotPost={hotPost} />
-      </div>
+        {/* 좋아요 수 제일 많은 거 불러오기 */}
+        <FeaturedPost hotPost={hotPost} />
       <div className='featured-img'>📚</div>
       </div>
       {filteredPosts.map((post) => (
