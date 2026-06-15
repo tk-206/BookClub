@@ -27,6 +27,7 @@ const emptyPost: Omit<Post, 'id'> = {
         isSecret: false,
         profileImage: '',
         userId: '',
+        likeUserIds: []
     }
 
 type Category = '독서 토론' | '책 리뷰' | '질문 · 추천' | '모임 모집' | '정보 공유' | '구인구직'

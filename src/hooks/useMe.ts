@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { api } from '../api/client';
 import { getAccessToken } from '../auth/tokenStore';
+import type { User } from '../types';
 
 export function useMe() {
   return useQuery({
@@ -10,7 +11,7 @@ export function useMe() {
   });
 }
 
-export async function getMe() {
+export async function getMe(): Promise<User> {
   const token = getAccessToken()
 
   if (!token) {
