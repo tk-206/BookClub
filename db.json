@@ -167,7 +167,7 @@
       "profileImage": "김",
       "createAt": "2026-05-08T02:34:43.598Z",
       "stats": {
-        "likeCount": 0,
+        "likeCount": 1,
         "viewCount": 0,
         "commentCount": 4
       },
@@ -177,7 +177,10 @@
       ],
       "isSecret": false,
       "userId": "KXuvb49Vnxw",
-      "id": "hv4V8E8ykTQ"
+      "id": "hv4V8E8ykTQ",
+      "likeUserIds": [
+        "a"
+      ]
     },
     {
       "category": "책 리뷰",
@@ -187,7 +190,7 @@
       "author": "홍길동",
       "createAt": "2026-05-08T02:34:43.598Z",
       "stats": {
-        "likeCount": 0,
+        "likeCount": 1,
         "viewCount": 0,
         "commentCount": 0
       },
@@ -198,7 +201,10 @@
       "isSecret": false,
       "profileImage": "",
       "userId": "KXuvb49Vnxw",
-      "id": "WZ6RnDBHUyc"
+      "id": "WZ6RnDBHUyc",
+      "likeUserIds": [
+        "a"
+      ]
     },
     {
       "category": "독서 토론",
@@ -219,7 +225,8 @@
       "profileImage": "",
       "createAt": "2026-05-12T02:59:48.719Z",
       "userId": "KXuvb49Vnxw",
-      "id": "gv4YhJ41APg"
+      "id": "gv4YhJ41APg",
+      "likeUserIds": []
     },
     {
       "category": "독서 토론",
@@ -240,7 +247,8 @@
       "profileImage": "",
       "createAt": "2026-05-12T02:59:54.567Z",
       "userId": "KXuvb49Vnxw",
-      "id": "YKA-eCjviKw"
+      "id": "YKA-eCjviKw",
+      "likeUserIds": []
     },
     {
       "category": "독서 토론",
@@ -261,7 +269,8 @@
       "profileImage": "",
       "createAt": "2026-05-12T03:00:24.944Z",
       "userId": "KXuvb49Vnxw",
-      "id": "CO6QO6JrJkc"
+      "id": "CO6QO6JrJkc",
+      "likeUserIds": []
     }
   ],
   "comments": [

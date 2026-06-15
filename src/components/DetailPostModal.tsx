@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './css/DetailPostModal.css'
 import clsx from 'clsx'
-import { createComment, type CommentType, type CreateCommentInput, type Post } from '../types'
+import { createComment, togglePostLike, type CommentType, type CreateCommentInput, type Post, type TogglePostLikeInput } from '../types'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useMe } from '../hooks/useMe'
 import CommentList from './CommentList'
@@ -11,9 +11,10 @@ type Props = {
   isOpen: boolean
   onClose: () => void
   post: Post 
+  onUpdatePost: (updatedPost: Post) => void
 }
 
-export default function DetailPostModal({ isOpen, onClose, post }: Props) {
+export default function DetailPostModal({ isOpen, onClose, post, onUpdatePost }: Props) {
     const queryClient = useQueryClient()    
     const { data: user } = useMe()
     const [commentContent, setCommentContent] = useState<string>('')
@@ -52,6 +53,37 @@ export default function DetailPostModal({ isOpen, onClose, post }: Props) {
         }
     })
 
+    const likeMutation = useMutation({
+        mutationFn: ({
+            postId,
+            userId
+        }: TogglePostLikeInput) =>
+            togglePostLike(
+            postId,
+            userId
+            ),
+
+        onSuccess: (updatePost) => {
+            queryClient.setQueryData<Post[]>(
+                ['posts'],
+                old =>
+                    old?.map(post => 
+                        post.id === updatePost.id
+                        ? updatePost
+                        : post
+                    )
+            )
+            onUpdatePost(updatePost)
+        }
+    })
+
+    const handleLike = () => {
+        if (!user) return
+        likeMutation.mutate({
+            postId: post.id,
+            userId: user.id,
+        })
+    }
     const handleSave = () => {
         if(!commentContent || !user ) return
         saveMutation.mutate({
@@ -92,7 +124,7 @@ export default function DetailPostModal({ isOpen, onClose, post }: Props) {
                 ))}
             </div>
             <div className='detail-reactions'>
-                <button type="button" className='reaction-btn liked'>❤️ {post?.stats.likeCount}</button>
+                <button type="button" className='reaction-btn liked' onClick={handleLike} >❤️ {post?.stats.likeCount}</button>
                 <button type="button" className='reaction-btn'>🔖 저장</button>
                 <button type="button" className='reaction-btn'>↗️ 공유</button>
             </div>

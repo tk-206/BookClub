@@ -29,6 +29,12 @@ export default function Community() {
         refetchOnWindowFocus: false,
     })
 
+    const handleUpdatePost = (
+        updatedPost: Post
+    ) => {
+        setSelectPost(updatedPost)
+    }
+
     let content
     if(isLoading) {
         content = (
@@ -61,7 +67,7 @@ export default function Community() {
                 {/* Right */}
                 <RightSidebar modalOpen={() => setWriteOpen(true)} />
 
-                {selectPost && (<DetailPostModal isOpen={detailOpen} onClose={() => setDetailOpen(false)} post={selectPost}/>)}
+                {selectPost && (<DetailPostModal isOpen={detailOpen} onClose={() => setDetailOpen(false)} post={selectPost} onUpdatePost={handleUpdatePost}/>)}
                 <AddPostModal isOpen={writeOpen} onClose={() => setWriteOpen(false)} user={user} initialData={selectPost ?? undefined}/>
             </section>
         )
