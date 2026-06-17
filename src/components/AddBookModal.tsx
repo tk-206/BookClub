@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import './css/AddBookModal.css'
 import clsx from 'clsx'
-import { createBook, deleteBook, updateBook, type Book } from '../api/book'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { type Book } from '../api/book'
 import type { User } from '../types'
+import useBookMutations from '../hooks/queries/useBookMutations'
 
 type Props = {
   isOpen: boolean
@@ -30,8 +30,8 @@ type Status = "읽는중" | "완독" | "희망"
 
 export default function AddBookModal({ isOpen, onClose, initialData, user }: Props) {
   const isEditMode = !!initialData
-  const queryClient = useQueryClient()
   const [form, setForm] = useState<Book>(() => initialData ?? emptyForm)
+  const { saveMutation, updateMutation, deleteMutation } = useBookMutations(user.id)
   
     useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -48,47 +48,6 @@ export default function AddBookModal({ isOpen, onClose, initialData, user }: Pro
         window.removeEventListener('keydown', handleEsc)
     }
     }, [isOpen, onClose])
-
-  const saveMutation = useMutation({
-    mutationFn: (book: Omit<Book, "id" | "userId">) =>
-      createBook(book, user!.id),
-    onSuccess: (newBook) => {
-      queryClient.setQueryData<Book[]>(['books', user?.id], (old = []) => [
-        ...old,
-        newBook,
-      ])
-      onClose()
-    },
-  })
-
-    const updateMutation = useMutation({
-    mutationFn: (data: { id: string; book: Book }) =>
-      updateBook(data.id, data.book, user!.id),
-    onSuccess: (updatedBook) => {
-      queryClient.setQueryData<Book[]>(['books', user?.id], (old = []) =>
-        old.map((b) => (b.id === updatedBook.id ? updatedBook : b))
-      )
-      onClose()
-    },
-  })
-
-    /* const deleteMutaion = useMutation({
-      mutationFn: (id: number) => deleteBook(id, user.id),
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ['books', user.id] })
-        onClose()
-      },
-    }) */
-   // 삭제: 캐시에서 해당 책 제거 (서버 재요청 없음)
-  const deleteMutation = useMutation({
-    mutationFn: (id: string) => deleteBook(id, user!.id),
-    onSuccess: (_, id) => {
-      queryClient.setQueryData<Book[]>(['books', user?.id], (old = []) =>
-        old.filter((b) => b.id !== id)
-      )
-      onClose()
-    },
-  })
 
     const handleSubmit = () => {
       if(isEditMode) {
