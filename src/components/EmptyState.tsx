@@ -1,5 +1,4 @@
 import EmptyIcon from "./EmptyIcon"
-import './css/EmptyState.css'
 
 interface EmptyStateProps {
   type: 'library' | 'posts' | 'search' | 'events' | 'notifications' | 'lounge'
@@ -44,17 +43,17 @@ export default function EmptyState({ type, onAction }: EmptyStateProps) {
   const isDark = type === 'lounge'
 
   return (
-    <div className={`empty-state ${isDark ? 'empty-state-dark' : ''}`}>
+    <div className={`flex flex-col justify-center items-center text-center p-8 ${isDark ? 'bg-navy-dark-text-white' : ''}`}>
       <EmptyIcon type={type} />
-      <p className="empty-title">{config.title}</p>
-      <p className="empty-desc">
+      <p className="mt-4 text-xl font-bold">{config.title}</p>
+      <p className="mt-2 text-center font-medium text-muted">
         {config.desc.split('\n').map((line, i) => (
           <span key={i}>{line}<br /></span>
         ))}
       </p>
       {onAction && (
         <button
-          className={isDark ? 'empty-cta-gold' : 'empty-cta'}
+          className={`mt-6 px-6 py-2 rounded-md font-medium transition-colors ${isDark ? 'bg-gold text-white hover:bg-gold-light' : 'bg-navy text-white hover:bg-navy-light'}`}
           onClick={onAction}
         >
           {config.action}
