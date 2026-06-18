@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import './css/DetailPostModal.css'
 import clsx from 'clsx'
-import { createComment, togglePostLike, type CommentType, type CreateCommentInput, type Post, type TogglePostLikeInput } from '../types'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { type Post } from '../types'
 import { useMe } from '../hooks/useMe'
 import CommentList from './CommentList'
 import { formatTimeAgo } from '../utils/date'
+import usePostMutations from '../hooks/queries/usePostMutations'
+import useCommentMutations from '../hooks/queries/useCommentMutations'
 
 type Props = {
   isOpen: boolean
@@ -14,9 +15,10 @@ type Props = {
   onUpdatePost: (updatedPost: Post) => void
 }
 
-export default function DetailPostModal({ isOpen, onClose, post, onUpdatePost }: Props) {
-    const queryClient = useQueryClient()    
+export default function DetailPostModal({ isOpen, onClose, post, onUpdatePost }: Props) { 
     const { data: user } = useMe()
+    const { saveMutation } = useCommentMutations(post.id, user)
+    const { likeMutation } = usePostMutations(user, onUpdatePost)
     const [commentContent, setCommentContent] = useState<string>('')
     const [isSecret, setIsSecret] = useState(false)
 
@@ -35,47 +37,6 @@ export default function DetailPostModal({ isOpen, onClose, post, onUpdatePost }:
         window.removeEventListener('keydown', handleEsc)
     }
     }, [isOpen, onClose])
-    /* 댓글, 답글 저장 + 표시 해야함. */
-    const saveMutation = useMutation({
-        mutationFn: (com: CreateCommentInput) => {
-            if(!user) {
-                throw new Error('로그인이 필요합니다.')
-            }
-            return createComment(com, user.id, post.id, user.name)
-        },
-        onSuccess: (newComment) => {
-            queryClient.setQueryData<CommentType[]>(
-                ['comments', post.id],
-                (old = []) => [...old, newComment]
-            )
-            setCommentContent('')
-            setIsSecret(false)
-        }
-    })
-
-    const likeMutation = useMutation({
-        mutationFn: ({
-            postId,
-            userId
-        }: TogglePostLikeInput) =>
-            togglePostLike(
-            postId,
-            userId
-            ),
-
-        onSuccess: (updatePost) => {
-            queryClient.setQueryData<Post[]>(
-                ['posts'],
-                old =>
-                    old?.map(post => 
-                        post.id === updatePost.id
-                        ? updatePost
-                        : post
-                    )
-            )
-            onUpdatePost(updatePost)
-        }
-    })
 
     const handleLike = () => {
         if (!user) return

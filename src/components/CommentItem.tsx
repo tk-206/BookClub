@@ -1,11 +1,11 @@
 import clsx from "clsx"
 import { useMe } from "../hooks/useMe"
-import { createComment, toggleCommentLike, type CommentType, type CreateCommentInput, type ToggleLikeInput } from "../types"
+import { type CommentType } from "../types"
 import { formatTimeAgo } from "../utils/date"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useState } from "react"
 import Button from "./Button"
 import ReplyList from "./ReplyList"
+import useCommentMutations from "../hooks/queries/useCommentMutations"
 
 type Props = {
     comment: CommentType,
@@ -17,7 +17,7 @@ type Props = {
 
 export default function CommentItem({comment, postId, postAuthorId, replies}:Props) {
     const { data: me } = useMe()
-    const queryClient = useQueryClient()
+    const { saveMutation, likeMutation } = useCommentMutations(postId, me, comment.id)
     const isMine = me?.id === comment.userId
     const isPostAuthor = comment.userId === postAuthorId
     const isViewerPostAuthor = me?.id === postAuthorId
@@ -30,45 +30,15 @@ export default function CommentItem({comment, postId, postAuthorId, replies}:Pro
         isMine ||
         isViewerPostAuthor
 
-    const likeMutation = useMutation({
-        mutationFn: ({
-            commentId,
-            userId,
-        }: ToggleLikeInput) => 
-            toggleCommentLike(
-                commentId,
-                userId
-            ),
-        onSuccess: () => {
-            queryClient.invalidateQueries({
-                queryKey: ['comments', postId]
-            })
-        }
-    })
-    const saveMutation = useMutation({
-        mutationFn: (com: CreateCommentInput) => {
-            if(!me) {
-                throw new Error('로그인이 필요합니다.')
-            }
-            return createComment(com, me.id, postId, me.name, comment.id)
-        },
-        onSuccess: (newComment) => {
-            queryClient.setQueryData<CommentType[]>(
-                ['comments', postId],
-                (old = []) => [...old, newComment]
-            )
-            setReplyContent('')
-            setIsSecret(false)
-            setIsReplyOpen(false)
-        }
-    })
-
     const handleSave = () => {
         if(!replyContent || !me ) return
         saveMutation.mutate({
             content: replyContent,
             isSecret: isSecret,
         })
+        setReplyContent('')
+        setIsSecret(false)
+        setIsReplyOpen(false)
     }
 
     const handleLike = () => {

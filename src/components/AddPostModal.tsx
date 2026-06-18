@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import './css/AddPostModal.css'
 import clsx from 'clsx'
-import { createPost, type Post, type User } from '../types'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { type Post, type User } from '../types'
+import usePostMutations from '../hooks/queries/usePostMutations'
 
 type Props = {
   isOpen: boolean
@@ -33,7 +33,7 @@ const emptyPost: Omit<Post, 'id'> = {
 type Category = '독서 토론' | '책 리뷰' | '질문 · 추천' | '모임 모집' | '정보 공유' | '구인구직'
 
 export default function AddPostModal({ isOpen, onClose, initialData, user }: Props) {
-    const queryClient = useQueryClient()
+    const { saveMutation } = usePostMutations()
     const isEditMode = !!initialData
     const category = ['독서 토론', '책 리뷰', '질문 · 추천', '모임 모집', '정보 공유', '구인구직'] as const
     const [categorySel,setCategorysel] = useState<Category>('독서 토론')
@@ -44,23 +44,7 @@ export default function AddPostModal({ isOpen, onClose, initialData, user }: Pro
         .filter(Boolean)
         .map(tag => tag.startsWith('#') ? tag : `#${tag}`)
     const [post, setPost] = useState<Omit<Post, 'id'>>(() => initialData ?? emptyPost)
-
-    // 로그인 안되어있을 경우 로그인 시키기.
-    const saveMutation = useMutation({
-        mutationFn: (post: Omit<Post, "id">) => {
-            if(!user) {
-                throw new Error('로그인이 필요합니다.')
-            }
-            return createPost(post, user.id)
-        },
-        onSuccess: (newPost) => {
-            queryClient.setQueryData<Post[]>(
-                ['posts'],
-                (old = []) => [...old, newPost]
-            )
-            onClose()
-        }
-    })
+    
 
     const updateMutation = () => {}
 
