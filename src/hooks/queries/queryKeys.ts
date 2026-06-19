@@ -12,6 +12,10 @@ export const postKeys = {
 
 export const commentKeys = {
     all: ['comments'] as const,
-    list: () => [...commentKeys.all] as const,
-    detail: (id: string) => [...commentKeys.all, 'detail', id] as const 
+    list: (postId: string) => [...commentKeys.all, postId] as const,
+}
+
+export const userKeys = {
+    all: ['users'] as const,
+    detail: (id: string) => [...userKeys.all, id] as const,
 }

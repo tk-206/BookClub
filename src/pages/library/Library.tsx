@@ -8,6 +8,7 @@ import AddBookModal from '../../components/AddBookModal'
 import { fetchBooks, type Book } from '../../api/book'
 import { useQuery } from '@tanstack/react-query'
 import { useMe } from '../../hooks/useMe'
+import { bookKeys } from '../../hooks/queries/queryKeys'
 
 type SideTab = '전체 서재' | '읽는 중' | '읽은 책' | '읽고 싶어요' | '독서 캘린더' | '독서 통계' | '내 게시글' | '알림'
 type ContentTab = '목록' | '캘린더' | '통계'
@@ -21,13 +22,13 @@ export default function Library() {
     const currentYear = new Date().getFullYear()
 
     const { data: books = [], isLoading, error } = useQuery({
-        queryKey: ['books', user?.id],
+        queryKey: bookKeys.list(user?.id ?? ''),
         queryFn: () => fetchBooks(user!.id),
         enabled: !!user?.id,
         refetchOnWindowFocus: false,
     })
 
-        const tabContent = {
+    const tabContent = {
         목록: MyBook,
         캘린더: Calendar,
         통계: StatsView,
@@ -39,17 +40,17 @@ export default function Library() {
         {
             title: '내 서재',
             pages: [
-                {label: '전체 서재', icon: '📚'},
-                {label: '읽는 중', icon: '📖'},
-                {label: '읽은 책', icon: '✅'},
-                {label: '읽고 싶어요', icon: '🔖'},
+                { label: '전체 서재', icon: '📚'} ,
+                { label: '읽는 중', icon: '📖' },
+                { label: '읽은 책', icon: '✅' },
+                { label: '읽고 싶어요', icon: '🔖' },
             ],
         },
         {
             title: '활동',
             pages: [
-                {label: '내 게시글', icon: '💬'},
-                {label: '알림', icon: '🔔'},
+                { label: '내 게시글', icon: '💬' },
+                { label: '알림', icon: '🔔' },
             ],
         }
     ] as const

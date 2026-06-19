@@ -1,9 +1,9 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useMe } from "../hooks/useMe"
-import { toggleCommentLike, type CommentType, type ToggleLikeInput } from "../types"
+import { type CommentType } from "../types"
 import { formatTimeAgo } from "../utils/date"
 import clsx from "clsx"
 import Button from "./Button"
+import useCommentMutations from "../hooks/queries/useCommentMutations"
 
 type Props = {
     reply: CommentType,
@@ -14,7 +14,7 @@ type Props = {
 
 export default function ReplyItem({reply, postAuthorId, postId, isParentAuthor}: Props) {
     const { data: me } = useMe()
-    const queryClient = useQueryClient()
+    const { likeMutation } = useCommentMutations(postId, me, reply.id)
     const isMine = me?.id === reply.userId
     const isViewerPostAuthor = me?.id === postAuthorId
 
@@ -22,22 +22,6 @@ export default function ReplyItem({reply, postAuthorId, postId, isParentAuthor}:
         !reply.isSecret ||
         isMine ||
         isViewerPostAuthor
-
-    const likeMutation = useMutation({
-        mutationFn: ({
-            commentId,
-            userId,
-        }: ToggleLikeInput) => 
-            toggleCommentLike(
-                commentId,
-                userId
-            ),
-        onSuccess: () => {
-            queryClient.invalidateQueries({
-                queryKey: ['comments', postId]
-            })
-        }
-    })
 
     const handleLike = () => {
         if (!me) return

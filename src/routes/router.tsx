@@ -1,23 +1,25 @@
 import { createBrowserRouter } from "react-router-dom";
+import { lazy } from "react";
 import Layout from '../layout/Layout'
-import Home from "../pages/home/Home";
-import Library from "../pages/library/Library";
 import AuthLayout from "../layout/AuthLayout";
-import Community from "../pages/community/Community";
-import Publisher from "../pages/publisher/Publisher";
-import Author from "../pages/author/Author";
-import AuthorMain from "../pages/author/components/AuthorMain";
-import AuthorChannel from "../pages/author/components/AuthorChannel";
-import AuthorLounge from "../pages/author/components/AuthorLounge";
-import Festival from "../pages/event/Festival";
-import FestivalMain from "../pages/event/components/FestivalMain";
-import FestivalDetail from "../pages/event/components/FestivalDetail";
-import FestivalCalendar from "../pages/event/components/FestivalCalendar";
 import ProtectedRoute from "../components/ProtectedRoute";
-import Auth from "../pages/login/Auth";
-import Recruiting from "../pages/job/Recruiting";
-import PublisherMain from "../pages/publisher/components/PublisherMain";
-import PublisherDetail from "../pages/publisher/components/PublisherDetail/PublisherDetail";
+
+const Home = lazy(() => import("../pages/home/Home"));
+const Library = lazy(() => import("../pages/library/Library"));
+const Community = lazy(() => import("../pages/community/Community"));
+const Publisher = lazy(() => import("../pages/publisher/Publisher"));
+const Author = lazy(() => import("../pages/author/Author"));
+const AuthorMain = lazy(() => import("../pages/author/components/AuthorMain"));
+const AuthorChannel = lazy(() => import("../pages/author/components/AuthorChannel"));
+const AuthorLounge = lazy(() => import("../pages/author/components/AuthorLounge"));
+const Festival = lazy(() => import("../pages/event/Festival"));
+const FestivalMain = lazy(() => import("../pages/event/components/FestivalMain"));
+const FestivalDetail = lazy(() => import("../pages/event/components/FestivalDetail"));
+const FestivalCalendar = lazy(() => import("../pages/event/components/FestivalCalendar"));
+const Auth = lazy(() => import("../pages/login/Auth"));
+const Recruiting = lazy(() => import("../pages/job/Recruiting"));
+const PublisherMain = lazy(() => import("../pages/publisher/components/PublisherMain"));
+const PublisherDetail = lazy(() => import("../pages/publisher/components/PublisherDetail/PublisherDetail"));
 
 export const router = createBrowserRouter([
     {
@@ -25,24 +27,28 @@ export const router = createBrowserRouter([
         element: <Layout />,
         children: [
             { index: true, element: <Home /> },
-            { path: "커뮤니티", element: <Community />},
-            { element: <ProtectedRoute />,
-                children: [ { path: "내 서재", element: <Library />}, ]
+            { path: "커뮤니티", element: <Community /> },
+            {
+                element: <ProtectedRoute />,
+                children: [{ path: "내 서재", element: <Library /> },]
             },
-            { path: "출판사", element: <Publisher />,
-                children: [ { index: true, element: <PublisherMain /> }, { path: '상세', element: <PublisherDetail /> } ]
+            {
+                path: "출판사", element: <Publisher />,
+                children: [{ index: true, element: <PublisherMain /> }, { path: '상세', element: <PublisherDetail /> }]
             },
-            { path: "작가", element: <Author />, 
-                children: [ { index: true, element: <AuthorMain />}, { path: '채널', element: <AuthorChannel />}, { element: <ProtectedRoute />, children: [ { path: '라운지', element: <AuthorLounge />}, ]}, ]},
-            { path: "행사", element: <Festival />, children: [ { index: true, element: <FestivalMain />}, { path: '상세', element: <FestivalDetail />}, { path: '캘린더', element: <FestivalCalendar />},]},
-            { path: "구인구직", element: <Recruiting />}
+            {
+                path: "작가", element: <Author />,
+                children: [{ index: true, element: <AuthorMain /> }, { path: '채널', element: <AuthorChannel /> }, { element: <ProtectedRoute />, children: [{ path: '라운지', element: <AuthorLounge /> },] },]
+            },
+            { path: "행사", element: <Festival />, children: [{ index: true, element: <FestivalMain /> }, { path: '상세', element: <FestivalDetail /> }, { path: '캘린더', element: <FestivalCalendar /> },] },
+            { path: "구인구직", element: <Recruiting /> }
         ]
     },
     {
         path: "로그인",
         element: <AuthLayout />,
         children: [
-            { index: true, element: <Auth />},
+            { index: true, element: <Auth /> },
         ]
     },
 ])

@@ -13,6 +13,7 @@ import EmptyState from '../../components/EmptyState'
 import { fetchPosts, type Post } from '../../types'
 import { useMe } from '../../hooks/useMe'
 import { useQuery } from '@tanstack/react-query'
+import { postKeys } from '../../hooks/queries/queryKeys'
 
 
 
@@ -24,7 +25,7 @@ export default function Community() {
     const { data: user } = useMe()
 
     const { data: post = [], isLoading } = useQuery({
-        queryKey: ['posts'],
+        queryKey: postKeys.list(),
         queryFn: () => fetchPosts(),
         refetchOnWindowFocus: false,
     })
