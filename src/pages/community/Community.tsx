@@ -14,6 +14,7 @@ import { fetchPosts, type Post } from '../../types'
 import { useMe } from '../../hooks/useMe'
 import { useQuery } from '@tanstack/react-query'
 import { postKeys } from '../../hooks/queries/queryKeys'
+import SEO from '../../components/SEO'
 
 
 
@@ -45,6 +46,7 @@ export default function Community() {
     else if(!isLoading) {
         content = (
             <section className='community-page'>
+                <SEO title="BookClub - 커뮤니티" description="독서 이야기를 자유롭게 나누는 BookClub 커뮤니티입니다." />
                 {/* 수정하기 만들어서 넣어주는 방법 구상해야함 */}
                 {/* Left */}
                 <Sidebar />

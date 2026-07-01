@@ -2,6 +2,7 @@ import './AuthorMain.css'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FilterButton from '../../../components/FilterButton'
+import SEO from '../../../components/SEO'
 /* import EmptyState from '../../../components/EmptyState' */
 
 
@@ -14,6 +15,7 @@ export default function AuthorMain() {
 
     return (
         <section className="author-main">
+            <SEO title="BookClub - 작가 채널" description="인증된 작가와 독자가 직접 소통하는 라운지입니다." />
                 <div className="aut-header">
                     <div className='aut-layout'>
                         {/* LEFT */}

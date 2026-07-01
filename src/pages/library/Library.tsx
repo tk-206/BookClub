@@ -9,6 +9,7 @@ import { fetchBooks, type Book } from '../../api/book'
 import { useQuery } from '@tanstack/react-query'
 import { useMe } from '../../hooks/useMe'
 import { bookKeys } from '../../hooks/queries/queryKeys'
+import SEO from '../../components/SEO'
 
 type SideTab = '전체 서재' | '읽는 중' | '읽은 책' | '읽고 싶어요' | '독서 캘린더' | '독서 통계' | '내 게시글' | '알림'
 type ContentTab = '목록' | '캘린더' | '통계'
@@ -73,6 +74,7 @@ export default function Library() {
 
     return (
         <section className='library-page'>
+            <SEO title="BookClub - 내 서재" description="나만의 독서 기록과 서재를 관리하는 페이지입니다." />
             {/* sidebar */}
             <aside className='sidebar'>
                 <div className='side-profile'>

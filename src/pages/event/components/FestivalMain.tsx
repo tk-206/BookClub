@@ -3,6 +3,7 @@ import './FestivalMain.css'
 import EmptyState from "../../../components/EmptyState"
 import FilterButton from "../../../components/FilterButton"
 import { useState } from "react"
+import SEO from "../../../components/SEO"
 
 const tabList = [ '전체', '낭독회', '북토크', '사인회', '도서전' ]
 
@@ -227,6 +228,7 @@ export default function FestivalMain() {
 
     return (
         <div className="events-main">
+            <SEO title="BookClub - 행사" description="작가와의 만남, 북토크, 낭독회 등 다양한 책 행사를 확인하세요." />
             {/* Hero */}
             <div className="events-hero">
                 <div className="hero-left-panel">
