@@ -19,14 +19,14 @@ export default function Footer() {
         
     ]
     return (
-        <footer>
-            <div className='footer-main'>
-                <div className="footer-brand">
+        <footer className="bg-[#0F1A30]">
+            <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-12 px-[5%] py-12">
+                <div className="mb-8">
                     {/* 브랜드 */}
-                    <p className="footer-logo">
-                        북<span>클럽</span>
+                    <p className="font-['Playfair_Display'] text-navy text-xl -tracking-[0.02em] mb-4 block">
+                        북<span className="text-gold italic">클럽</span>
                     </p>
-                    <p className="footer-tagline">
+                    <p className="font-sans text-[0.78rem] text-white/35 leading-[1.8] font-light">
                         책과 사람이 만나는 공간.<br />
                         독자, 작가, 출판사 모두를 위한<br />
                         문학 커뮤니티 플랫폼.
@@ -35,12 +35,12 @@ export default function Footer() {
                 
                 {/* 링크 컬럼 */}
                 {columns.map((col) => (
-                    <div key={col.title} className='footer-col'>
-                        <div className='col-card'>
-                            <h4>
+                    <div key={col.title}>
+                        <div className="mb-8">
+                            <h4 className="font-sans text-[0.75rem] tracking-[0.15em] uppercase text-gold mb-5">
                                 {col.title}
                             </h4>
-                            <ul>
+                            <ul className="flex flex-col gap-2.5 list-none">
                                 {col.page.map((page) => (
                                     <li key={page}>
                                         <NavLink to={page}>{page}</NavLink>
@@ -53,8 +53,8 @@ export default function Footer() {
             </div>
             
             {/* 하단 */}
-            <div className="footer-bottom">
-                <span className="footer-copy">© 2026 북클럽. All rights reserved.</span>
+            <div className="flex justify-between items-center bg-[#0F1A30] px-[5%] py-6 border-t border-white/5">
+                <span className="font-sans text-[0.72rem] text-white/20">© 2026 북클럽. All rights reserved.</span>
             </div>
         </footer>
         

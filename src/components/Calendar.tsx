@@ -1,4 +1,3 @@
-import './css/Calendar.css'
 import clsx from 'clsx'
 import { useState, useMemo } from 'react'
 import type { Book } from '../types'
@@ -31,32 +30,32 @@ export default function Calendar({ bookList = [] }:Props) {
 
 return (
     <div>
-        <div className='cal-header'>
-            <button onClick={() => handlePrev()}>‹</button>
+        <div className="flex justify-between items-center mb-4">
+            <button className="bg-transparent border-none text-xl cursor-pointer text-navy hover:text-gold transition-colors" onClick={() => handlePrev()}>‹</button>
 
-            <div className="title">
+            <div className="text-[1.2rem] font-bold text-navy">
             {year}년 {month + 1}월
             </div>
 
-            <button onClick={() => handleNext()}>›</button>
+            <button className="bg-transparent border-none text-xl cursor-pointer text-navy hover:text-gold transition-colors" onClick={() => handleNext()}>›</button>
         </div>
-        <div className="calendar">
+        <div className="grid grid-cols-7 gap-[1px] bg-gold-light/10 border border-gold-light/15 text-[0.75rem] text-gold-light_2">
         {dayHeader.map((d) => (
-            <div className='cal-day-header'>{d}</div>
+            <div className='bg-cream text-center p-[0.6rem] text-[0.68rem] text-muted tracking-[0.08em] font-medium'>{d}</div>
         ))}
         {calendar.map((day, i) => {
           const books = dataByDate[day.fullDate] || []
           return (
             <div
             key={i}
-            className={clsx('day', { dim: !day.current, today: day.today })}
+            className={clsx('bg-ivory min-h-[80px] p-2 relative transition-colors duration-150 cursor-pointer hover:bg-cream', { 'opacity-30': !day.current, 'bg-navy/5 text-gold': day.today })}
             >
               <div>{day.date}</div>
-              <div className="day-books">
+              <div className="mt-1">
                 {books.length > 0 && books.map((b, idx) => (
-                  <div key={idx} className="book-item">
-                    <span className="dot"></span>
-                    <span className="book-name">{b.label}</span>
+                  <div key={idx} className="flex items-center gap-[0.3rem] mb-[0.2rem]">
+                    <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-navy"></span>
+                    <span className="text-[0.65rem] text-ink whitespace-nowrap overflow-hidden text-ellipsis max-w-[80px]">{b.label}</span>
                   </div>
                 ))}
               </div>
