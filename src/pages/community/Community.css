@@ -629,15 +629,28 @@
 }
 
 @media (max-width: 768px) {
-  .community-page {
-    grid-template-columns: 1fr;
-  }
+    .community-page {
+        grid-template-columns: 1fr;
+    }
 
-  .left-sidebar {
-    display: none;
-  }
+    .left-sidebar {
+        display: none;
+    }
 
-  .board-content {
-    padding: 1rem;
-  }
+    .board-content {
+        padding: 1rem;
+    }
+
+    .featured-post {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .featured-img {
+        display: none;
+    }
+
+    .post-item {
+        gap: 0.5rem;
+    }
 }

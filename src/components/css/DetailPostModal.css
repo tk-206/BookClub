@@ -398,3 +398,34 @@
     margin-right: 40px;
     margin-left: 0;
 }
+
+@media (max-width: 768px) {
+    .detail-header {
+        padding: 1.25rem 1.25rem 1rem;
+    }
+
+    .detail-close {
+        right: 1.25rem;
+    }
+
+    .detail-body {
+        padding: 1.25rem;
+    }
+
+    .detail-title {
+        font-size: 1.2rem;
+    }
+
+    .comment-item {
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .comment-item.mine {
+        padding-left: 0;
+    }
+
+    .reply-form.mine {
+        margin-left: 0;
+    }
+}

@@ -176,3 +176,21 @@ textarea {
     font-family: 'Noto Sans KR', sans-serif;
     transition: background 0.15s;
 }
+
+@media (max-width: 768px) {
+    .modal-header {
+        padding: 1.25rem 1.25rem 1rem;
+    }
+
+    .modal-body {
+        padding: 1.25rem 1.25rem;
+    }
+
+    .modal-footer {
+        padding: 1rem 1.25rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}

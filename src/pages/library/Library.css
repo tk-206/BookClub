@@ -230,3 +230,45 @@
     color: var(--navy);
     border-bottom: 2px solid var(--navy);
 }
+
+@media (max-width: 1024px) {
+    .library-page {
+        grid-template-columns: 220px 1fr;
+    }
+
+    .my-library {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .library-page {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar {
+        height: auto;
+        position: static;
+        border-right: none;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+        padding: 1.5rem;
+    }
+
+    .my-library {
+        height: auto;
+        padding: 1.5rem;
+    }
+
+    .lib-status-row {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar-nav {
+        margin-bottom: 1rem;
+    }
+
+    .profile-card {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

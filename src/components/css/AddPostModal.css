@@ -144,3 +144,12 @@
     background: var(--gold);
     border: 1px solid var(--gold);
 }
+
+@media (max-width: 768px) {
+
+    .write-header,
+    .write-body,
+    .write-footer {
+        padding: 1.25rem;
+    }
+}
